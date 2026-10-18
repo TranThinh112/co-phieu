@@ -479,7 +479,7 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
         st.info("Hiện tại chưa có mã nào trong danh mục đang nắm giữ hoặc theo dõi.")
 
     # Công cụ tra cứu tức thời cho bất kỳ mã cổ phiếu nào
-    with st.expander("🔎 Tra Cứu Điểm Chốt Lời & Cắt Lỗ Cho Bất Kỳ Mã Nào (Nhập Giá Mua Của Bạn)", expanded=True):
+    with st.expander("🔎 Tra Cứu Điểm Chốt Lời & Cắt Lỗ Cho Bất Kỳ Mã Nào (Nhập Giá Mua Của Bạn)", expanded=False):
         st.write("Nhập mã cổ phiếu hoặc tên công ty, hệ thống sẽ tự động đối chiếu mức giá và đưa ra cố vấn chốt lời hoặc cắt lỗ chuẩn xác:")
 
         # 1-Click Quick Select Pills cho các mã phổ biến
