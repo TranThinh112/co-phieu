@@ -214,6 +214,7 @@ provider_choice = st.sidebar.selectbox(
 if "storage" not in st.session_state:
     st.session_state.storage = StorageEngine()
 storage = st.session_state.storage
+storage.seed_initial_market_data_if_empty()
 
 if "paper_broker" not in st.session_state:
     st.session_state.paper_broker = PaperBroker()
