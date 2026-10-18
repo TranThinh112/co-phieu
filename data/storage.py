@@ -310,4 +310,48 @@ class StorageEngine:
                 "regime": regime
             }
 
+    def get_user_positions(self) -> list:
+        import sqlite3
+        with sqlite3.connect(self.db_path) as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT id, symbol, quantity, avg_buy_price, note, created_at, updated_at FROM user_positions ORDER BY updated_at DESC")
+            rows = cursor.fetchall()
+            return [
+                {
+                    "id": r[0],
+                    "symbol": r[1],
+                    "quantity": r[2],
+                    "avg_buy_price": r[3],
+                    "note": r[4] or "",
+                    "created_at": r[5],
+                    "updated_at": r[6]
+                }
+                for r in rows
+            ]
+
+    def save_user_position(self, symbol: str, quantity: int, avg_buy_price: float, note: str = ""):
+        import sqlite3
+        import datetime
+        now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        sym_clean = str(symbol).strip().upper()
+        with sqlite3.connect(self.db_path) as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                INSERT INTO user_positions (symbol, quantity, avg_buy_price, note, created_at, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?)
+                ON CONFLICT(symbol) DO UPDATE SET
+                    quantity = excluded.quantity,
+                    avg_buy_price = excluded.avg_buy_price,
+                    note = excluded.note,
+                    updated_at = excluded.updated_at
+            """, (sym_clean, quantity, avg_buy_price, note, now_str, now_str))
+            conn.commit()
+
+    def delete_user_position(self, symbol: str):
+        import sqlite3
+        sym_clean = str(symbol).strip().upper()
+        with sqlite3.connect(self.db_path) as conn:
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM user_positions WHERE symbol = ?", (sym_clean,))
+            conn.commit()
 

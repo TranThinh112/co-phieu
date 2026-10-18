@@ -431,29 +431,80 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
         st.info("Chưa có dữ liệu quét trong Database. Hãy bấm quét lại ở cuối trang.")
 
     # =====================================================================
-    # BẢNG 2 DUY NHẤT: BẢNG CỐ VẤN CHỐT LỜI & CẮT LỖ (KHI NÀO NÊN BÁN?)
+    # BẢNG 2: BẢNG DANH MỤC CỔ PHIẾU ĐANG NẮM GIỮ (TỰ ĐỘNG TÍNH CHỐT LỜI / CẮT LỖ)
     # =====================================================================
     st.markdown("---")
-    st.subheader("🔔 KHI NÀO NÊN CHỐT LỜI HOẶC CẮT LỖ? (CỐ VẤN CHO CÁC MÃ ĐANG GIÁM SÁT)")
-    st.caption("Bot tự động đối chiếu giá thị trường để cho bạn biết chính xác thời điểm nên chốt lời hoặc cắt lỗ, giải thích chi tiết lý do:")
+    st.subheader("💼 DANH MỤC ĐANG NẮM GIỮ & CỐ VẤN CHỐT LỜI / CẮT LỖ TỰ ĐỘNG")
+    st.caption("Điền các mã cổ phiếu bạn đang nắm giữ kèm Giá Mua TB và Số Lượng. Bot sẽ tự động lấy Thị Giá mới nhất để tính Lãi/Lỗ và khuyến nghị chính xác thời điểm Chốt Lời (+8%, +15%) hoặc Cắt Lỗ (-5%):")
 
+    # Form nhập mã cổ phiếu đang nắm giữ
+    with st.expander("➕ Thêm Hoặc Cập Nhật Mã Cổ Phiếu Đang Nắm Giữ", expanded=False):
+        c_in1, c_in2, c_in3, c_in4 = st.columns([1.5, 1.2, 1.2, 1.0])
+        input_holding_sym = c_in1.text_input("Mã CP hoặc Tên Cty:", key="user_holding_sym", placeholder="VD: TPB, HPG, FPT...").strip().upper()
+        
+        # Auto-match ticker
+        resolved_user_sym = safe_find_symbol(st.session_state.universe, input_holding_sym) if input_holding_sym else ""
+        if resolved_user_sym:
+            c_in1.caption(f"🔵 Khớp: **{resolved_user_sym}** — {st.session_state.universe.get_symbol_display_label(resolved_user_sym).split('—')[-1].strip()}")
+
+        input_holding_price = c_in2.number_input("Giá Mua TB (VNĐ):", value=20000.0, step=100.0, key="user_holding_price")
+        input_holding_qty = c_in3.number_input("Số Lượng CP:", value=1000, step=100, min_value=10, key="user_holding_qty")
+
+        c_in4.write("<div style='height:28px;'></div>", unsafe_allow_html=True)
+        if c_in4.button("💾 Lưu Vị Thế", type="primary", use_container_width=True):
+            target_sym = resolved_user_sym if resolved_user_sym else input_holding_sym
+            if target_sym:
+                storage.save_user_position(target_sym, int(input_holding_qty), float(input_holding_price))
+                st.session_state.pop("cached_styled_exit", None)
+                st.success(f"Đã lưu thành công vị thế {target_sym} ({int(input_holding_qty):,} CP tại {input_holding_price:,.0f} đ)!")
+                st.rerun()
+            else:
+                st.error("Vui lòng nhập mã cổ phiếu hợp lệ.")
+
+    # Lay danh sach vi the nguoi dung da luu
+    saved_user_positions = storage.get_user_positions()
     active_tracked = tracker.get_active_recommendations()
     paper_positions = paper_broker.get_positions()
     
     positions_to_evaluate = []
     seen_syms = set()
 
+    # 1. Vi the do nguoi dung chu dong nhap (Uu tien cao nhat)
+    if saved_user_positions:
+        for up in saved_user_positions:
+            s_sym = up["symbol"]
+            seen_syms.add(s_sym)
+            # Tim gia thi truong moi nhat tu ket qua quet hoac fallback
+            c_price = float(up["avg_buy_price"])
+            if not df_results.empty:
+                m_row = df_results[df_results["symbol"] == s_sym]
+                if not m_row.empty:
+                    c_price = float(m_row.iloc[0]["close_price"])
+            positions_to_evaluate.append({
+                "symbol": s_sym,
+                "quantity": up["quantity"],
+                "buy_price": float(up["avg_buy_price"]),
+                "current_price": c_price,
+                "source": "Danh mục cá nhân",
+                "is_user_entry": True
+            })
+
+    # 2. Vi the tu Paper Trading (neu co)
     if paper_positions:
         for p in paper_positions:
             sym = p["symbol"]
-            seen_syms.add(sym)
-            positions_to_evaluate.append({
-                "symbol": sym,
-                "buy_price": float(p["avg_buy_price"]),
-                "current_price": float(p["current_price"]),
-                "source": "Danh mục Paper Trading"
-            })
+            if sym not in seen_syms:
+                seen_syms.add(sym)
+                positions_to_evaluate.append({
+                    "symbol": sym,
+                    "quantity": p["quantity"],
+                    "buy_price": float(p["avg_buy_price"]),
+                    "current_price": float(p["current_price"]),
+                    "source": "Paper Trading",
+                    "is_user_entry": False
+                })
 
+    # 3. Vi the tu theo doi 14 ngay (neu co)
     if not active_tracked.empty:
         for _, r in active_tracked.iterrows():
             sym = r["symbol"]
@@ -461,9 +512,11 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
                 seen_syms.add(sym)
                 positions_to_evaluate.append({
                     "symbol": sym,
+                    "quantity": 1000,
                     "buy_price": float(r["entry_price"]),
                     "current_price": float(r["current_price"]),
-                    "source": f"Theo dõi 14 ngày (ngày {r['days_tracked']}/14)"
+                    "source": f"Theo dõi 14 ngày (ngày {r['days_tracked']}/14)",
+                    "is_user_entry": False
                 })
 
     if positions_to_evaluate:
@@ -474,29 +527,46 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
                 buy_price=pos["buy_price"],
                 current_price=pos["current_price"]
             )
+            val_total = pos["quantity"] * pos["current_price"]
+            pnl_vnd = (pos["current_price"] - pos["buy_price"]) * pos["quantity"]
+
             exit_rows.append({
                 "Mã CP": pos["symbol"],
-                "Giá Mua": f"{pos['buy_price']:,.0f} đ",
-                "Giá Hiện Tại": f"{pos['current_price']:,.0f} đ",
-                "Lãi/Lỗ": f"{eval_res['pnl_pct']:+.2f}%",
+                "Số Lượng": f"{pos['quantity']:,} CP",
+                "Giá Mua TB": f"{pos['buy_price']:,.0f} đ",
+                "Giá Thị Trường": f"{pos['current_price']:,.0f} đ",
+                "Giá Trị Danh Mục": f"{val_total:,.0f} đ",
+                "Lãi/Lỗ (%)": f"{eval_res['pnl_pct']:+.2f}%",
+                "Lãi/Lỗ (VNĐ)": f"{pnl_vnd:+,.0f} đ",
                 "Hành Động Khuyên Dùng": eval_res["action_label"],
-                "Mục Tiêu Chốt Lời": f"TP1: {eval_res['tp1_price']:,.0f} đ (+8%) | TP2: {eval_res['tp2_price']:,.0f} đ (+15%)",
-                "Ngưỡng Cắt Lỗ": f"SL: {eval_res['sl_price']:,.0f} đ (-5%)",
+                "Chốt Lời TP1 (+8%)": f"{eval_res['tp1_price']:,.0f} đ",
+                "Chốt Lời TP2 (+15%)": f"{eval_res['tp2_price']:,.0f} đ",
+                "Cắt Lỗ SL (-5%)": f"{eval_res['sl_price']:,.0f} đ",
                 "Điểm Chặn Lãi": f"{eval_res['trailing_stop_price']:,.0f} đ",
-                "Lý Do Cụ Thể Tại Sao Nên Bán Hoặc Giữ": eval_res["reason_detail"]
+                "Lý Do Cụ Thể Nên Bán Hoặc Giữ": eval_res["reason_detail"],
+                "Nguồn": pos["source"]
             })
 
         df_exit = pd.DataFrame(exit_rows)
-        if "cached_styled_exit" not in st.session_state or st.session_state.get("_last_exit_count") != len(df_exit):
-            st.session_state.cached_styled_exit = style_table_colors(df_exit, target_columns=["Lãi/Lỗ", "Hành Động Khuyên Dùng"])
-            st.session_state._last_exit_count = len(df_exit)
         st.dataframe(
-            st.session_state.cached_styled_exit,
+            style_table_colors(df_exit, target_columns=["Lãi/Lỗ (%)", "Lãi/Lỗ (VNĐ)", "Hành Động Khuyên Dùng"]),
             use_container_width=True,
-            height=220
+            height=260
         )
+
+        # Nut xoa vi the nguoi dung da luu
+        if saved_user_positions:
+            with st.expander("🗑️ Xóa Mã Khỏi Danh Mục Nắm Giữ"):
+                col_del_s, col_del_b = st.columns([3, 1])
+                del_sym = col_del_s.selectbox("Chọn mã cần xóa:", [up["symbol"] for up in saved_user_positions], key="sel_del_holding")
+                col_del_b.write("<div style='height:28px;'></div>", unsafe_allow_html=True)
+                if col_del_b.button("Xác Nhận Xóa", type="secondary"):
+                    storage.delete_user_position(del_sym)
+                    st.session_state.pop("cached_styled_exit", None)
+                    st.success(f"Đã xóa mã {del_sym} khỏi danh mục!")
+                    st.rerun()
     else:
-        st.info("Hiện tại chưa có mã nào trong danh mục đang nắm giữ hoặc theo dõi.")
+        st.info("💡 Bạn chưa có mã cổ phiếu nào trong danh mục. Hãy bấm vào mục '+ Thêm Hoặc Cập Nhật Mã Cổ Phiếu Đang Nắm Giữ' ở trên để nhập các mã bạn đã mua.")
 
     # Công cụ tra cứu tức thời cho bất kỳ mã cổ phiếu nào
     with st.expander("🔎 Tra Cứu Điểm Chốt Lời & Cắt Lỗ Cho Bất Kỳ Mã Nào (Nhập Giá Mua Của Bạn)", expanded=False):
