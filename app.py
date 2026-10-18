@@ -59,6 +59,7 @@ from learning.tracker import RecommendationTracker
 from learning.feedback_loop import SelfLearningEngine
 from strategies.exit_strategy import ExitAdvisor
 from features.limit_price import LimitPricePredictor
+from automation.session_manager import MarketSessionManager, is_market_open_now, get_market_session_status
 
 def translate_trend(val: str) -> str:
     s = str(val or "")
@@ -258,11 +259,14 @@ if not st.session_state.regime_info and latest_summary:
     st.session_state.regime_info = latest_summary
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("#### 🤖 Chế Độ Tự Động (Auto-Pilot)")
-st.sidebar.markdown("""
-<div style="background:#141a24; border:1px solid #283347; border-left:4px solid #10b981; border-radius:6px; padding:10px; margin-bottom:12px;">
-    <span style="color:#34d399; font-weight:700; font-size:0.88rem;">🟢 TỰ ĐỘNG CHẠY NGẦM: BẬT</span><br>
-    <span style="color:#94a3b8; font-size:0.8rem;">Lịch quét: 15:30 (Thứ 2 - Thứ 6) qua Task Scheduler</span>
+st.sidebar.markdown("#### 🤖 Khung Giờ Hoạt Động (Tiết Kiệm API)")
+session_st = get_market_session_status()
+st.sidebar.markdown(f"""
+<div style="background:#141a24; border:1px solid #283347; border-left:4px solid {session_st['badge_color']}; border-radius:6px; padding:10px; margin-bottom:12px;">
+    <span style="color:{session_st['badge_color']}; font-weight:700; font-size:0.88rem;">{session_st['badge_label']}</span><br>
+    <span style="color:#cbd5e1; font-size:0.8rem; font-weight:500;">⏰ Khung giờ hoạt động:</span><br>
+    <span style="color:#94a3b8; font-size:0.77rem;">• Phiên sáng: 09:00 - 11:30<br>• Phiên chiều & ATC: 13:00 - 15:00<br>• Tổng kết sau phiên & Tin tức: 15:00 - 16:30</span><br>
+    <span style="color:#64748b; font-size:0.75rem; font-style:italic;">Tự động ngưng gọi API ngoài giờ để tránh nghẽn server.</span>
 </div>
 """, unsafe_allow_html=True)
 
@@ -284,7 +288,19 @@ page = st.sidebar.radio(
 )
 
 if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
-    st.title("🎯 Cổ Phiếu Nên Mua & Quản Trị Vị Thế Hôm Nay")
+    st.title("🎯 Cổ Phiếu Nên Mua & Quản Trị Vị Thế")
+    curr_sess = get_market_session_status()
+    st.markdown(f"""
+    <div style="background:#131b26; border:1px solid #233044; border-left:4px solid {curr_sess['badge_color']}; border-radius:8px; padding:10px 16px; margin-bottom:14px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <div>
+            <strong style="color:{curr_sess['badge_color']}; font-size:0.92rem;">{curr_sess['badge_label']} &nbsp;·&nbsp; {curr_sess['session_name']}</strong><br>
+            <span style="color:#94a3b8; font-size:0.82rem;">{curr_sess['recommended_action']}</span>
+        </div>
+        <div style="text-align:right;">
+            <span style="color:#60a5fa; font-size:0.8rem; font-weight:600; background:#172554; border:1px solid #1e40af; padding:4px 10px; border-radius:6px;">🛡️ BẢO TOÀN HẠN MỨC API</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
     raw_regime = st.session_state.regime_info.get("regime", "Đang cập nhật")
     regime_vn = translate_trend(raw_regime)
