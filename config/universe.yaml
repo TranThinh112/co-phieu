@@ -1,0 +1,5602 @@
+stocks:
+- symbol: AAA
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Nhựa An Phát Xanh
+- symbol: AAH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Hop nhat
+- symbol: AAM
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Thủy sản Mekong
+- symbol: AAN
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Lương thực A An
+- symbol: AAS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Chứng khoán SmartInvest
+- symbol: AAT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Tiên Sơn Thanh Hóa
+- symbol: AAV
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần AAV Group
+- symbol: ABB
+  exchange: UPCoM
+  sector: Financials
+  name: NHTMCP An Binh
+- symbol: ABC
+  exchange: UPCoM
+  sector: General
+  name: CP CTCP Truyen thong VMG
+- symbol: ABI
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Bảo hiểm Ngân hàng Nông nghiệp
+- symbol: ABR
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Nhãn hiệu Việt
+- symbol: ABS
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Dịch vụ Nông nghiệp Bình Thuận
+- symbol: ABT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Xuất nhập khẩu Thủy sản Bến Tre
+- symbol: ABW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Chung khoan An Binh
+- symbol: ACB
+  exchange: HOSE
+  sector: Financials
+  name: Ngân hàng Thương mại Cổ phần Á Châu
+- symbol: ACC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư và Xây dựng Bình Dương ACC
+- symbol: ACE
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Bê tông Ly tâm An Giang
+- symbol: ACG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Gỗ An Cường
+- symbol: ACL
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Xuất Nhập Khẩu Thủy sản Cửu Long An Giang
+- symbol: ACM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tap doan Khoang san A Cuong
+- symbol: ACS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xay lap Thuong mai 2
+- symbol: ACV
+  exchange: UPCoM
+  sector: Industrials
+  name: Tong cong ty Cang hang khong Viet Nam
+- symbol: ADC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Công ty Cổ phần Mĩ thuật và Truyền thông
+- symbol: ADG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Clever Group
+- symbol: ADP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Sơn Á Đông
+- symbol: ADS
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Damsan
+- symbol: AFX
+  exchange: HOSE
+  sector: General
+  name: CTCP Xuất nhập khẩu Nông sản Thực phẩm An Giang
+- symbol: AGF
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xuat nhap khau Thuy san An Giang
+- symbol: AGG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư và Phát triển Bất động sản An Gia
+- symbol: AGM
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Xuất nhập khẩu An Giang
+- symbol: AGP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Duoc Agimexpham
+- symbol: AGR
+  exchange: HOSE
+  sector: Financials
+  name: Công ty Cổ phần Chứng khoán Agribank
+- symbol: AGX
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thực phẩm Nông sản Xuất khẩu Sài Gòn
+- symbol: AIC
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Tập đoàn Bảo hiểm DBV
+- symbol: AIG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Nguyen lieu A Chau AIG
+- symbol: ALC
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Âu Lạc
+- symbol: ALT
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Văn hóa Tân Bình
+- symbol: ALV
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Tập đoàn MCST
+- symbol: AMC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Khoáng sản Á Châu
+- symbol: AME
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Alphanam E&C
+- symbol: AMP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Armephaco
+- symbol: AMS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Co khi Xay dung AMECC
+- symbol: AMV
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP SXKD Dược và trang thiết bị Việt Mỹ
+- symbol: ANI
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần ANI
+- symbol: ANT
+  exchange: HOSE
+  sector: General
+  name: Công ty cổ phần Rau quả thực phẩm An Giang
+- symbol: ANV
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Nam Việt
+- symbol: APC
+  exchange: UPCoM
+  sector: General
+  name: CTCP chieu xa An Phu
+- symbol: APF
+  exchange: UPCoM
+  sector: General
+  name: CTCP Nong san Thuc pham Quang Ngai
+- symbol: APG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Chứng khoán APG
+- symbol: APH
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn An Phát Holdings
+- symbol: API
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Đầu tư  Châu á - Thái Bình Dương
+- symbol: APL
+  exchange: UPCoM
+  sector: General
+  name: CTCP Co khi va Thiet bi ap luc VVMI
+- symbol: APP
+  exchange: UPCoM
+  sector: General
+  name: APP - CTCP Phát triển Phụ gia và Sản phẩm Dầu mỏ
+- symbol: APS
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Chứng khoán Châu á - Thái Bình Dương
+- symbol: APT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Kinh doanh Thủy hải sản Sài Gòn
+- symbol: ARM
+  exchange: HNX
+  sector: General
+  name: ARM - CTCP Xuất nhập khẩu Hàng không
+- symbol: ART
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Chứng khoán BOS
+- symbol: ASG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn ASG
+- symbol: ASM
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Sao Mai
+- symbol: ASP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Dầu khí An Pha
+- symbol: AST
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Dịch vụ Hàng không Taseco
+- symbol: ATA
+  exchange: UPCoM
+  sector: General
+  name: CTCP NTACO
+- symbol: ATG
+  exchange: UPCoM
+  sector: General
+  name: Công ty Cổ phần ATG Planet
+- symbol: ATS
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần Tập đoàn đầu tư ATS
+- symbol: AVC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuy dien A Vuong
+- symbol: AVG
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Phân bón Quốc tế Âu Việt
+- symbol: BAB
+  exchange: HNX
+  sector: Financials
+  name: Ngân hàng Thương mại Cổ phần Bắc Á
+- symbol: BAF
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Nông nghiệp BAF Việt Nam
+- symbol: BAL
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bao bi Bia - Ruou - Nuoc giai khat
+- symbol: BAX
+  exchange: HNX
+  sector: General
+  name: CTCP Thong Nhat
+- symbol: BBH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bao bì Hoàng Thạch
+- symbol: BBM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bia Ha noi - Nam dinh
+- symbol: BBS
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Vicem Bao bì Bút Sơn
+- symbol: BBT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bông Bạch Tuyết
+- symbol: BCA
+  exchange: UPCoM
+  sector: General
+  name: CTCP B.C.H
+- symbol: BCB
+  exchange: UPCoM
+  sector: General
+  name: CTCP 397
+- symbol: BCC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Xi măng Bỉm Sơn
+- symbol: BCE
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Xây dựng và Giao thông Bình Dương
+- symbol: BCF
+  exchange: HNX
+  sector: General
+  name: CTCP Thuc Pham Bich Chi
+- symbol: BCM
+  exchange: HOSE
+  sector: Real Estate
+  name: Tập đoàn Đầu tư và Phát triển Công nghiệp Becamex - CTCP
+- symbol: BCP
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Dược Enlie
+- symbol: BCV
+  exchange: UPCoM
+  sector: General
+  name: CTCP Du lịch và Thương mại Bằng Giang Cao Bằng - Vimico
+- symbol: BDG
+  exchange: UPCoM
+  sector: General
+  name: CTCP May mac Binh Duong
+- symbol: BDT
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Xây lắp và Vật liệu Xây dựng Đồng Tháp
+- symbol: BDW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap thoat nuoc Binh Dinh
+- symbol: BED
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Sách và Thiết bị trường học đà Nẵng
+- symbol: BEL
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dien tu Bien Hoa
+- symbol: BFC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Phân bón Bình Điền
+- symbol: BGE
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần BCG Energy
+- symbol: BGW
+  exchange: UPCoM
+  sector: General
+  name: BGW - CTCP Nước sạch Bắc Giang
+- symbol: BHA
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thủy điện Bắc Hà
+- symbol: BHC
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty Cổ phần Bê tông Biên Hòa
+- symbol: BHG
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Chè Biển Hồ
+- symbol: BHH
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Thương mại Bia Hà Nội - Hưng Yên 89
+- symbol: BHI
+  exchange: UPCoM
+  sector: General
+  name: Tổng Công ty cổ phần Bảo hiểm Sài Gòn - Hà Nội
+- symbol: BHK
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bia Ha Noi - Kim Bai
+- symbol: BHN
+  exchange: HOSE
+  sector: General
+  name: Tổng Công ty Cổ phần Bia – Rượu – Nước giải khát Hà Nội
+- symbol: BHP
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Bia Hà Nội - Hải Phòng
+- symbol: BIC
+  exchange: HOSE
+  sector: General
+  name: Tổng Công ty Bảo hiểm Ngân hàng Đầu tư và Phát triển Việt Nam
+- symbol: BID
+  exchange: HOSE
+  sector: Financials
+  name: Ngân hàng Thương mại Cổ phần Đầu tư và Phát triển Việt Nam
+- symbol: BIG
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Đầu tư Big Group Holdings
+- symbol: BIO
+  exchange: UPCoM
+  sector: General
+  name: CTCP Vac Xin va Sinh pham Nha Trang
+- symbol: BKC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Khoáng sản Bắc Kạn
+- symbol: BKG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư BKG Việt Nam
+- symbol: BLF
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Thuỷ sản Bạc Liêu
+- symbol: BLI
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bao hiem Bao Long
+- symbol: BLN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Van tai va Dich vu Lien Ninh
+- symbol: BLT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Lương thực Bình Định
+- symbol: BMC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Khoáng sản Bình Định
+- symbol: BMD
+  exchange: UPCoM
+  sector: General
+  name: CTCP Moi truong va Dich vu do thi Binh Thuan
+- symbol: BMF
+  exchange: UPCoM
+  sector: General
+  name: CTCP Vat lieu Xay dung va Chat dot Dong Nai
+- symbol: BMG
+  exchange: UPCoM
+  sector: General
+  name: CTCP May Bình Minh
+- symbol: BMI
+  exchange: HOSE
+  sector: General
+  name: Tổng Công ty Cổ phần Bảo Minh
+- symbol: BMJ
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Khoáng sản miền đông AHP
+- symbol: BMK
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Kỹ thuật nhiệt Mèo Đen
+- symbol: BMP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Nhựa Bình Minh
+- symbol: BMS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Chung khoan Bao Minh
+- symbol: BMV
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bot my Vinafood 1
+- symbol: BNA
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Tập đoàn Đầu tư Bảo Ngọc
+- symbol: BNW
+  exchange: UPCoM
+  sector: General
+  name: CTCP nuoc sach Bac Ninh
+- symbol: BOT
+  exchange: UPCoM
+  sector: General
+  name: CTCP BOT Cau Thai Ha
+- symbol: BPC
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Vicem Bao bì Bỉm Sơn
+- symbol: BQB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bia Ha Noi - Quang Binh
+- symbol: BQP
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Nhựa Chất lượng cao Bình Thuận
+- symbol: BRC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Cao su Bến Thành
+- symbol: BRR
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cao su Ba Ria
+- symbol: BRS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dich vu Do thi Ba Ria
+- symbol: BSA
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuy dien Buon Don
+- symbol: BSD
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bia, Ruou Sai Gon - Dong Xuan
+- symbol: BSG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xe khach Sai Gon
+- symbol: BSH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bia Sai Gon - Ha noi
+- symbol: BSI
+  exchange: HOSE
+  sector: Financials
+  name: Công ty Cổ phần Chứng khoán BIDV
+- symbol: BSL
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bia Sai Gon - Song Lam
+- symbol: BSP
+  exchange: UPCoM
+  sector: General
+  name: Công ty CP Bia Sài Gòn - Phú Thọ
+- symbol: BSQ
+  exchange: UPCoM
+  sector: General
+  name: BSQ- CTCP Bia Sai Gon-Quang Ngai
+- symbol: BSR
+  exchange: HOSE
+  sector: Energy
+  name: CÔNG TY CỔ PHẦN – TỔNG CÔNG TY LỌC HÓA DẦU VIỆT NAM
+- symbol: BTB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bia Ha Noi - Thai Binh
+- symbol: BTD
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Bê tông ly tâm Thủ Đức
+- symbol: BTG
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Bao bì Tiền Giang
+- symbol: BTH
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Chế tạo Biến thế  và  Vật liệu điện Hà nội
+- symbol: BTN
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Đầu tư Bitco Bình Định
+- symbol: BTP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Nhiệt điện Bà Rịa
+- symbol: BTS
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Xi măng Vicem Bút Sơn
+- symbol: BTT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Thương mại – Dịch vụ Bến Thành
+- symbol: BTU
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cong trinh Do thi Ben Tre
+- symbol: BTV
+  exchange: UPCoM
+  sector: General
+  name: BTV- ctcp dich vu Du lich Ben Thanh
+- symbol: BTW
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Cấp nước Bến Thành
+- symbol: BVB
+  exchange: HOSE
+  sector: General
+  name: Ngân hàng Thương mại Cổ phần Bản Việt
+- symbol: BVG
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Group Bắc Việt
+- symbol: BVH
+  exchange: HOSE
+  sector: General
+  name: Tập đoàn Bảo Việt
+- symbol: BVL
+  exchange: UPCoM
+  sector: General
+  name: CTCP BV Land
+- symbol: BVN
+  exchange: UPCoM
+  sector: General
+  name: BVN - Công ty cổ phần Bông Việt Nam
+- symbol: BVS
+  exchange: HNX
+  sector: General
+  name: Chứng khoán CTCP chứng khoán Bảo Việt
+- symbol: BWA
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Cấp thoát nước và Xây dựng Bảo Lộc
+- symbol: BWE
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần - Tổng Công ty Nước – Môi trường Bình Dương
+- symbol: BWS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap nuoc Ba Ria - Vung Tau
+- symbol: BXH
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Vicem Bao bì Hải Phòng
+- symbol: CAD
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP chế biến và XNK thuỷ sản Cadovimex
+- symbol: CAG
+  exchange: HNX
+  sector: General
+  name: CTCP Cảng An Giang
+- symbol: CAN
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Đồ hộp Hạ Long
+- symbol: CAP
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Lâm nông sản thực phẩm Yên Bái
+- symbol: CAR
+  exchange: HNX
+  sector: General
+  name: CTCP Tap doan Giao duc Tri Viet
+- symbol: CAT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuy san Ca Mau
+- symbol: CBI
+  exchange: UPCoM
+  sector: General
+  name: CTCP Gang thep Cao Bang
+- symbol: CBS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Mia duong Cao Bang
+- symbol: CCA
+  exchange: UPCoM
+  sector: General
+  name: CTCP xuất nhập khẩu Thủy sản Cần thơ
+- symbol: CCC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Xây dựng CDC
+- symbol: CCI
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Phát triển Công nghiệp Thương mại Củ Chi
+- symbol: CCL
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư và Phát triển Đô thị Dầu khí Cửu Long
+- symbol: CCM
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Khoáng sản và Xi măng Cần Thơ
+- symbol: CCP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cang Cua Cam Hai Phong
+- symbol: CCR
+  exchange: HNX
+  sector: General
+  name: CTCP Cang Cam Ranh
+- symbol: CCS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Chíp Sáng
+- symbol: CCT
+  exchange: UPCoM
+  sector: General
+  name: CTCP CANG CAN THO
+- symbol: CCV
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tu van Xay dung Cong nghiep va Do thi Vietnam
+- symbol: CDC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Chương Dương
+- symbol: CDG
+  exchange: UPCoM
+  sector: General
+  name: CDG- CTCP Cau Duong
+- symbol: CDN
+  exchange: HNX
+  sector: General
+  name: CTCP Cang Da Nang
+- symbol: CDO
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tu van thiet ke va Phat trien do thi
+- symbol: CDP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Duoc pham Trung uong Codupha
+- symbol: CDR
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xây dựng Cao su Đồng Nai
+- symbol: CEN
+  exchange: UPCoM
+  sector: General
+  name: CTCP CENCON Việt Nam
+- symbol: CEO
+  exchange: HNX
+  sector: Real Estate
+  name: Công ty cổ phần Tập đoàn C.E.O
+- symbol: CET
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần HTC Holding
+- symbol: CFM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu CFM
+- symbol: CFV
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Cà phê Thắng Lợi
+- symbol: CGV
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Vinaceglass
+- symbol: CHC
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Cẩm Hà
+- symbol: CHP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Thủy điện Miền Trung
+- symbol: CHS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Chieu sang cong cong TPHCM
+- symbol: CIA
+  exchange: HNX
+  sector: General
+  name: CTCP Dich vu San bay Quoc te Cam Ranh
+- symbol: CID
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Xây dựng & Phát triển Cơ sở hạ tầng
+- symbol: CIG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần COMA18
+- symbol: CII
+  exchange: HOSE
+  sector: Industrials
+  name: Công ty Cổ phần Đầu tư Hạ tầng Kỹ thuật TP.HCM
+- symbol: CIP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xay lap va San xuat Cong nghiep
+- symbol: CJC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Cơ điện Miền Trung
+- symbol: CKA
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cơ khí An Giang
+- symbol: CKD
+  exchange: UPCoM
+  sector: General
+  name: Công ty Cổ phần Cơ khí Đông Anh Licogi
+- symbol: CKG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn CIC
+- symbol: CKV
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Cokyvina
+- symbol: CLC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Cát Lợi
+- symbol: CLH
+  exchange: HNX
+  sector: General
+  name: CTCP Xi mang La Hien VVMI
+- symbol: CLI
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Tập đoàn CNCTech
+- symbol: CLL
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Cảng Cát Lái
+- symbol: CLM
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần Xuất nhập khẩu Than - Vinacomin
+- symbol: CLW
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Cấp nước Chợ Lớn
+- symbol: CLX
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Xuất nhập khẩu và Đầu tư Chợ Lớn
+- symbol: CMC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP đầu tư CMC
+- symbol: CMD
+  exchange: UPCoM
+  sector: General
+  name: CTCP Vật liệu Xây dựng và Trang trí nội thất TP.Hồ Chí Minh
+- symbol: CMF
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuc pham Cholimex
+- symbol: CMG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Công nghệ CMC
+- symbol: CMI
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần CMISTONE Việt Nam
+- symbol: CMK
+  exchange: UPCoM
+  sector: General
+  name: CTCP Co khi Mao Khe - Vinacomin
+- symbol: CMM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Camimex
+- symbol: CMN
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Lương thực thực phẩm Colusa- Miliket
+- symbol: CMP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cang Chan May
+- symbol: CMS
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần Tập đoàn CMH Việt Nam
+- symbol: CMT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Công nghệ Mạng và Truyền thông
+- symbol: CMV
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Thương nghiệp Cà Mau
+- symbol: CMW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap nuoc Ca Mau
+- symbol: CMX
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Camimex Group
+- symbol: CNA
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Tổng công ty Chè Nghệ An
+- symbol: CNC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Công nghệ cao Traphaco
+- symbol: CNG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần CNG Việt Nam
+- symbol: CNN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tu van cong nghe, thiet bi va kiem dinh xay dung Coninco
+- symbol: CNT
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Tập đoàn CNT
+- symbol: COM
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Vật tư - Xăng dầu
+- symbol: CPA
+  exchange: UPCoM
+  sector: General
+  name: CTCP Ca phe Phuoc An
+- symbol: CPC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Thuốc sát trùng Cần Thơ
+- symbol: CPH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Phuc Vu Mai tang Hai Phong
+- symbol: CPI
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu Cang Cai Lan
+- symbol: CQN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cảng Quảng Ninh
+- symbol: CQT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xi măng Quán Triều VVMI
+- symbol: CRC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Create Capital Việt Nam
+- symbol: CRE
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Bất động sản Thế Kỷ
+- symbol: CRV
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Bất động sản CRV
+- symbol: CSC
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần Tập đoàn COTANA
+- symbol: CSI
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Chứng khoán Kirin
+- symbol: CSM
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Công nghiệp Cao su Miền Nam
+- symbol: CST
+  exchange: HNX
+  sector: General
+  name: CTCP Than Cao Sơn - TKV
+- symbol: CSV
+  exchange: HOSE
+  sector: Materials
+  name: Công ty Cổ phần Hóa chất cơ bản miền Nam
+- symbol: CTB
+  exchange: HNX
+  sector: General
+  name: CTCP Che tao Bom Hai Duong
+- symbol: CTD
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Xây dựng COTECCONS
+- symbol: CTF
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần City Auto
+- symbol: CTG
+  exchange: HOSE
+  sector: Financials
+  name: Ngân hàng Thương mại Cổ phần Công Thương Việt Nam
+- symbol: CTI
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Phát triển Cường Thuận IDICO
+- symbol: CTP
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Tập đoàn CTP Group
+- symbol: CTR
+  exchange: HOSE
+  sector: General
+  name: Tổng Công ty Cổ phần Công trình Viettel
+- symbol: CTS
+  exchange: HOSE
+  sector: Financials
+  name: Công ty Cổ phần Chứng khoán VIETINBANK
+- symbol: CTT
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần chế tạo máy - Vinacomin
+- symbol: CTW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap thoat nuoc Can Tho
+- symbol: CTX
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Tổng Công ty cổ phần Đầu tư xây dựng và Thương mại Việt Nam
+- symbol: CVN
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Vinam
+- symbol: CVT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần CMC
+- symbol: DAC
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần 382 Đông Anh
+- symbol: DAD
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Đầu tư và Phát triển Giáo dục Đà Nẵng
+- symbol: DAE
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Sách giáo dục tại Tp Đà Nẵng
+- symbol: DAG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tập đoàn Nhựa Đông Á
+- symbol: DAH
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Khách sạn Đông Á
+- symbol: DAS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Máy - Thiết bị Dầu khí Đà Nẵng
+- symbol: DAT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Du lịch và Phát triển Thủy sản
+- symbol: DBC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn DABACO Việt Nam
+- symbol: DBD
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Dược - Trang thiết bị Y tế Bình Định
+- symbol: DBM
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Dược - Vật tư Y tế Đăk Lăk
+- symbol: DBT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Dược phẩm Bến Tre
+- symbol: DCF
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xay dung va Thiet ke so 1
+- symbol: DCG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tổng công ty May Đáp Cầu
+- symbol: DCH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dia chinh Ha noi
+- symbol: DCL
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Dược phẩm Cửu Long
+- symbol: DCM
+  exchange: HOSE
+  sector: Materials
+  name: Công ty Cổ phần - Tổng Công ty phân bón Dầu khí Cà Mau
+- symbol: DCR
+  exchange: UPCoM
+  sector: General
+  name: CTCP Gach men Cosevco
+- symbol: DCS
+  exchange: UPCoM
+  sector: General
+  name: Cong ty co phan Tap doan Dai Chau
+- symbol: DCT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tam lop Vat lieu Xay dung Dong Nai
+- symbol: DCV
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Quản lý quỹ Đầu tư Dragon Capital Việt Nam
+- symbol: DDB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thương mại và Xây dựng Đông Dương
+- symbol: DDG
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Đầu tư Công nghiệp Xuất nhập khẩu Đông Dương
+- symbol: DDH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dam bao giao thong duong thuy Hai Phong
+- symbol: DDM
+  exchange: UPCoM
+  sector: General
+  name: Cổ Phiếu CTCP Hàng Hải Đông Đô
+- symbol: DDN
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Dược - Thiết bị Y tế Đà Nẵng
+- symbol: DDV
+  exchange: UPCoM
+  sector: General
+  name: CTCP DAP - VINACHEM
+- symbol: DFC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xich lip Dong Anh
+- symbol: DFF
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tập đoàn Đua Fat
+- symbol: DGC
+  exchange: HOSE
+  sector: Materials
+  name: Công ty Cổ phần Tập đoàn Hóa chất Đức Giang
+- symbol: DGT
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Công trình giao thông Đồng Nai
+- symbol: DGW
+  exchange: HOSE
+  sector: Technology
+  name: Công ty Cổ phần Thế Giới Số
+- symbol: DHA
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Hóa An
+- symbol: DHB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Phan dam va Hoa chat Ha Bac
+- symbol: DHC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đông Hải Bến Tre
+- symbol: DHD
+  exchange: UPCoM
+  sector: General
+  name: CTCP Duoc Vat tu Y te Hai Duong
+- symbol: DHG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Dược Hậu Giang
+- symbol: DHM
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư và Thương mại DHM
+- symbol: DHN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Duoc pham Ha Noi
+- symbol: DHP
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Công ty cổ phần điện cơ Hải Phòng
+- symbol: DHT
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Dược phẩm Hà Tây
+- symbol: DIC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Đầu tư và Thương mại DIC
+- symbol: DID
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP DIC - Đồng Tiến
+- symbol: DIG
+  exchange: HOSE
+  sector: Real Estate
+  name: Tổng Công ty Cổ phần Đầu tư Phát triển Xây dựng
+- symbol: DIH
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Đầu tư Phát triển Xây dựng Hội An
+- symbol: DKC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cho Lang Son
+- symbol: DKG
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Tập đoàn Damik
+- symbol: DLD
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Du Lịch Đăk Lăk
+- symbol: DLG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Đức Long Gia Lai
+- symbol: DLR
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Địa ốc Đà Lạt
+- symbol: DLT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Du lich va Thuong mai - Vinacomin
+- symbol: DMC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Xuất nhập khẩu Y tế DOMESCO
+- symbol: DMN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Domenal
+- symbol: DMX
+  exchange: HOSE
+  sector: General
+  name: Công ty cổ phần Đầu tư Điện Máy Xanh
+- symbol: DNA
+  exchange: UPCoM
+  sector: General
+  name: CTCP Điện nước An Giang
+- symbol: DNC
+  exchange: HNX
+  sector: General
+  name: cổ phiếu CTCP Điện nước lắp máy Hải Phòng
+- symbol: DND
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu xay dung va Vat lieu Dong nai
+- symbol: DNE
+  exchange: UPCoM
+  sector: General
+  name: CTCP Moi truong Do thi Da Nang
+- symbol: DNH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuy dien Da Nhim - Ham Thuan - Da Mi
+- symbol: DNL
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty Cổ phần Logistics Cảng Đà Nẵng
+- symbol: DNM
+  exchange: UPCoM
+  sector: General
+  name: DNM - Tổng Công ty Cổ phần Y tế Danameco
+- symbol: DNN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap nuoc Da Nang
+- symbol: DNP
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần DNP Holding
+- symbol: DNT
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Du lịch Đồng Nai
+- symbol: DNW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap nuoc Dong Nai
+- symbol: DOC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Vat tu nong nghiep Dong Nai
+- symbol: DOP
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Vận tải Xăng dầu Đồng Tháp
+- symbol: DPC
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty Cổ phần Nhựa Đà Nẵng
+- symbol: DPG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Đạt Phương
+- symbol: DPH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Duoc pham Hai Phong
+- symbol: DPM
+  exchange: HOSE
+  sector: Materials
+  name: Tổng Công ty Phân bón và Hóa chất Dầu khí - Công ty Cổ phần
+- symbol: DPP
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Dược Đồng Nai
+- symbol: DPR
+  exchange: HOSE
+  sector: Materials
+  name: Công ty Cổ phần Cao su Đồng Phú
+- symbol: DQC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Điện Quang
+- symbol: DRC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Cao su Đà Nẵng
+- symbol: DRG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cao su Đắk Lắk
+- symbol: DRH
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần DRH Holdings
+- symbol: DRI
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu Cao su Dak Lak
+- symbol: DRL
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Thủy điện - Điện lực 3
+- symbol: DSC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Chứng khoán DSC
+- symbol: DSD
+  exchange: UPCoM
+  sector: General
+  name: CTCP DHC Suoi Doi
+- symbol: DSE
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Chứng khoán DNSE
+- symbol: DSG
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Kính Đáp Cầu
+- symbol: DSN
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Công viên nước Đầm Sen
+- symbol: DSP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dịch vụ Du lịch Phú Thọ
+- symbol: DST
+  exchange: HNX
+  sector: General
+  name: CTCP Dau Tu Sao Thang Long
+- symbol: DTA
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đệ Tam
+- symbol: DTC
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Viglacera  Đông Triều
+- symbol: DTD
+  exchange: HNX
+  sector: General
+  name: CTCP Đầu tư Phát triển Thành Đạt
+- symbol: DTG
+  exchange: HNX
+  sector: General
+  name: DTG- CTCP Duoc pham tipharco
+- symbol: DTH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Duoc Vat tu Y te Thanh Hoa
+- symbol: DTI
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu Duc Trung
+- symbol: DTK
+  exchange: HNX
+  sector: General
+  name: CTCP - Tong cong ty Dien luc TKV
+- symbol: DTL
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đại Thiên Lộc
+- symbol: DTP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dược phẩm CPC1 Hà Nội
+- symbol: DTR
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Đông Tây Land
+- symbol: DTT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Kỹ nghệ Đô Thành
+- symbol: DUS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dịch vụ Đô thị Đà Lạt
+- symbol: DVC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thương mại Dịch vụ Tổng hợp Cảng Hải Phòng
+- symbol: DVG
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Đại Việt Group DVG
+- symbol: DVM
+  exchange: HNX
+  sector: General
+  name: CTCP Dược Liệu Việt Nam
+- symbol: DVN
+  exchange: UPCoM
+  sector: General
+  name: Tong CTCP  Duoc Viet Nam
+- symbol: DVP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư và Phát triển Cảng Đình Vũ
+- symbol: DVW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dich vu va Xay dung Cap nuoc Dong nai
+- symbol: DWC
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Cấp nước Đắc Lắk
+- symbol: DWS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap nuoc va Moi truong do thi Dong Thap
+- symbol: DXG
+  exchange: HOSE
+  sector: Real Estate
+  name: Công ty Cổ phần Bluemarq Group
+- symbol: DXL
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Du lịch và Xuất Nhập khẩu Lạng Sơn
+- symbol: DXP
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần Cảng Đoạn Xá
+- symbol: DXS
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Dịch vụ Bất động sản Đất Xanh
+- symbol: DXV
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Vicem Vật liệu Xây dựng Đà Nẵng
+- symbol: EBS
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Sách giáo dục tại Tp Hà Nội
+- symbol: ECI
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần Tập đoàn ECI
+- symbol: ECO
+  exchange: HOSE
+  sector: General
+  name: CÔNG TY CỔ PHẦN NHỰA SINH THÁI VIỆT NAM
+- symbol: EFI
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Đầu tư Tài chính Giáo dục
+- symbol: EGL
+  exchange: UPCoM
+  sector: General
+  name: CTCP Môi trường đô thị Gia Lâm
+- symbol: EIB
+  exchange: HOSE
+  sector: Financials
+  name: Ngân hàng Thương mại Cổ phần Xuất Nhập khẩu Việt Nam
+- symbol: EIC
+  exchange: UPCoM
+  sector: General
+  name: EIC- CTCP EVN Quoc te
+- symbol: EID
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Đầu tư và Phát triển Giáo dục Hà Nội
+- symbol: EIN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu - Thuong mai - Dich vu Dien luc
+- symbol: ELC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Công nghệ - Viễn thông ELCOM
+- symbol: EME
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dien Co
+- symbol: EMG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thiet bi phu tung co dien
+- symbol: EMS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tong cty chuyen phat nhanh Buu Dien
+- symbol: EVE
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Everpia
+- symbol: EVF
+  exchange: HOSE
+  sector: General
+  name: CÔNG TY TÀI CHÍNH TỔNG HỢP CỔ PHẦN ĐIỆN LỰC
+- symbol: EVG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Everland
+- symbol: EVS
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần chứng khoán Everest
+- symbol: FBC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Co khi Pho Yen
+- symbol: FCC
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Bất động sản Ramond
+- symbol: FCM
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Bê tông Phan Vũ Hà Nam
+- symbol: FCN
+  exchange: HOSE
+  sector: General
+  name: CÔNG TY CỔ PHẦN TẬP ĐOÀN FECON
+- symbol: FCS
+  exchange: UPCoM
+  sector: General
+  name: FCS- CTCP Luong thuc thanh pho HCM
+- symbol: FDC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Ngoại thương và Phát triển Đầu tư Thành phố Hồ Chí Minh
+- symbol: FGL
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Cà phê Gia Lai
+- symbol: FHN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xuat nhap khau Luong thuc - Thuc pham Hanoi
+- symbol: FHS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Phat hanh sach thanh pho Ho Chi Minh
+- symbol: FIC
+  exchange: UPCoM
+  sector: General
+  name: TCT Vật liệu xây dựng số 1 - CTCP
+- symbol: FID
+  exchange: HNX
+  sector: General
+  name: CTCP Dau tu va Phat trien Doanh nghiep Viet Nam
+- symbol: FIR
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Địa ốc First Real
+- symbol: FIT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn F.I.T
+- symbol: FMC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Thực phẩm Sao Ta
+- symbol: FOC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dịch vụ Trực tuyến FPT
+- symbol: FOX
+  exchange: UPCoM
+  sector: General
+  name: CTCP vien thong FPT
+- symbol: FPT
+  exchange: HOSE
+  sector: Technology
+  name: Công ty Cổ phần FPT
+- symbol: FRC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Lâm đặc sản xuất khẩu Quảng Nam
+- symbol: FRM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Lam nghiep Sai gon
+- symbol: FRT
+  exchange: HOSE
+  sector: Consumer Discretionary
+  name: Công ty Cổ phần Bán lẻ Kỹ thuật số FPT
+- symbol: FSO
+  exchange: UPCoM
+  sector: General
+  name: CTCP Co khi dong tau thuy san Viet Nam
+- symbol: FTI
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cong nghiep - Thuong mai Huu Nghi
+- symbol: FTM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu va phat trien Duc Quan
+- symbol: FTS
+  exchange: HOSE
+  sector: Financials
+  name: Công ty Cổ phần Chứng khoán FPT
+- symbol: GAS
+  exchange: HOSE
+  sector: Energy
+  name: Tổng Công ty Khí Việt Nam - Công ty Cổ phần
+- symbol: GCB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Petec Binh Dinh
+- symbol: GCF
+  exchange: UPCoM
+  sector: General
+  name: Cong ty co phan Thuc pham G.C
+- symbol: GDA
+  exchange: UPCoM
+  sector: General
+  name: CTCP Ton Dong A
+- symbol: GDH
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Tập đoàn GDC
+- symbol: GDT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Chế biến Gỗ Đức Thành
+- symbol: GDW
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Cấp nước Gia Định
+- symbol: GEE
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Điện lực Gelex
+- symbol: GEG
+  exchange: HOSE
+  sector: Utilities
+  name: Công ty Cổ phần Điện Gia Lai
+- symbol: GEL
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Hạ tầng GELEX
+- symbol: GER
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Thể Thao Ngôi sao Geru
+- symbol: GEX
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn GELEX
+- symbol: GGG
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Ô tô Giải Phóng
+- symbol: GHC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Thủy điện Gia Lai
+- symbol: GIC
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần VSC Green Logistics
+- symbol: GIL
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Sản xuất Kinh doanh Xuất nhập khẩu Bình Thạnh
+- symbol: GKM
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần GKM Holdings
+- symbol: GLC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Vàng Lào Cai
+- symbol: GLT
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Kỹ thuật Điện Toàn Cầu
+- symbol: GLW
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Cấp thoát nước Gia Lai
+- symbol: GMA
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần G-Automobile
+- symbol: GMC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Garmex SaiGon
+- symbol: GMD
+  exchange: HOSE
+  sector: Industrials
+  name: CÔNG TY CỔ PHẦN TẬP ĐOÀN GEMADEPT
+- symbol: GMH
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Minh Hưng Quảng Trị
+- symbol: GMX
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Công ty Cổ phần Gạch ngói Gốm Xây dựng Mỹ Xuân
+- symbol: GND
+  exchange: UPCoM
+  sector: General
+  name: CTCP Gach ngoi Dong nai
+- symbol: GPC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tap doan Green+
+- symbol: GSM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thủy điện Hương Sơn
+- symbol: GSP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Vận tải Sản phẩm Khí Quốc tế
+- symbol: GTA
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Chế biến Gỗ Thuận An
+- symbol: GTD
+  exchange: UPCoM
+  sector: General
+  name: CTCP Giay Thuong Dinh
+- symbol: GTS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cong trinh Giao thong SAi Gon
+- symbol: GTT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuan Thao
+- symbol: GTX
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Global Tanker
+- symbol: GVR
+  exchange: HOSE
+  sector: Materials
+  name: Tập đoàn Công nghiệp Cao su Việt Nam - Công ty Cổ phần
+- symbol: GVT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Giay Viet Tri
+- symbol: HAC
+  exchange: UPCoM
+  sector: General
+  name: CTCPCK Hai Phong
+- symbol: HAD
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Bia Hà Nội - Hải Dương
+- symbol: HAF
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuc pham Ha Noi
+- symbol: HAG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Hoàng Anh Gia Lai
+- symbol: HAH
+  exchange: HOSE
+  sector: Industrials
+  name: Công ty Cổ phần Vận tải và Xếp dỡ Hải An
+- symbol: HAM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Vat tu Hau Giang
+- symbol: HAN
+  exchange: UPCoM
+  sector: General
+  name: Tổng công ty Xây dựng Hà Nội
+- symbol: HAP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn HAPACO
+- symbol: HAR
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Thương mại Bất động sản An Dương Thảo Điền
+- symbol: HAS
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần HACISCO
+- symbol: HAT
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Thương mại Bia Hà Nội
+- symbol: HAV
+  exchange: UPCoM
+  sector: General
+  name: CTCP Ruou Hapro
+- symbol: HAX
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Dịch vụ Ô tô Hàng Xanh
+- symbol: HBC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tap doan Xay dung Hoa Binh
+- symbol: HBD
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bao bì PP Bình Dương
+- symbol: HBH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Habeco - Hải Phòng
+- symbol: HBS
+  exchange: HNX
+  sector: General
+  name: HBS - CTCP Chứng khoán Hòa bình
+- symbol: HCC
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Bê tông Hòa Cầm - ITEMEX
+- symbol: HCD
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Sản xuất và Thương mại HCD
+- symbol: HCI
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Đầu tư - Xây dựng Hà Nội
+- symbol: HCM
+  exchange: HOSE
+  sector: Financials
+  name: Công ty Cổ phần Chứng khoán Thành phố Hồ Chí Minh
+- symbol: HCT
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu  CTCP Thương mại - Dịch vụ - Vận tải Xi Măng Hải Phòng.
+- symbol: HDA
+  exchange: HNX
+  sector: General
+  name: HDA - CTCP Hãng sơn Đông Á
+- symbol: HDB
+  exchange: HOSE
+  sector: Financials
+  name: Ngân hàng Thương mại Cổ phần Phát triển Thành phố Hồ Chí Minh
+- symbol: HDC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Phát triển nhà Bà Rịa – Vũng Tàu
+- symbol: HDG
+  exchange: HOSE
+  sector: Utilities
+  name: Công ty Cổ phần Tập đoàn Hà Đô
+- symbol: HDM
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Dệt - May Huế
+- symbol: HDP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Duoc Ha Tinh
+- symbol: HDW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Kinh doanh nước sạch Hải Dương
+- symbol: HEC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tu van Xay dung Thuy loi II
+- symbol: HEJ
+  exchange: UPCoM
+  sector: General
+  name: Tong CT Tu van Xay dung Thuy loi Viet Nam
+- symbol: HEP
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Môi trường và Công trình Đô thị Huế
+- symbol: HES
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dich vu giai tri Ha Noi
+- symbol: HEV
+  exchange: HNX
+  sector: General
+  name: Công Ty cổ phần sách đại học - dạy nghề
+- symbol: HFB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cong trinh Cau pha TPHCM
+- symbol: HFC
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Xăng dầu HFC
+- symbol: HFX
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Sản xuất - Xuất nhập khẩu Thanh Hà
+- symbol: HGM
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Cơ khí và Khoáng sản Hà Giang
+- symbol: HGT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Du lich Huong Giang
+- symbol: HHB
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Bia Hà Nội - Hồng Hà
+- symbol: HHC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Bánh kẹo Hải Hà
+- symbol: HHG
+  exchange: UPCoM
+  sector: General
+  name: HHG - Công ty cổ phần Hoàng Hà
+- symbol: HHN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Van tai va Dich vu Hang hoa HaNoi
+- symbol: HHP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần HHP Global
+- symbol: HHS
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Dịch vụ Hoàng Huy
+- symbol: HHV
+  exchange: HOSE
+  sector: Industrials
+  name: Công ty Cổ phần Đầu tư Hạ tầng Giao thông Đèo Cả
+- symbol: HID
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Halcom Việt Nam
+- symbol: HII
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần An Tiến Industries
+- symbol: HIO
+  exchange: UPCoM
+  sector: General
+  name: CTCP Helio Energy
+- symbol: HJC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Hòa Việt
+- symbol: HJS
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Thuỷ điện Nậm Mu
+- symbol: HKB
+  exchange: UPCoM
+  sector: General
+  name: HKB - CTCP Nong Nghiep va Thuc Pham Ha noi- Kinh bac
+- symbol: HKT
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần QP Holdings
+- symbol: HLA
+  exchange: UPCoM
+  sector: General
+  name: CTCP Hữu Liên Á Châu
+- symbol: HLB
+  exchange: UPCoM
+  sector: General
+  name: Công ty Cổ phần Bia & Nước giải khát Hạ Long
+- symbol: HLC
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Than Hà Lầm - Vinacomin
+- symbol: HLD
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần đầu tư và Phát triển Bất Động sản HUDLAND
+- symbol: HLO
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cong nghe Ha Lo
+- symbol: HLS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Sứ kỹ thuật Hoàng Liên Sơn
+- symbol: HLT
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Dệt may Hoàng Thị Loan
+- symbol: HLY
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần gốm xây dựng Yên Hưng
+- symbol: HMC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Kim khí Thành phố Hồ Chí Minh - Vnsteel
+- symbol: HMD
+  exchange: UPCoM
+  sector: General
+  name: CTCP Hóa chất Minh Đức
+- symbol: HMG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Kim khi Ha noi - VNSTEEL
+- symbol: HMH
+  exchange: HNX
+  sector: General
+  name: HMH - CTCP Hải Minh
+- symbol: HMR
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Đá Hoàng Mai
+- symbol: HMS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xay dung Bao tang Ho Chi Minh
+- symbol: HNA
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Thủy điện Hủa Na
+- symbol: HNB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Ben xe Ha Noi
+- symbol: HND
+  exchange: UPCoM
+  sector: General
+  name: Co phieu CTCP Nhiet dien Hai Phong
+- symbol: HNF
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuc pham Huu Nghi
+- symbol: HNG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Nong nghiep Quoc te Hoang Anh Gia Lai
+- symbol: HNI
+  exchange: UPCoM
+  sector: General
+  name: CTCP May Huu Nghi
+- symbol: HNM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Sữa Hà Nội
+- symbol: HNP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Hanel Xop nhua
+- symbol: HNR
+  exchange: UPCoM
+  sector: General
+  name: Công ty Cổ phần Rượu và nước giải khát Hà Nội
+- symbol: HOM
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần Xi măng Vicem Hoàng Mai
+- symbol: HOT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Du lich - Dich vu Hoi An
+- symbol: HPA
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Phát triển Nông nghiệp Hòa Phát
+- symbol: HPB
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Bao Bì PP
+- symbol: HPD
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thủy điện Đăk Đoa
+- symbol: HPG
+  exchange: HOSE
+  sector: Materials
+  name: Công ty Cổ phần Tập đoàn Hòa Phát
+- symbol: HPH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Hoa Chat Hung Phat Ha Bac
+- symbol: HPI
+  exchange: UPCoM
+  sector: General
+  name: CTCP Khu Cong nghiep Hiep Phuoc
+- symbol: HPO
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Công nghiệp Hapulico
+- symbol: HPP
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Sơn Hải Phòng
+- symbol: HPT
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Dịch vụ Công nghệ Tin học HPT
+- symbol: HPW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap nuoc Hai Phong
+- symbol: HPX
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Hải Phát
+- symbol: HQC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tư vấn – Thương mại – Dịch vụ Địa ốc Hoàng Quân
+- symbol: HRB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Harec Dau tu va thuong mai
+- symbol: HRC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Cao su Hòa Bình
+- symbol: HSA
+  exchange: UPCoM
+  sector: General
+  name: CTCP HESTIA
+- symbol: HSG
+  exchange: HOSE
+  sector: Materials
+  name: Công ty Cổ phần Tập đoàn Hoa Sen
+- symbol: HSL
+  exchange: HOSE
+  sector: General
+  name: CÔNG TY CỔ PHẦN CÔNG NGHỆ SINH HỌC HELIOS
+- symbol: HSM
+  exchange: UPCoM
+  sector: General
+  name: Tổng Công ty Cổ phần Dệt May Hà Nội
+- symbol: HSP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Sơn Tổng hợp Hà Nội
+- symbol: HSV
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Tập đoàn HSV Việt Nam
+- symbol: HTC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Thương mại Hóc Môn
+- symbol: HTE
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu kinh doanh Dien luc TP.HCM
+- symbol: HTG
+  exchange: HOSE
+  sector: General
+  name: Tổng Công ty Cổ phần Dệt may Hòa Thọ
+- symbol: HTI
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Phát triển Hạ tầng IDICO
+- symbol: HTL
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Kỹ thuật và Ô tô Trường Long
+- symbol: HTM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tong cong ty Thuong mai Ha noi
+- symbol: HTN
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Hưng Thịnh Incons
+- symbol: HTP
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP In Sách giáo khoa Hoà Phát
+- symbol: HTT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuong mai Ha Tay
+- symbol: HTV
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Logistics Vicem
+- symbol: HUB
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Xây lắp Thừa Thiên Huế
+- symbol: HUG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tong cty may Hung Yen
+- symbol: HUT
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Tasco
+- symbol: HVA
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Đầu tư HVA
+- symbol: HVH
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư và Công nghệ HVC
+- symbol: HVN
+  exchange: HOSE
+  sector: Industrials
+  name: Tổng Công ty Hàng không Việt Nam - CTCP
+- symbol: HVT
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Công ty Cổ phần Hóa chất Việt Trì
+- symbol: HVX
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty Cổ phần Xi măng Vicem Hải Vân
+- symbol: HWS
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Cấp nước Huế
+- symbol: IBD
+  exchange: UPCoM
+  sector: General
+  name: CTCP In tong hop Thai Binh Duong
+- symbol: ICC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xay dung Cong nghiep
+- symbol: ICF
+  exchange: UPCoM
+  sector: General
+  name: CTCP Đầu tư Thương mại Thủy sản
+- symbol: ICG
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Xây dựng Sông Hồng
+- symbol: ICI
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Đầu tư và Xây dựng Công nghiệp
+- symbol: ICN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Đầu tư Xây dựng Dầu khí IDICO
+- symbol: ICT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Viễn thông - Tin học Bưu điện
+- symbol: IDC
+  exchange: HNX
+  sector: Real Estate
+  name: Tổng Công ty IDICO - CTCP
+- symbol: IDI
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư và Phát triển Đa Quốc Gia I.D.I
+- symbol: IDJ
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần Đầu tư IDJ Việt Nam
+- symbol: IDP
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Sữa Quốc Tế LOF
+- symbol: IDV
+  exchange: HNX
+  sector: General
+  name: IDV - Công ty Cổ phần Phát triển hạ tầng Vĩnh Phúc
+- symbol: IFS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuc pham Quoc te
+- symbol: IJC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Phát triển Hạ tầng Kỹ thuật
+- symbol: ILA
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần ILA
+- symbol: ILB
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần ICD Tân Cảng - Long Bình
+- symbol: ILC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Hop tac lao dong voi nuoc ngoai
+- symbol: ILS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu Thuong mai va Dich vu Quoc te
+- symbol: IME
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Cơ khí và Xây lắp Công nghiệp
+- symbol: IMP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Dược phẩm Imexpharm
+- symbol: INC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Tư vấn đầu tư IDICO
+- symbol: INN
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Bao bì và In Nông nghiệp
+- symbol: IPA
+  exchange: HNX
+  sector: General
+  name: CTCP Tap doan dau tu I.P.A
+- symbol: IRC
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Cao su Công nghiệp
+- symbol: ISG
+  exchange: UPCoM
+  sector: General
+  name: CTCP van tai bien va hop tac lao dong quoc te
+- symbol: ISH
+  exchange: UPCoM
+  sector: General
+  name: Công ty Cổ phần Thủy điện Srok Phu Miêng IDICO
+- symbol: IST
+  exchange: UPCoM
+  sector: General
+  name: CTCP ICD Tan cang Song than
+- symbol: ITA
+  exchange: UPCoM
+  sector: Real Estate
+  name: CTCP Dau tu va Cong nghiep Tan Tao
+- symbol: ITC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư - Kinh doanh Nhà
+- symbol: ITD
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Công Nghệ ITD
+- symbol: ITQ
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Tập đoàn Thiên Quang
+- symbol: ITS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu, Thuong mai va Dich vu - Vinacomin
+- symbol: IVS
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần Chứng khoán Guotai Haitong (Việt Nam)
+- symbol: JOS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Che bien Thuy san Xuat khau Minh Hai
+- symbol: JVC
+  exchange: HOSE
+  sector: General
+  name: CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN Y TẾ VIỆT NHẬT
+- symbol: KAI
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Chứng khoán KAFI
+- symbol: KBC
+  exchange: HOSE
+  sector: Real Estate
+  name: Tổng Công ty Phát triển Đô Thị Kinh Bắc – Công ty Cổ phần
+- symbol: KCB
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Khoáng sản và luyện kim Cao Bằng
+- symbol: KDC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Kido
+- symbol: KDH
+  exchange: HOSE
+  sector: Real Estate
+  name: Công ty Cổ phần Đầu tư và Kinh doanh Nhà Khang Điền
+- symbol: KDM
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Tập đoàn GCL
+- symbol: KGM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xuat nhap khau Kien Giang
+- symbol: KHD
+  exchange: UPCoM
+  sector: General
+  name: CTCP khai thac, che bien khoang san Hai Duong
+- symbol: KHG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Khải Hoàn Land
+- symbol: KHP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Điện lực Khánh Hòa
+- symbol: KHS
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Kiên Hùng
+- symbol: KHW
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Cấp thoát nước Khánh Hòa
+- symbol: KHX
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Phát hành sách Khánh Hòa
+- symbol: KIP
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần K.I.P Việt Nam
+- symbol: KKC
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Tập đoàn Thành Thái
+- symbol: KLB
+  exchange: HOSE
+  sector: General
+  name: Ngân hàng Thương mại Cổ phần Kiên Long
+- symbol: KMR
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần MIRAE
+- symbol: KMT
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần Kim Khí Miền Trung
+- symbol: KOS
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần KOSY
+- symbol: KPF
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Đầu tư tài sản KOJI
+- symbol: KSB
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Khoáng sản và Xây dựng Bình Dương
+- symbol: KSD
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần Đầu tư DNA
+- symbol: KSF
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Sunshine
+- symbol: KSQ
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP CNC Capital Việt Nam
+- symbol: KST
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần KASATI
+- symbol: KSV
+  exchange: HNX
+  sector: General
+  name: Tong Cong ty Khoang san TKV-CTCP
+- symbol: KTC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thương mại Kiên Giang
+- symbol: KTL
+  exchange: UPCoM
+  sector: General
+  name: CTCP Kim khi Thang Long
+- symbol: KTS
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Đường Kon Tum
+- symbol: KTT
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Tập đoàn Đầu tư KTT
+- symbol: KVC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Sản xuất Xuất nhập khẩu Inox Kim Vĩ
+- symbol: LAF
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Chế biến Hàng xuất khẩu Long An
+- symbol: LAI
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu xay dung Long An IDICO
+- symbol: LAS
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Công ty Cổ phần Supe Phốt phát và Hóa chất Lâm Thao
+- symbol: LAW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap thoat nuoc Long An
+- symbol: LBE
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Thương mại và Dịch vụ LVA
+- symbol: LBM
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Khoáng sản và Vật liệu Xây dựng Lâm Đồng
+- symbol: LCD
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Lắp máy - Thí nghiệm Cơ Điện
+- symbol: LCG
+  exchange: HOSE
+  sector: Industrials
+  name: Công ty Cổ phần Lizen
+- symbol: LCM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Khai thác và Chế biến khoáng sản Lào cai
+- symbol: LDG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư LDG
+- symbol: LDP
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Dược Lâm Đồng - Ladophar
+- symbol: LDW
+  exchange: UPCoM
+  sector: General
+  name: Công ty Cổ phần Cấp thoát nước Lâm Đồng
+- symbol: LEC
+  exchange: UPCoM
+  sector: General
+  name: Cong ty co phan Bat dong san dien luc Mien Trung
+- symbol: LGC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Cầu Đường CII
+- symbol: LGL
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư và Phát triển Đô thị Long Giang
+- symbol: LHC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Đầu tư và xây dựng thủy lợi Lâm Đồng
+- symbol: LHG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Long Hậu
+- symbol: LIC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tong Cong ty Licogi
+- symbol: LIG
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP LICOGI13
+- symbol: LIX
+  exchange: HOSE
+  sector: General
+  name: Công ty cổ phần LIX
+- symbol: LKW
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Cấp nước Long Khánh
+- symbol: LLM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tong cong ty Lap may Viet Nam
+- symbol: LMC
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Long Beach LMC
+- symbol: LMH
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Quốc tế Holding
+- symbol: LMI
+  exchange: UPCoM
+  sector: General
+  name: CTCP Đầu tư Xây dựng Lắp máy IDICO
+- symbol: LNC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Le Ninh
+- symbol: LPB
+  exchange: HOSE
+  sector: Financials
+  name: Ngân hàng Thương mại Cổ phần Lộc Phát Việt Nam
+- symbol: LPS
+  exchange: HOSE
+  sector: General
+  name: CÔNG TY CỔ PHẦN CHỨNG KHOÁN LPS
+- symbol: LPT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuong mai va San xuat Lap Phuong Thanh
+- symbol: LQN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Licogi Quảng Ngãi
+- symbol: LSG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bat dong san Saigon Vina
+- symbol: LSS
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Mía đường Lam Sơn
+- symbol: LTC
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Điện nhẹ Viễn Thông
+- symbol: LUT
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Đầu tư Xây dựng Lương Tài
+- symbol: MAC
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Macstar
+- symbol: MAS
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Dịch vụ Hàng không Sân bay Đà Nẵng
+- symbol: MBB
+  exchange: HOSE
+  sector: Financials
+  name: Ngân hàng Thương mại Cổ phần Quân Đội
+- symbol: MBG
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Tập đoàn MBG
+- symbol: MBN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Moi truong va Cong trinh Do thi Bac Ninh
+- symbol: MBS
+  exchange: HNX
+  sector: Financials
+  name: CTCP Chung khoan MB
+- symbol: MBT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bat dong san cho thue Minh Bao Tin
+- symbol: MCC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Gạch ngói cao cấp
+- symbol: MCF
+  exchange: HNX
+  sector: General
+  name: Cổ phếu CTCP Xây lắp Cơ khí & Lương thực Thực phẩm
+- symbol: MCG
+  exchange: UPCoM
+  sector: General
+  name: CTCP nang luong va bat dong san MCG
+- symbol: MCH
+  exchange: HOSE
+  sector: General
+  name: Công ty cổ phần Hàng tiêu dùng Masan
+- symbol: MCM
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Giống bò sữa Mộc Châu
+- symbol: MCO
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Đầu tư và Xây dựng BDC Việt Nam
+- symbol: MCP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần In và Bao bì Mỹ Châu
+- symbol: MDA
+  exchange: UPCoM
+  sector: General
+  name: CTCP Moi truong Do thi Dong Anh
+- symbol: MDC
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Than Mông Dương Vinacomin
+- symbol: MDF
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần gỗ MDF VRG Quảng Trị
+- symbol: MDG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Miền Đông
+- symbol: MEC
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Cơ khí Lắp máy Sông Đà
+- symbol: MED
+  exchange: HNX
+  sector: General
+  name: CTCP Dược Trung Ương Mediplantex
+- symbol: MEF
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần MEINFA
+- symbol: MEL
+  exchange: HNX
+  sector: General
+  name: CTCP Thép Mê Lin
+- symbol: MES
+  exchange: UPCoM
+  sector: General
+  name: CTCT Co dien cong trinh
+- symbol: MFS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dich vu ky thuat MobiFone
+- symbol: MGC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dia chat Mo_TKV
+- symbol: MGG
+  exchange: UPCoM
+  sector: General
+  name: CTCP tong cong ty Duc Giang
+- symbol: MGR
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tap doan MGroup
+- symbol: MHC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần MHC
+- symbol: MHL
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Minh Hữu Liên
+- symbol: MIC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Kỹ nghệ Khoáng sản Quảng Nam
+- symbol: MIE
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tong cty May va Thiet bi Cong nghiep
+- symbol: MIG
+  exchange: HOSE
+  sector: General
+  name: Tổng Công ty Cổ phần Bảo hiểm Quân đội
+- symbol: MKP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Hóa - Dược phẩm Mekophar
+- symbol: MKV
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP dược thú y Cai Lậy
+- symbol: MLC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Moi truong Do thi tinh Lao cai
+- symbol: MLS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Chan nuoi - Mitraco
+- symbol: MML
+  exchange: UPCoM
+  sector: General
+  name: CTCP Masan MeatLife
+- symbol: MNB
+  exchange: UPCoM
+  sector: General
+  name: Tổng Công ty May Nhà Bè - Công ty cổ phần
+- symbol: MND
+  exchange: UPCoM
+  sector: General
+  name: CTCP Moi truong Nam Dinh
+- symbol: MPC
+  exchange: UPCoM
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Thuỷ sản Minh Phú
+- symbol: MPT
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Tập đoàn MPT
+- symbol: MPY
+  exchange: UPCoM
+  sector: General
+  name: CTCP Moi truong Do thi Phu Yen
+- symbol: MQB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Moi truong va Phat trien do thi Quang Binh
+- symbol: MQN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Môi trường Đô thị Quảng Ngãi
+- symbol: MRF
+  exchange: UPCoM
+  sector: General
+  name: CTCP Merufa
+- symbol: MSB
+  exchange: HOSE
+  sector: Financials
+  name: Ngân hàng Thương mại Cổ phần Hàng Hải Việt Nam
+- symbol: MSH
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần May Sông Hồng
+- symbol: MSN
+  exchange: HOSE
+  sector: Consumer Goods
+  name: Công ty Cổ phần Tập đoàn MaSan
+- symbol: MSR
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Masan High - Tech Materials
+- symbol: MST
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Đầu tư MST
+- symbol: MTA
+  exchange: UPCoM
+  sector: General
+  name: Tong cong ty Khoang san va Thuong mai Ha tinh - CTCP
+- symbol: MTB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Moi truong va Cong trinh Do thi tinh Thai Binh
+- symbol: MTG
+  exchange: UPCoM
+  sector: General
+  name: MTG - CTCP MT Gas
+- symbol: MTH
+  exchange: UPCoM
+  sector: General
+  name: MTH - CTCP Môi trường Đô thị Hà Đông
+- symbol: MTL
+  exchange: UPCoM
+  sector: General
+  name: CTCP dich vu moi truong do thi Tu liem
+- symbol: MTP
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Dược Medipharco
+- symbol: MTS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Vat tu - TKV
+- symbol: MTV
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dich vu Moi truong va Cong trinh do thi Vung Tau
+- symbol: MVB
+  exchange: HNX
+  sector: General
+  name: TCT Cong nghiep mo Viet Bac TKV
+- symbol: MVC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Vat lieu va Xay dung Binh Duong
+- symbol: MVN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tong cty Hang hai Viet Nam
+- symbol: MWG
+  exchange: HOSE
+  sector: Consumer Discretionary
+  name: Công ty Cổ phần Đầu tư Thế Giới Di Động
+- symbol: MZG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Miza
+- symbol: NAB
+  exchange: HOSE
+  sector: Financials
+  name: Ngân hàng Thương mại Cổ phần Nam Á
+- symbol: NAC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tu van Xay dung tong hop
+- symbol: NAF
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Nafoods Group
+- symbol: NAG
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Tập đoàn Nagakawa Việt Nam
+- symbol: NAP
+  exchange: HNX
+  sector: General
+  name: CTCP Cang Nghe Tinh
+- symbol: NAS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dich vu hang khong san bay Noi Bai
+- symbol: NAU
+  exchange: UPCoM
+  sector: General
+  name: CTCP Môi trường và Công trình đô thị Nghệ An
+- symbol: NAV
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Nam Việt
+- symbol: NAW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap nuoc Nghe An
+- symbol: NBB
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Năm Bảy Bảy
+- symbol: NBC
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Than Núi Béo - Vinacomin
+- symbol: NBE
+  exchange: UPCoM
+  sector: General
+  name: CTCP Sach va Thiet bi Giao duc Mien Bac
+- symbol: NBP
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Nhiệt điện Ninh Bình
+- symbol: NBT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap thoat nuoc Ben tre
+- symbol: NBW
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Cấp nước Nhà Bè
+- symbol: NCG
+  exchange: UPCoM
+  sector: General
+  name: CÔNG TY CỔ PHẦN ĐẦU TƯ ANOVA AGRI
+- symbol: NCS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Suất ăn Hàng không Nội Bài
+- symbol: NCT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Dịch vụ Hàng hóa Nội Bài
+- symbol: NDC
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Nam Dược
+- symbol: NDN
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu công ty Cổ phần Đầu tư Phát triển Nhà Đà Nẵng
+- symbol: NDP
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Dược phẩm 2-9
+- symbol: NDT
+  exchange: UPCoM
+  sector: General
+  name: Tổng Công ty Cổ phần Dệt may Nam Định
+- symbol: NDW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap nuoc Nam Dinh
+- symbol: NDX
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP xây lắp phát triển nhà Đà Nẵng
+- symbol: NED
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu va Phat trien Dien Tay Bac
+- symbol: NET
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Công ty Cổ phần Bột giặt NET
+- symbol: NFC
+  exchange: HNX
+  sector: General
+  name: NFC-CTCP Phân lân Ninh Bình
+- symbol: NGC
+  exchange: UPCoM
+  sector: General
+  name: Công ty Cổ phần Chế biến Thủy sản xuất khẩu Ngô Quyền
+- symbol: NHA
+  exchange: HOSE
+  sector: General
+  name: Tổng Công ty Đầu tư Phát triển Nhà và Đô thị Nam Hà Nội
+- symbol: NHC
+  exchange: HNX
+  sector: General
+  name: Cổ  Phiếu CTCP Gạch ngói Nhị Hiệp
+- symbol: NHD
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Dược phẩm Nam Hà
+- symbol: NHH
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Nhựa Hà Nội
+- symbol: NHT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Sản xuất và Thương mại Nam Hoa
+- symbol: NHV
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Sức khỏe Hồi sinh Việt Nam
+- symbol: NJC
+  exchange: UPCoM
+  sector: General
+  name: CTCP May Nam Định
+- symbol: NKG
+  exchange: HOSE
+  sector: Materials
+  name: Công ty Cổ phần Thép Nam Kim
+- symbol: NLG
+  exchange: HOSE
+  sector: Real Estate
+  name: Công ty Cổ phần Đầu tư Nam Long
+- symbol: NLS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap thoat nuoc Lang Son
+- symbol: NNC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đá Núi Nhỏ
+- symbol: NNT
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Cấp nước Ninh Thuận
+- symbol: NOS
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Vận tải Biển và Thương mại Phương Đông
+- symbol: NQB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap nuoc Quang Binh
+- symbol: NQN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Nuoc sach Quang ninh
+- symbol: NRC
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Tập đoàn Danh Khôi
+- symbol: NSC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Giống cây trồng Việt Nam
+- symbol: NSG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Nhua Sai Gon
+- symbol: NSH
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Tập đoàn Nhôm Sông Hồng Shalumi
+- symbol: NSL
+  exchange: UPCoM
+  sector: General
+  name: CTCP cap nuoc Son La
+- symbol: NSS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Nông Súc Sản Đồng Nai
+- symbol: NST
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Ngân Sơn
+- symbol: NTC
+  exchange: HOSE
+  sector: General
+  name: Công ty cổ phần Khu Công nghiệp Nam Tân Uyên
+- symbol: NTF
+  exchange: UPCoM
+  sector: General
+  name: CTCP Duoc - Vat tu Y te Nghe An
+- symbol: NTH
+  exchange: HNX
+  sector: General
+  name: CTCP Thủy điện Nước Trong
+- symbol: NTL
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Phát triển Đô thị Từ Liêm
+- symbol: NTP
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Nhựa thiếu niên -Tiền Phong
+- symbol: NTT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Det - May Nha Trang
+- symbol: NTW
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Cấp nước Nhơn Trạch
+- symbol: NUE
+  exchange: UPCoM
+  sector: General
+  name: CTCP Moi truong Do thi Nha Trang
+- symbol: NVB
+  exchange: HNX
+  sector: General
+  name: Ngân hàng Thương mại cổ phần Quốc Dân
+- symbol: NVL
+  exchange: HOSE
+  sector: Real Estate
+  name: Công ty Cổ phần Tập đoàn Đầu tư Địa ốc No Va
+- symbol: NVP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Nuoc sach Vinh Phuc
+- symbol: NVT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Bất động sản Du lịch Ninh Vân Bay
+- symbol: NWT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Van tai Newway
+- symbol: NXT
+  exchange: UPCoM
+  sector: General
+  name: Công ty Cổ phần Nextracorp
+- symbol: OCB
+  exchange: HOSE
+  sector: Financials
+  name: Ngân hàng Thương mại Cổ phần Phương Đông
+- symbol: OCH
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần One Capital Hospitality
+- symbol: ODE
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Tập đoàn Truyền thông và Giải trí ODE
+- symbol: OGC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Đại Dương
+- symbol: OIL
+  exchange: UPCoM
+  sector: General
+  name: Tổng Công ty Dầu Việt Nam - Công ty cổ phần
+- symbol: ONE
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Công nghệ ONE
+- symbol: ONW
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Tập đoàn ONW
+- symbol: OPC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Dược phẩm OPC
+- symbol: ORS
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Chứng khoán Tiên Phong
+- symbol: PAC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Pin Ắc quy miền Nam
+- symbol: PAI
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cong nghe thong tin, Vien thong va Tu dong hoa dau khi
+- symbol: PAN
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn PAN
+- symbol: PAP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dầu khí Đầu tư Khai thác Cảng Phước An
+- symbol: PAS
+  exchange: UPCoM
+  sector: General
+  name: PAS - CTCP Quoc Te Phuong Anh
+- symbol: PAT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Photpho Apatit Việt Nam
+- symbol: PBC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dược phẩm Trung ương I - Pharbaco
+- symbol: PBP
+  exchange: HNX
+  sector: General
+  name: CTCP Bao bì Dầu khí Việt Nam
+- symbol: PBT
+  exchange: UPCoM
+  sector: General
+  name: Công ty Cổ phần Bao bì và Thương mại Dầu khí Bình Sơn
+- symbol: PCB
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Ngân hàng Thương mại cổ phần Đại chúng Việt Nam
+- symbol: PCC
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Tập đoàn Xây lắp 1- Petrolimex
+- symbol: PCE
+  exchange: HNX
+  sector: General
+  name: CTCP Phan bon va Hoa chat Dau khi Mien Trung
+- symbol: PCF
+  exchange: UPCoM
+  sector: General
+  name: CTCP Ca phe Petec
+- symbol: PCG
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty Cổ phần Đầu tư Phát triển Gas Đô thị
+- symbol: PCH
+  exchange: HNX
+  sector: General
+  name: Công Ty Cổ phần Picomat Holding
+- symbol: PCM
+  exchange: UPCoM
+  sector: General
+  name: CTCP vat lieu xay dung Buu dien
+- symbol: PCT
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Vận tải biển Global Pacific
+- symbol: PDB
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Đầu tư Din Capital
+- symbol: PDC
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Du lịch Dầu khí Phương Đông
+- symbol: PDN
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Cảng Đồng Nai
+- symbol: PDR
+  exchange: HOSE
+  sector: Real Estate
+  name: Công ty Cổ phần Phát triển Bất động sản Phát Đạt
+- symbol: PDV
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Vận tải và Tiếp vận Phương Đông Việt
+- symbol: PEG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tong cty Thuong mai ky thuat va Dau tu
+- symbol: PEN
+  exchange: HNX
+  sector: General
+  name: CTCP Xây lắp III Petrolimex
+- symbol: PEQ
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thiet bi Xang dau Petrolimex
+- symbol: PET
+  exchange: HOSE
+  sector: General
+  name: Tổng Công ty Cổ phần Dịch vụ Tổng hợp Dầu khí
+- symbol: PFL
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Dầu khí Đông Đô
+- symbol: PGB
+  exchange: UPCoM
+  sector: General
+  name: Ngân hàng thương mại cổ phần Thịnh Vượng và Phát triển
+- symbol: PGC
+  exchange: HOSE
+  sector: General
+  name: Tổng Công ty Gas Petrolimex - Công ty Cổ phần
+- symbol: PGD
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Phân phối Khí thấp áp Dầu khí Việt Nam
+- symbol: PGI
+  exchange: HOSE
+  sector: General
+  name: Tổng Công ty Cổ phần Bảo hiểm Petrolimex
+- symbol: PGN
+  exchange: HNX
+  sector: General
+  name: CTCP Phu Gia Nhua
+- symbol: PGS
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Kinh doanh Khí miền Nam
+- symbol: PGT
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần PGT HOLDINGS
+- symbol: PGV
+  exchange: HOSE
+  sector: General
+  name: Tổng Công ty Phát điện 3 - Công ty Cổ phần
+- symbol: PHC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Xây dựng Phục Hưng Holdings
+- symbol: PHH
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Hồng Hà Việt Nam
+- symbol: PHN
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Pin Hà Nội
+- symbol: PHP
+  exchange: UPCoM
+  sector: General
+  name: PHP - Cang Hai Phong
+- symbol: PHR
+  exchange: HOSE
+  sector: Materials
+  name: Công ty Cổ phần Cao su Phước Hòa
+- symbol: PHS
+  exchange: UPCoM
+  sector: General
+  name: PHS - CTCP Chứng khoán Phú Hưng
+- symbol: PIA
+  exchange: HNX
+  sector: General
+  name: CTCP Tin hoc Vien thong Petrolimex
+- symbol: PIC
+  exchange: HNX
+  sector: General
+  name: CTCP Dau tu Dien luc 3
+- symbol: PID
+  exchange: UPCoM
+  sector: General
+  name: CTCP Trang Tri Noi That Dau Khi
+- symbol: PIS
+  exchange: UPCoM
+  sector: General
+  name: Tổng Công ty Pisico Bình Định - Công ty cổ phần
+- symbol: PIT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Xuất nhập khẩu Petrolimex
+- symbol: PIV
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần PIV
+- symbol: PJC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Thương mại và Vận tải Petrolimex Hà Nội (Petajico HaNoi)
+- symbol: PJS
+  exchange: UPCoM
+  sector: General
+  name: PJS - Công ty Cổ phần Cấp nước Phú Hòa Tân
+- symbol: PJT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Vận tải Xăng dầu Đường thủy Petrolimex
+- symbol: PLA
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu Dich vu ha tang Xang dau
+- symbol: PLC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Tổng Công ty Hóa dầu Petrolimex - CTCP
+- symbol: PLE
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tư vấn Xây dựng Petrolimex
+- symbol: PLO
+  exchange: UPCoM
+  sector: General
+  name: CTCP Kho van Petec
+- symbol: PLP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Sản xuất và Công nghệ Nhựa Pha Lê
+- symbol: PLX
+  exchange: HOSE
+  sector: Energy
+  name: Tập đoàn Xăng dầu Việt Nam
+- symbol: PMB
+  exchange: HNX
+  sector: General
+  name: CTCP Phan bon va Hoa chat Dau khi Mien Bac
+- symbol: PMC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Dược phẩm dược liệu Pharmedic
+- symbol: PMG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư và Sản xuất Petro Miền Trung
+- symbol: PMJ
+  exchange: UPCoM
+  sector: General
+  name: CTCP Vat tu Buu dien
+- symbol: PMP
+  exchange: HNX
+  sector: General
+  name: CTCP Bao bi Dam Phu My
+- symbol: PMS
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu công ty cổ phần Cơ khí Xăng Dầu
+- symbol: PMT
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Viễn thông Telvina Việt Nam
+- symbol: PMW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cấp nước Phú Mỹ
+- symbol: PNC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Văn hóa Phương Nam
+- symbol: PND
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xang dau Dau khi NamDinh
+- symbol: PNG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuong Mai Phu Nhuan
+- symbol: PNJ
+  exchange: HOSE
+  sector: Consumer Discretionary
+  name: Công ty Cổ phần Vàng bạc Đá quý Phú Nhuận
+- symbol: PNP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tân Cảng - Phú Hữu
+- symbol: PNT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Ky thuat Xay dung Phu Nhuan
+- symbol: POB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xang dau dau khi Thai Binh
+- symbol: POM
+  exchange: UPCoM
+  sector: General
+  name: CTCP thep Pomina
+- symbol: POS
+  exchange: UPCoM
+  sector: General
+  name: CTCP dich vu lap dat, van hanh va bao duong cong trinh dau khi bien PTSC
+- symbol: POT
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Thiết bị Bưu điện
+- symbol: POV
+  exchange: UPCoM
+  sector: General
+  name: POV - Cổ phiếu CTCP Xăng dầu Dầu khí Vũng Áng
+- symbol: POW
+  exchange: HOSE
+  sector: Utilities
+  name: Tổng Công ty Điện lực Dầu khí Việt Nam - CTCP
+- symbol: PPC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Nhiệt điện Phả Lại
+- symbol: PPE
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Tư vấn Đầu Tư PP Enterprise
+- symbol: PPH
+  exchange: UPCoM
+  sector: General
+  name: Tong CTCP Phong Phu
+- symbol: PPI
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu va Phat trien Du an Ha tang Thai Binh Duong
+- symbol: PPP
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Dược phẩm Phong Phú
+- symbol: PPS
+  exchange: HNX
+  sector: General
+  name: PPS - Công ty Cổ phần Dịch vụ Kỹ thuật Điện lực Dầu khí Việt Nam
+- symbol: PPT
+  exchange: HNX
+  sector: General
+  name: CTCP Petrotimes
+- symbol: PPY
+  exchange: HNX
+  sector: General
+  name: CTCP Xang Dau Dau khi Phu Yen
+- symbol: PQN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dich vu Dau khi Quang Ngai PTSC
+- symbol: PRC
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Logistics Portserco
+- symbol: PRE
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Tái bảo hiểm Hà Nội
+- symbol: PRO
+  exchange: UPCoM
+  sector: General
+  name: CTCP Procimex Việt Nam
+- symbol: PRT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tong cty San xuat - Xuat nhap khau Binh Duong
+- symbol: PSB
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Cảng Kỹ thuật PTSC Sao Mai
+- symbol: PSC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Vận tải và Dịch vụ Petrolimex Sài Gòn
+- symbol: PSD
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Dịch vụ Phân phối Tổng hợp Dầu khí
+- symbol: PSE
+  exchange: HNX
+  sector: General
+  name: CTCP Phân bón và Hóa chất Dầu khí Đông Nam Bộ
+- symbol: PSH
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Thương mại Đầu tư Dầu khí Nam Sông Hậu
+- symbol: PSI
+  exchange: HNX
+  sector: General
+  name: PSI - Cổ phiếu Công ty Cổ phần Chứng khoán Dầu Khí
+- symbol: PSL
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Chăn nuôi Phú Sơn
+- symbol: PSN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dịch vụ Kỹ thuật Tổng hợp PTSC Thanh Hóa
+- symbol: PSP
+  exchange: UPCoM
+  sector: General
+  name: cổ phiếu CTCP Cảng dịch vụ Dầu khí Đình Vũ
+- symbol: PSW
+  exchange: HNX
+  sector: General
+  name: PSW - CTCP Phan Bon va Hoa Chat Dau khi Tay Nam Bo
+- symbol: PTB
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Phú Tài
+- symbol: PTC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư iCapital
+- symbol: PTD
+  exchange: HNX
+  sector: General
+  name: PTD - CTCP Thiết kế Xây dựng Thương mại Phúc Thịnh
+- symbol: PTE
+  exchange: UPCoM
+  sector: General
+  name: PTE - CTCP Xi mang Phu Tho
+- symbol: PTG
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP May xuất khẩu Phan Thiết
+- symbol: PTH
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Vận tải và Dịch vụ Petrolimex Hà Tây
+- symbol: PTI
+  exchange: HNX
+  sector: General
+  name: PTI - Tổng CTCP Bảo hiểm Bưu điện
+- symbol: PTL
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Victory Group
+- symbol: PTM
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Sản xuất, Thương mại và Dịch vụ Ô tô PTM
+- symbol: PTO
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dich vu - Xay dung Cong trinh Buu dien
+- symbol: PTP
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần PTP
+- symbol: PTS
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Vận tải và Dịch vụ Petrolimex Hải Phòng
+- symbol: PTT
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Vận tải Dầu khí Đông Dương
+- symbol: PTV
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Thương mại Dầu khí
+- symbol: PTX
+  exchange: HNX
+  sector: General
+  name: CTCP Van tai va Dich vu Petrolimex Nghe Tinh
+- symbol: PVB
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Bọc ống dầu khí Việt Nam
+- symbol: PVC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Tổng Công ty Hóa chất và Dịch vụ Dầu khí - CTCP (PVChem)
+- symbol: PVD
+  exchange: HOSE
+  sector: Energy
+  name: Tổng Công ty Cổ phần Khoan và Dịch vụ Khoan Dầu khí
+- symbol: PVE
+  exchange: UPCoM
+  sector: General
+  name: Tổng Công ty Tư vấn Thiết kế Dầu khí - CTCP
+- symbol: PVG
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Kinh doanh LPG Việt Nam
+- symbol: PVH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xay lap Dau khi Thanh Hoa
+- symbol: PVI
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần PVI
+- symbol: PVL
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Đầu tư Nhà đất Việt
+- symbol: PVM
+  exchange: UPCoM
+  sector: General
+  name: CTCP May - Thiet bi Dau khi
+- symbol: PVO
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau Nhon PV OIL
+- symbol: PVP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Vận tải Dầu khí Thái Bình Dương
+- symbol: PVR
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Đầu tư PVR Hà Nội
+- symbol: PVS
+  exchange: HNX
+  sector: Energy
+  name: Cổ phiếu Tổng CTCP Dịch Vụ Kỹ Thuật Dầu Khí Việt Nam
+- symbol: PVT
+  exchange: HOSE
+  sector: Energy
+  name: Tổng Công ty Cổ phần Vận tải Dầu khí
+- symbol: PVV
+  exchange: UPCoM
+  sector: General
+  name: CTCP Vinaconex 39
+- symbol: PVX
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu TCTCP Xây lắp Dầu khí Việt Nam
+- symbol: PVY
+  exchange: UPCoM
+  sector: General
+  name: Công ty Cổ phần Chế tạo Giàn khoan Dầu khí
+- symbol: PWA
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bat dong san Dau khi
+- symbol: PWS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap thoat nuoc Phu Yen
+- symbol: PXA
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Đầu tư và Thương mại Dầu khí Nghệ An
+- symbol: PXI
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xay dung Cong nghiep va Dan dung dau khi
+- symbol: PXL
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Đầu tư Khu Công nghiệp Dầu khí Long Sơn
+- symbol: PXM
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Xây lắp Dầu khí Miền Trung
+- symbol: PXS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Ket cau Kim loai va lap may dau khi
+- symbol: PXT
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Xây lắp đường ống bể chứa Dầu khí
+- symbol: QBS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xuat nhap khau Quang Binh
+- symbol: QCC
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Đầu tư Xây dựng và Phát triển Hạ tầng Viễn Thông
+- symbol: QCG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Quốc Cường Gia Lai
+- symbol: QHD
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu công ty cổ phần Que hàn điện Việt Đức
+- symbol: QHW
+  exchange: UPCoM
+  sector: General
+  name: CTCP nuoc khoang Quang Ninh
+- symbol: QNC
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Xi măng và Xây dựng Quảng Ninh
+- symbol: QNP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Cảng Quy Nhơn
+- symbol: QNS
+  exchange: UPCoM
+  sector: General
+  name: CTCP DUONG QUANG NGAI
+- symbol: QNT
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Tư vấn và Đầu tư phát triển Quảng Nam
+- symbol: QNU
+  exchange: UPCoM
+  sector: General
+  name: QNU- CTCP Moi truong do thi Quang Nam
+- symbol: QNW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap thoat nuoc va xay dung Quang Ngai
+- symbol: QPH
+  exchange: UPCoM
+  sector: General
+  name: Công ty Cổ phần Thủy điện Quế Phong
+- symbol: QSP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tan Cang Quy Nhon
+- symbol: QST
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Sách và thiết bị trường học Quảng Ninh
+- symbol: QTC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Công trình GTVT Quảng Nam
+- symbol: QTP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Nhiet dien Quang Ninh
+- symbol: RAL
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Bóng đèn Phích nước Rạng Đông
+- symbol: RAT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Van tai va thuong mai Duong sat
+- symbol: RBC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Công nghiệp và Xuất nhập khẩu Cao Su
+- symbol: RCC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tong cong ty Cong trinh duong sat
+- symbol: RCL
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Địa ốc Chợ Lớn
+- symbol: REE
+  exchange: HOSE
+  sector: Industrials
+  name: Công ty Cổ phần Cơ Điện Lạnh
+- symbol: RGG
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Regal Group
+- symbol: RIC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Quoc te Hoang gia
+- symbol: RTB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cao Su Tan Bien
+- symbol: RYG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Sản xuất và Đầu tư Hoàng Gia
+- symbol: SAB
+  exchange: HOSE
+  sector: Consumer Goods
+  name: Tổng Công ty Cổ phần Bia – Rượu – Nước giải khát Sài Gòn
+- symbol: SAC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xep do va Dich vu Cang Sai Gon
+- symbol: SAF
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Lương thực Thực phẩm Safoco
+- symbol: SAL
+  exchange: UPCoM
+  sector: General
+  name: CTCP truc vot cuu ho Viet Nam
+- symbol: SAM
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần SAM Holdings
+- symbol: SAS
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Dịch vụ Hàng không Sân bay Tân Sơn Nhất
+- symbol: SAV
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Hợp tác Kinh tế và Xuất nhập khẩu Savimex
+- symbol: SBA
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Sông Ba
+- symbol: SBB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tap doan Bia Sai Gon Binh Tay
+- symbol: SBD
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cong nghe Sao Bac Dau
+- symbol: SBG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Cơ khí Công nghệ cao Siba
+- symbol: SBH
+  exchange: UPCoM
+  sector: General
+  name: Công ty Cổ phần Thủy điện Sông Ba Hạ
+- symbol: SBL
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bia Sai Gon - Bac Lieu
+- symbol: SBM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu Phat trien Bac Minh
+- symbol: SBR
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cao Su Song Be
+- symbol: SBS
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Chứng khoán SBS
+- symbol: SBT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Thành Thành Công - Biên Hòa
+- symbol: SBV
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Siam Brothers Việt Nam
+- symbol: SCC
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Thương mại Đầu tư SHB
+- symbol: SCD
+  exchange: UPCoM
+  sector: General
+  name: CTCP Nuoc giai khat Chuong Duong
+- symbol: SCG
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Tập đoàn Xây dựng SCG
+- symbol: SCI
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần SIC E&C
+- symbol: SCJ
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xi mang Sai Son
+- symbol: SCL
+  exchange: UPCoM
+  sector: General
+  name: SCL - CTCP Sông Đà Cao Cường
+- symbol: SCO
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Công nghiệp Thủy Sản
+- symbol: SCR
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Địa ốc Sài Gòn Thương Tín
+- symbol: SCS
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Dịch vụ Hàng hóa Sài Gòn
+- symbol: SDA
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần SIMCO Sông Đà
+- symbol: SDC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Công ty Cổ phần Tư vấn Sông Đà
+- symbol: SDD
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Đầu tư và Xây lắp Sông Đà
+- symbol: SDG
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Sadico Cần Thơ
+- symbol: SDK
+  exchange: UPCoM
+  sector: General
+  name: SDK - CTCP Cơ khí Luyện Kim
+- symbol: SDN
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Sơn Đồng Nai
+- symbol: SDP
+  exchange: UPCoM
+  sector: General
+  name: CTCP SDP
+- symbol: SDT
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty Cổ phần Sông Đà 10
+- symbol: SDU
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Đầu tư xây dựng và phát triển đô thị Sông Đà
+- symbol: SDV
+  exchange: UPCoM
+  sector: General
+  name: SDV - Công ty Cổ phần Dịch vụ Sonadezi
+- symbol: SDY
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Xi măng Sông Đà Yaly
+- symbol: SEA
+  exchange: UPCoM
+  sector: General
+  name: Tong Cong ty Thuy san Viet Nam - CTCP
+- symbol: SEB
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Công ty CP Đầu tư và Phát triển Điện Miền Trung
+- symbol: SED
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Đầu tư và Phát triển Giáo dục Phương Nam
+- symbol: SEP
+  exchange: UPCoM
+  sector: General
+  name: CTCP TCT Thuong mai Quang tri
+- symbol: SFC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Nhiên liệu Sài Gòn
+- symbol: SFG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Phân bón Miền Nam
+- symbol: SFI
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đại lý Vận tải SAFI
+- symbol: SFN
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Dệt lưới Sài Gòn
+- symbol: SGB
+  exchange: UPCoM
+  sector: General
+  name: NHTM CP Sai Gon Cong Thuong
+- symbol: SGC
+  exchange: HNX
+  sector: General
+  name: cổ phiếu CTCP Xuất nhập khẩu Sa Giang
+- symbol: SGD
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Sách giáo dục tại Tp.HCM
+- symbol: SGH
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Khách sạn Sài Gòn
+- symbol: SGI
+  exchange: UPCoM
+  sector: General
+  name: CTCP Đầu tư phát triển Sài Gòn 3 Group
+- symbol: SGN
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Phục vụ Mặt đất Sài Gòn
+- symbol: SGP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cang Sai Gon
+- symbol: SGR
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tổng Công ty Cổ phần Địa ốc Sài Gòn
+- symbol: SGS
+  exchange: UPCoM
+  sector: General
+  name: SGS - Công ty Cổ phần Vận tải Biển Sài Gòn
+- symbol: SGT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Công nghệ Viễn thông Sài Gòn
+- symbol: SHA
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Sơn Hà Sài Gòn
+- symbol: SHB
+  exchange: HOSE
+  sector: Financials
+  name: Ngân hàng Thương mại Cổ phần Sài Gòn – Hà Nội
+- symbol: SHC
+  exchange: UPCoM
+  sector: General
+  name: Công Ty Cổ Phần Hàng Hải Sài Gòn
+- symbol: SHE
+  exchange: HNX
+  sector: General
+  name: CTCP Phat trien nang luong Son Ha
+- symbol: SHI
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Quốc tế Sơn Hà
+- symbol: SHN
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Đầu tư Tổng hợp Hà Nội
+- symbol: SHP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Thủy điện Miền Nam
+- symbol: SHS
+  exchange: HNX
+  sector: Financials
+  name: Cổ phiếu CTCP Chứng khoán Sài Gòn - Hà Nội
+- symbol: SID
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu va Phat trien Sai Gon Co.op
+- symbol: SIG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu va Thuong mai Song Da
+- symbol: SII
+  exchange: UPCoM
+  sector: General
+  name: CTCP ha tang nuoc Sai Gon
+- symbol: SIP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Sài Gòn VRG
+- symbol: SIV
+  exchange: UPCoM
+  sector: General
+  name: CTCP SIVICO
+- symbol: SJD
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Thủy điện Cần Đơn
+- symbol: SJE
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Sông Đà 11
+- symbol: SJF
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu Sao Thai Duong
+- symbol: SJG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tong cong ty Song Da
+- symbol: SJM
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Sông Đà 19
+- symbol: SJS
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần SJ Group
+- symbol: SKG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tàu cao tốc Superdong – Kiên Giang
+- symbol: SKH
+  exchange: UPCoM
+  sector: General
+  name: Công ty Cổ phần Nước giải khát Sanest Khánh Hòa
+- symbol: SKN
+  exchange: UPCoM
+  sector: General
+  name: CTCP nuoc giai khat Sanna Khanh Hoa
+- symbol: SKV
+  exchange: UPCoM
+  sector: General
+  name: CTCP nuoc giai khat Yen sao Khanh Hoa
+- symbol: SLD
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Địa ốc Sacom
+- symbol: SLS
+  exchange: HNX
+  sector: General
+  name: SLS - Công ty cổ phần Mía đường Sơn La
+- symbol: SMA
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Thiết bị Phụ tùng Sài Gòn
+- symbol: SMB
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Bia Sài Gòn - Miền Trung
+- symbol: SMC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Thương mại SMC
+- symbol: SMN
+  exchange: HNX
+  sector: General
+  name: SMN - CTCP Sach va Thiet bi Giao duc Mien nam
+- symbol: SMT
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần Sametel
+- symbol: SNC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xuất nhập khẩu Thuỷ sản Năm Căn
+- symbol: SNZ
+  exchange: UPCoM
+  sector: General
+  name: Tổng Công ty Cổ phần Phát triển Khu công nghiệp
+- symbol: SPB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Soi Phu Bai
+- symbol: SPC
+  exchange: HNX
+  sector: General
+  name: SPC - CTCP Bảo vệ Thực vật Sài Gòn
+- symbol: SPD
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP XNK Thuỷ sản Miền Trung
+- symbol: SPH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xuất nhập khẩu thủy sản Hà Nội
+- symbol: SPI
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Spiral Galaxy
+- symbol: SPM
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần S.P.M
+- symbol: SPV
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuy Dac San
+- symbol: SRA
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP SARA Việt Nam
+- symbol: SRB
+  exchange: UPCoM
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Sara
+- symbol: SRC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Cao su Sao Vàng
+- symbol: SRF
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần SEAREFICO
+- symbol: SSB
+  exchange: HOSE
+  sector: Financials
+  name: Ngân hàng Thương mại Cổ phần Đông Nam Á
+- symbol: SSC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Giống Cây trồng Miền Nam
+- symbol: SSG
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Vận tải Biển Hải Âu
+- symbol: SSH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Phát triển Sunshine Homes
+- symbol: SSI
+  exchange: HOSE
+  sector: Financials
+  name: Công ty Cổ phần Chứng khoán SSI
+- symbol: SSM
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Chế tạo kết cấu thép VNECO.SSM
+- symbol: STB
+  exchange: HOSE
+  sector: Financials
+  name: Ngân hàng thương mại cổ phần Sài Gòn Tài Lộc
+- symbol: STC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Sách và Thiết bị Trường học tại Tp, HCM
+- symbol: STD
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bia - Nước giải khát Sài Gòn - Tây Đô
+- symbol: STG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Kho vận Miền Nam
+- symbol: STH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Phát hành sách Thái Nguyên
+- symbol: STK
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Sợi Thế Kỷ
+- symbol: STP
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Công nghiệp Thương mại Sông Đà
+- symbol: STS
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Dịch vụ Vận tải Sài Gòn
+- symbol: STT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Van chuyen Sai Gon Tourist
+- symbol: STW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap nuoc Soc Trang
+- symbol: SVC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Dịch vụ Tổng hợp Sài Gòn
+- symbol: SVD
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư & Thương mại Vũ Đăng
+- symbol: SVG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Hoi Ky nghe Que han
+- symbol: SVH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thủy điện Sông Vàng
+- symbol: SVN
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Tập đoàn Vexilla Việt Nam
+- symbol: SVT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Công nghệ Sài Gòn Viễn Đông
+- symbol: SWC
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Tổng CTCP Đường Sông Miền nam
+- symbol: SZB
+  exchange: HNX
+  sector: General
+  name: CTCP Sonadezi Long Binh
+- symbol: SZC
+  exchange: HOSE
+  sector: Real Estate
+  name: Công ty Cổ phần Sonadezi Châu Đức
+- symbol: SZE
+  exchange: UPCoM
+  sector: General
+  name: CTCP Moi truong Sonadezi
+- symbol: SZG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Sonadezi Giang Dien
+- symbol: SZL
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Sonadezi Long Thành
+- symbol: TAB
+  exchange: UPCoM
+  sector: General
+  name: Cong ty co phan Freco Viet Nam
+- symbol: TAH
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Thương mại Dịch vụ Giấy Thuận An
+- symbol: TAL
+  exchange: HOSE
+  sector: General
+  name: Công ty cổ phần Đầu tư Bất động sản Taseco
+- symbol: TAR
+  exchange: UPCoM
+  sector: General
+  name: CTCP Nông nghiệp CNC Trung An
+- symbol: TAW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap nuoc Trung An
+- symbol: TBC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Thủy điện Thác Bà
+- symbol: TBD
+  exchange: UPCoM
+  sector: General
+  name: Tổng Công ty Thiết bị Điện Đông Anh - CTCP
+- symbol: TBR
+  exchange: UPCoM
+  sector: General
+  name: CTCP Địa ốc Tân Bình
+- symbol: TBW
+  exchange: UPCoM
+  sector: General
+  name: Co Phieu CTCP Nuoc Sach Thai Binh
+- symbol: TCB
+  exchange: HOSE
+  sector: Financials
+  name: Ngân hàng Thương mại Cổ phần Kỹ Thương Việt Nam
+- symbol: TCD
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty Cổ phần Tập đoàn Xây dựng Tracodi
+- symbol: TCH
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Dịch vụ Tài chính Hoàng Huy
+- symbol: TCI
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Chứng khoán Thành Công
+- symbol: TCJ
+  exchange: UPCoM
+  sector: General
+  name: CTCP To Chau
+- symbol: TCK
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tong cong ty co khi xay dung
+- symbol: TCL
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đại lý Giao nhận Vận tải Xếp dỡ Tân Cảng
+- symbol: TCM
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Dệt may - Đầu tư - Thương mại Thành Công
+- symbol: TCO
+  exchange: HOSE
+  sector: General
+  name: CÔNG TY CỔ PHẦN JANUS GROUP
+- symbol: TCR
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Công nghiệp Gốm sứ TAICERA
+- symbol: TCT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Cáp treo Núi Bà Tây Ninh
+- symbol: TCW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Kho vận Tân Cảng
+- symbol: TCX
+  exchange: HOSE
+  sector: General
+  name: Công ty cổ phần Chứng khoán Kỹ Thương
+- symbol: TDB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuy dien Binh Dinh
+- symbol: TDC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Kinh doanh và Phát triển Bình Dương
+- symbol: TDF
+  exchange: UPCoM
+  sector: General
+  name: CTCP Trung Đô
+- symbol: TDG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư TDG GLOBAL
+- symbol: TDH
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Phát triển Nhà Thủ Đức
+- symbol: TDM
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Nước Thủ Dầu Một
+- symbol: TDP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Thuận Đức
+- symbol: TDS
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Thép Thủ Đức- VNSTEEL
+- symbol: TDT
+  exchange: HNX
+  sector: General
+  name: CTCP Dau tu va phat trien TDT
+- symbol: TDW
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Cấp nước Thủ Đức
+- symbol: TED
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tong cty Tu van thiet ke Giao thong van tai
+- symbol: TEG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Trường Thành Energy Group
+- symbol: TET
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần Bất động sản PRISTIE
+- symbol: TFC
+  exchange: HNX
+  sector: General
+  name: CTCP Trang
+- symbol: TGG
+  exchange: UPCoM
+  sector: General
+  name: CTCP The Golden Group
+- symbol: TGP
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Trường Phú
+- symbol: THB
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Bia Hà Nội - Thanh Hóa
+- symbol: THD
+  exchange: HNX
+  sector: General
+  name: CTCP Thaiholdings
+- symbol: THG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư và Xây dựng Tiền Giang
+- symbol: THM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tứ Hải Hà Nam
+- symbol: THN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap nuoc Thanh Hoa
+- symbol: THP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuy san Va Thuong mai Thuan Phuoc
+- symbol: THS
+  exchange: HNX
+  sector: General
+  name: CTCP Thanh Hoa - Sông Đà
+- symbol: THT
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Than Hà Tu - Vinacomin
+- symbol: THU
+  exchange: UPCoM
+  sector: General
+  name: CTCP Moi truong va Cong trinh Do thi Thanh Hoa`
+- symbol: THW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap nuoc Tan Hoa
+- symbol: TID
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tong cty Tin Nghia
+- symbol: TIE
+  exchange: UPCoM
+  sector: General
+  name: CTCP TIE
+- symbol: TIG
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Tập đoàn Đầu tư Thăng Long
+- symbol: TIN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tai chinh Co phan Tin Viet
+- symbol: TIP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Phát triển Khu Công nghiệp Tín Nghĩa
+- symbol: TIS
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Gang Thép Thái Nguyên
+- symbol: TIX
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Sản xuất Kinh doanh XNK Dịch vụ và Đầu tư Tân Bình
+- symbol: TJC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Dịch vụ Vận tải và Thương mại
+- symbol: TKA
+  exchange: UPCoM
+  sector: General
+  name: CTCP Bao bi Tan Khanh An
+- symbol: TKU
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Công nghiệp Tung Kuang
+- symbol: TLD
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Xây dựng và Phát triển Đô thị Thăng Long
+- symbol: TLG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Thiên Long
+- symbol: TLH
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Thép Tiến Lên
+- symbol: TLP
+  exchange: UPCoM
+  sector: General
+  name: Tổng công ty Thương mại Xuất nhập khẩu Thanh Lễ - Công ty cổ phần
+- symbol: TMB
+  exchange: HNX
+  sector: General
+  name: CTCP Kinh doanh than Mien Bac - Vinacomin
+- symbol: TMC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Thương mại và Xuất nhập khẩu Thủ Đức
+- symbol: TMG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Kim loai mau Thai Nguyen - Vimico
+- symbol: TMP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Thủy điện Thác Mơ
+- symbol: TMS
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Transimex
+- symbol: TMT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Ô tô TMT
+- symbol: TMX
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần VICEM Thương mại Xi măng
+- symbol: TNA
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuong mai Xuat nhap khau Thien Nam
+- symbol: TNB
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Thép Nhà Bè- VNSTEEL
+- symbol: TNC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Cao su Thống Nhất
+- symbol: TNG
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Đầu tư và Thương mại TNG
+- symbol: TNH
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Bệnh viện TNH
+- symbol: TNI
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Thành Nam
+- symbol: TNP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cang Thi Nai
+- symbol: TNS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thep Tam la Thong nhat
+- symbol: TNT
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn TNT
+- symbol: TNW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Nuoc sach Thai Nguyen
+- symbol: TOP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Phan phoi Top one
+- symbol: TOS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dich vu bien Tan Cang
+- symbol: TOT
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Transimex Logistics
+- symbol: TOW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap nuoc Tra Noc - O Mon
+- symbol: TPB
+  exchange: HOSE
+  sector: Financials
+  name: Ngân hàng Thương mại Cổ phần Tiên Phong
+- symbol: TPC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Nhựa Tân Đại Hưng
+- symbol: TPP
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Tân Phú Việt Nam
+- symbol: TPS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Ben bai Van tai Sai Gon
+- symbol: TQW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cấp thoát nước Tuyên Quang
+- symbol: TRA
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Traphaco
+- symbol: TRC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Cao su Tây Ninh
+- symbol: TRS
+  exchange: UPCoM
+  sector: General
+  name: CTCP van tai va dich vu hang hai
+- symbol: TRT
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần RedstarCera
+- symbol: TRV
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Vận tải Đường sắt
+- symbol: TSA
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư và Xây lắp Trường Sơn
+- symbol: TSB
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Ắc qui Tia Sáng
+- symbol: TSC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Vật tư Kỹ thuật Nông nghiệp Cần Thơ
+- symbol: TSD
+  exchange: UPCoM
+  sector: General
+  name: CTCP Du lich Truong son COECCO
+- symbol: TSG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thông tin tín hiệu Đường sắt Sài Gòn
+- symbol: TSJ
+  exchange: UPCoM
+  sector: General
+  name: CTCP Du lich dich vu Ha noi
+- symbol: TST
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Dịch vụ Kỹ thuật Viễn thông
+- symbol: TTA
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Xây dựng và Phát triển Trường Thành
+- symbol: TTB
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần TTBGROUP
+- symbol: TTC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Gạch men Thanh Thanh
+- symbol: TTD
+  exchange: UPCoM
+  sector: General
+  name: CTCP Benh vien Tim Tam Duc
+- symbol: TTE
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Năng lượng Trường Thịnh
+- symbol: TTF
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Kỹ nghệ Gỗ Trường Thành
+- symbol: TTG
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Royal Healthtech TTG
+- symbol: TTH
+  exchange: HNX
+  sector: General
+  name: CTCP Thuong mai va Dich vu Tien Thanh
+- symbol: TTL
+  exchange: HNX
+  sector: General
+  name: CTCP Tong cong ty Thang Long
+- symbol: TTN
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Công nghệ và Truyền thông Việt Nam
+- symbol: TTS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cán thép Thái Trung
+- symbol: TTT
+  exchange: HNX
+  sector: General
+  name: CTCP Du lich-Thuong mai Tay Ninh
+- symbol: TTZ
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dau tu Xay dung va Cong nghe Tien Trung
+- symbol: TUG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Lai dat va Van tai Cang Hai phong
+- symbol: TVA
+  exchange: UPCoM
+  sector: General
+  name: CTCP Su Viglacera Thanh Tri
+- symbol: TVB
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Chứng khoán T-Cap
+- symbol: TVC
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Tập đoàn Quản lý tài sản Trí Việt
+- symbol: TVD
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Than Vàng Danh - Vinacomin
+- symbol: TVG
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Tư vấn Đầu tư và Xây dựng Giao thông vận tải
+- symbol: TVH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tu van Xay dung Cong trinh Hang hai
+- symbol: TVM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tư vấn đầu tư mỏ và công nghiệp - Vinacomin
+- symbol: TVN
+  exchange: UPCoM
+  sector: General
+  name: CTCP - Tong cong ty Thep Viet Nam
+- symbol: TVS
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Chứng khoán Thiên Việt
+- symbol: TVT
+  exchange: HOSE
+  sector: General
+  name: Tổng Công ty Việt Thắng - CTCP
+- symbol: TXM
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Vicem Thạch cao Xi măng
+- symbol: TYA
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Dây và Cáp điện Taya Việt Nam
+- symbol: UCT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Do thi Can Tho
+- symbol: UDC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xay dung va Phat trien Do thi Tinh Ba Ria - Vung Tau
+- symbol: UDJ
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Phát triển Đô thị
+- symbol: UDL
+  exchange: UPCoM
+  sector: General
+  name: CTCP Đô thị và Môi trường Đắk Lắk
+- symbol: UEM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Co dien Uong Bi - Vinacomin
+- symbol: UIC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Phát triển Nhà và Đô thị IDICO
+- symbol: ULG
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Logistics U&I
+- symbol: UMC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cong trinh do thi Nam Dinh
+- symbol: UNI
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Đầu tư và Phát triển Sao Mai Việt
+- symbol: UPC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Phat trien Cong vien Cay xanh va Do thi Vung Tau
+- symbol: UPH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Duoc pham TW25
+- symbol: UPS
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Chứng khoán UP
+- symbol: USC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Khao sat va Xay dung - USCO
+- symbol: USD
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cong Trinh Do thi Soc Trang
+- symbol: UTT
+  exchange: UPCoM
+  sector: General
+  name: Công ty Cổ phần Môi trường Nam Thành
+- symbol: UXC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Chế biến thủy sản Út Xi
+- symbol: VAB
+  exchange: HOSE
+  sector: General
+  name: Ngân hàng Thương mại cổ phần Việt Á
+- symbol: VAF
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Phân lân nung chảy Văn Điển
+- symbol: VAV
+  exchange: UPCoM
+  sector: General
+  name: CTCP VIWACO
+- symbol: VBB
+  exchange: HOSE
+  sector: General
+  name: Ngân hàng Thương mại Cổ phần Việt Nam Thương Tín
+- symbol: VBC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Nhựa - Bao bì Vinh
+- symbol: VBG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dia chat Viet Bac - TKV
+- symbol: VBH
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Điện tử Bình Hoà
+- symbol: VBT
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Vận tải Bảo Thắng
+- symbol: VCA
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Thép VICASA
+- symbol: VCB
+  exchange: HOSE
+  sector: Financials
+  name: Ngân hàng Thương mại Cổ phần Ngoại Thương Việt Nam
+- symbol: VCC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Vinaconex 25
+- symbol: VCE
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xay lap Moi truong - TKV
+- symbol: VCF
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần VINACAFÉ Biên Hòa
+- symbol: VCG
+  exchange: HOSE
+  sector: Industrials
+  name: Tổng Công ty Cổ phần Xuất nhập khẩu và Xây dựng Việt Nam
+- symbol: VCI
+  exchange: HOSE
+  sector: Financials
+  name: Công ty Cổ phần Chứng khoán Vietcap
+- symbol: VCK
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Chứng khoán VPS
+- symbol: VCM
+  exchange: HNX
+  sector: General
+  name: Công ty Cổ phần BV Life
+- symbol: VCP
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Xây dựng và Năng lượng VCP
+- symbol: VCR
+  exchange: UPCoM
+  sector: General
+  name: CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN DU LỊCH ITC
+- symbol: VCS
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP VICOSTONE
+- symbol: VCT
+  exchange: UPCoM
+  sector: General
+  name: VCT - CTCP Tư vấn Xây dựng Vinaconex
+- symbol: VCX
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xi Măng Yên Bình
+- symbol: VDB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Van tai va Che bien Than Dong Bac
+- symbol: VDG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Vạn Đạt Group
+- symbol: VDL
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Thực phẩm Lâm Đồng
+- symbol: VDN
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Vinatex Đà Nẵng
+- symbol: VDP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Dược phẩm Trung Ương Vidipha
+- symbol: VDS
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Chứng khoán Rồng Việt
+- symbol: VDT
+  exchange: UPCoM
+  sector: General
+  name: VDT - Công ty Cổ phần Lưới thép Bình Tây
+- symbol: VEA
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tong cty May dong luc va May nong nghiep Viet Nam
+- symbol: VEC
+  exchange: UPCoM
+  sector: General
+  name: Tong CTCP Dien tu va Tin hoc Viet Nam
+- symbol: VEF
+  exchange: UPCoM
+  sector: General
+  name: CTCP Trung tâm Hội chợ Triển lãm Việt Nam
+- symbol: VES
+  exchange: UPCoM
+  sector: General
+  name: CÔNG TY CỔ PHẦN TẬP ĐOÀN VINALIVING
+- symbol: VET
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuoc thu y Trung uong Navetco
+- symbol: VFC
+  exchange: UPCoM
+  sector: General
+  name: Cổ Phiếu CTCP VINAFCO
+- symbol: VFG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Khử trùng Việt Nam
+- symbol: VFR
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty Cổ phần Vận tải và Thuê tàu
+- symbol: VFS
+  exchange: HNX
+  sector: General
+  name: CTCP Chung khoan Nhat Viet
+- symbol: VGC
+  exchange: HOSE
+  sector: General
+  name: Tổng Công ty Viglacera - CTCP
+- symbol: VGG
+  exchange: UPCoM
+  sector: General
+  name: CTCP May Viet Tien
+- symbol: VGI
+  exchange: UPCoM
+  sector: Telecommunications
+  name: CTCP Dau tu quoc te Viettel
+- symbol: VGL
+  exchange: UPCoM
+  sector: General
+  name: CTCP Ma kem cong nghiep Vingal-Vnsteel
+- symbol: VGP
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Cảng Rau Quả
+- symbol: VGR
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cang Xanh VIP
+- symbol: VGS
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP ống thép Việt Đức VG PIPE
+- symbol: VGT
+  exchange: UPCoM
+  sector: General
+  name: CTCP - Tap doan Det may Viet Nam
+- symbol: VGV
+  exchange: UPCoM
+  sector: General
+  name: Tong Cong ty Tu van Xay dung Viet nam
+- symbol: VHC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Vĩnh Hoàn
+- symbol: VHD
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Đầu tư Phát triển nhà và Đô thị VINAHUD
+- symbol: VHE
+  exchange: HNX
+  sector: General
+  name: CTCP Duoc lieu va Thuc pham Viet nam
+- symbol: VHF
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Xây dựng và Chế biến lương thực Vĩnh Hà
+- symbol: VHG
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Đầu tư và Phát triển Việt Trung Nam
+- symbol: VHH
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Đầu tư Kinh doanh nhà Thành Đạt
+- symbol: VHL
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Cty cổ phần Viglacera Hạ Long
+- symbol: VHM
+  exchange: HOSE
+  sector: Real Estate
+  name: Công ty Cổ phần Vinhomes
+- symbol: VIB
+  exchange: HOSE
+  sector: Financials
+  name: Ngân hàng Thương mại Cổ phần Quốc tế Việt Nam
+- symbol: VIC
+  exchange: HOSE
+  sector: Real Estate
+  name: Tập đoàn Vingroup - Công ty Cổ phần
+- symbol: VID
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Phát triển Thương mại Viễn Đông
+- symbol: VIE
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Công nghệ Viễn thông VI TE CO
+- symbol: VIF
+  exchange: HNX
+  sector: General
+  name: TCT Lam nghiep Viet Nam - CTCP
+- symbol: VIG
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Chứng khoán Đầu tư Tài chính Việt Nam
+- symbol: VIM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Khoang san Viglacera
+- symbol: VIN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Giao nhận Kho vận Ngoại thương Việt Nam
+- symbol: VIP
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Vận tải Xăng dầu VIPCO
+- symbol: VIR
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Du lịch Quốc tế Vũng Tàu
+- symbol: VIT
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Viglacera Tiên Sơn
+- symbol: VIW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tong cty Dau tu Nuoc & Moi truong Viet Nam
+- symbol: VIX
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Chứng khoán VIX
+- symbol: VJC
+  exchange: HOSE
+  sector: Industrials
+  name: Công ty Cổ phần Hàng không VietJet
+- symbol: VKC
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần VKC Holdings
+- symbol: VLA
+  exchange: HNX
+  sector: General
+  name: VLA - CTCP Đầu tư và Phát triển Công nghệ Văn Lang
+- symbol: VLB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xay dung va San xuat vat lieu xay dung Bien Hoa
+- symbol: VLC
+  exchange: UPCoM
+  sector: General
+  name: Tong Cong ty Chan nuoi Viet Nam - CTCP
+- symbol: VLG
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần VIMC Logistics
+- symbol: VLP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cong trinh Cong cong Vinh Long
+- symbol: VLS
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Sản xuất Thép Việt Long
+- symbol: VLW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cap nuoc Vinh Long
+- symbol: VMA
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cong nghiep Oto - Vinacomin
+- symbol: VMC
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Công ty cổ phần VIMECO
+- symbol: VMD
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Y Dược phẩm Vimedimex
+- symbol: VMG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thương mại và dịch vụ Dầu khí Vũng Tàu
+- symbol: VMK
+  exchange: UPCoM
+  sector: General
+  name: CTCP Vimarko
+- symbol: VMS
+  exchange: HNX
+  sector: General
+  name: CTCP Phat trien Hang hai
+- symbol: VMT
+  exchange: UPCoM
+  sector: General
+  name: CTCP GIAO NHAN VAN TAI MIEN TRUNG
+- symbol: VNA
+  exchange: UPCoM
+  sector: General
+  name: CTCP Van tai bien Vinaship
+- symbol: VNB
+  exchange: UPCoM
+  sector: General
+  name: CTCP Sach Viet Nam
+- symbol: VNC
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Tập đoàn Vinacontrol
+- symbol: VND
+  exchange: HOSE
+  sector: Financials
+  name: Công ty Cổ phần Chứng khoán VNDIRECT
+- symbol: VNE
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Tổng Công ty cổ phần Xây dựng điện Việt Nam
+- symbol: VNF
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Vinafreight
+- symbol: VNG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Du lịch Thành Thành Công
+- symbol: VNH
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Đầu tư Việt Việt Nhật
+- symbol: VNI
+  exchange: UPCoM
+  sector: General
+  name: VNI - CTCP Dau Tu Bat Dong San Viet Nam
+- symbol: VNL
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Logistics Vinalink
+- symbol: VNM
+  exchange: HOSE
+  sector: Consumer Goods
+  name: Công ty Cổ phần Sữa Việt Nam
+- symbol: VNP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Nhựa Việt Nam
+- symbol: VNR
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Tổng CTCP Tái Bảo hiểm Quốc gia Việt Nam
+- symbol: VNS
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Ánh Dương Việt Nam
+- symbol: VNT
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Giao nhận vận tải Ngoại thương
+- symbol: VNX
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Quảng cáo và Hội chợ Thương Mại Vinexad
+- symbol: VNY
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuốc thú y TƯ I
+- symbol: VNZ
+  exchange: UPCoM
+  sector: General
+  name: CONG TY CP VNG
+- symbol: VOS
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Vận tải Biển Việt Nam
+- symbol: VPA
+  exchange: UPCoM
+  sector: General
+  name: CTCP Van tai Hoa dau VP
+- symbol: VPB
+  exchange: HOSE
+  sector: Financials
+  name: Ngân hàng Thương mại Cổ phần Việt Nam Thịnh Vượng
+- symbol: VPC
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần  Đầu tư và Phát triển Năng lượng Việt Nam
+- symbol: VPD
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Phát triển Điện lực Việt Nam
+- symbol: VPG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư Thương mại Xuất nhập khẩu Việt Phát
+- symbol: VPH
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Vạn Phát Hưng
+- symbol: VPI
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Phát triển BĐS Văn Phú
+- symbol: VPL
+  exchange: HOSE
+  sector: General
+  name: Công ty cổ phần Vinpearl
+- symbol: VPR
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Vinaprint
+- symbol: VPS
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Thuốc sát trùng Việt Nam
+- symbol: VPW
+  exchange: UPCoM
+  sector: General
+  name: CTCP Cấp thoát nước số 1 Vĩnh Phúc
+- symbol: VPX
+  exchange: HOSE
+  sector: General
+  name: Công ty cổ phần Chứng khoán VPBANK
+- symbol: VQC
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Giám định- Vinacomin
+- symbol: VRC
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Bất động sản và Đầu tư VRC
+- symbol: VRE
+  exchange: HOSE
+  sector: Real Estate
+  name: Công ty Cổ phần Vincom Retail
+- symbol: VRG
+  exchange: UPCoM
+  sector: General
+  name: VRG - CTCP Phat trien do thi va Khu cong nghiep Cao Su Viet Nam
+- symbol: VSA
+  exchange: HNX
+  sector: General
+  name: CTCP Dai ly Hang hai Viet Nam
+- symbol: VSC
+  exchange: HOSE
+  sector: Industrials
+  name: Công ty Cổ phần Container Việt Nam
+- symbol: VSE
+  exchange: UPCoM
+  sector: General
+  name: CTCP Dich vu Duong cao toc Viet Nam
+- symbol: VSF
+  exchange: UPCoM
+  sector: General
+  name: CTCP Tong cong ty Luong thuc Mien Nam
+- symbol: VSG
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP CONTAINER Phía Nam
+- symbol: VSH
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Thủy điện Vĩnh Sơn - Sông Hinh
+- symbol: VSI
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Đầu tư và Xây dựng Cấp thoát nước
+- symbol: VSM
+  exchange: HNX
+  sector: General
+  name: CTCP Container Mien Trung
+- symbol: VSN
+  exchange: UPCoM
+  sector: General
+  name: CTCP Viet Nam Ky nghe Suc san
+- symbol: VST
+  exchange: UPCoM
+  sector: General
+  name: CTCP Vận tải và Thuê tàu biển Việt Nam
+- symbol: VTA
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Vitaly
+- symbol: VTB
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Viettronics Tân Bình
+- symbol: VTC
+  exchange: HNX
+  sector: General
+  name: cổ phần Công ty cổ phần Viễn thông VTC
+- symbol: VTD
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Vietourist Holdings
+- symbol: VTE
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Vinacap Kim Long
+- symbol: VTG
+  exchange: UPCoM
+  sector: General
+  name: CTCP Du lich tinh Ba ria - Vung tau
+- symbol: VTH
+  exchange: HNX
+  sector: General
+  name: VTH - CTCP Day cap dien Viet Thai
+- symbol: VTI
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Sản xuất - Xuất nhập khẩu dệt may
+- symbol: VTJ
+  exchange: HNX
+  sector: General
+  name: CTCP Thương mại và Đầu tư Vinataba
+- symbol: VTK
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Tư vấn và Dịch vụ Viettel
+- symbol: VTM
+  exchange: UPCoM
+  sector: General
+  name: CTCP Van tai va Dua don tho mo - Vinacomin
+- symbol: VTO
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Vận tải Xăng dầu VITACO
+- symbol: VTP
+  exchange: HOSE
+  sector: General
+  name: Tổng Công ty Cổ phần Bưu chính Viettel
+- symbol: VTQ
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Việt Trung Quảng Bình
+- symbol: VTR
+  exchange: UPCoM
+  sector: General
+  name: Công ty Cổ phần Du lịch Vietravel
+- symbol: VTV
+  exchange: HNX
+  sector: General
+  name: Công ty cổ phần Năng lượng và Môi trường VICEM
+- symbol: VTX
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Vận tải đa phương thức VIETRANSTIMEX
+- symbol: VTZ
+  exchange: HNX
+  sector: General
+  name: CTCP San xuat va Thuong mai Nhua Viet Thanh
+- symbol: VUA
+  exchange: UPCoM
+  sector: General
+  name: CTCP Chung khoan Stanley Brothers
+- symbol: VVN
+  exchange: UPCoM
+  sector: General
+  name: Tổng CTCP Xây dựng công nghiệp VN
+- symbol: VVS
+  exchange: HOSE
+  sector: General
+  name: Công ty cổ phần Đầu tư phát triển máy Việt Nam
+- symbol: VWS
+  exchange: UPCoM
+  sector: General
+  name: CTCP Nuoc va Moi truong Viet Nam
+- symbol: VXB
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu CTCP Vật liệu Xây dựng Bến Tre
+- symbol: VXP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thuoc Thu y Trung uong VETVACO
+- symbol: VXT
+  exchange: UPCoM
+  sector: General
+  name: CTCP Kho van va Dich vu Thuong mai
+- symbol: WCS
+  exchange: HNX
+  sector: General
+  name: WCS - Công ty cổ phần Bến Xe Miền Tây
+- symbol: WSB
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty cổ phần Bia Sài Gòn - Miền Tây
+- symbol: WSS
+  exchange: HNX
+  sector: General
+  name: Cổ phiếu CTCP Chứng khoán Phố Wall
+- symbol: WTC
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần vận tải thủy Vinacomin
+- symbol: XDH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Đầu tư Xây dựng Dân dụng Hà Nội
+- symbol: XHC
+  exchange: UPCoM
+  sector: General
+  name: Công ty CP Xuân Hòa Việt Nam
+- symbol: XLV
+  exchange: UPCoM
+  sector: General
+  name: CTCP xay lap va dich vu Song Da
+- symbol: XMC
+  exchange: UPCoM
+  sector: General
+  name: Công ty cổ phần Đầu tư và Xây dựng Xuân Mai
+- symbol: XMD
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xuan Mai - Dao Tu
+- symbol: XMP
+  exchange: UPCoM
+  sector: General
+  name: CTCP Thủy điện Xuân Minh
+- symbol: XPH
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xà phòng Hà Nội
+- symbol: YBC
+  exchange: UPCoM
+  sector: General
+  name: Cổ phiếu Công ty CP Xi măng và khoáng sản yên Bái
+- symbol: YBM
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Khoáng sản Công nghiệp Yên Bái
+- symbol: YEG
+  exchange: HOSE
+  sector: General
+  name: Công ty Cổ phần Tập đoàn Yeah1
+- symbol: YTC
+  exchange: UPCoM
+  sector: General
+  name: CTCP Xuat nhap khau Y te Thanh pho Ho Chi Minh
+indices:
+- symbol: VNINDEX
+  name: VN-Index
+  exchange: HOSE
+- symbol: HNXINDEX
+  name: HNX-Index
+  exchange: HNX
+- symbol: UPINDEX
+  name: UPCoM-Index
+  exchange: UPCoM
+- symbol: VN30
+  name: VN30-Index
+  exchange: HOSE

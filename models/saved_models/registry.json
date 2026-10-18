@@ -1,0 +1,92 @@
+{
+  "5": {
+    "model_id": "lgbm_5d_20261019",
+    "horizon": 5,
+    "trained_at": "2026-10-19 01:56:03",
+    "features": [
+      "sma_20_slope",
+      "sma_50_slope",
+      "ret_5d",
+      "ret_10d",
+      "ret_20d",
+      "ret_60d",
+      "adx_14",
+      "rsi_14",
+      "macd_hist",
+      "roc_12",
+      "atr_14",
+      "bb_bandwidth",
+      "volatility_20d",
+      "volume_ratio"
+    ],
+    "metrics": {
+      "brier_score": 0.2309,
+      "log_loss": 0.6542,
+      "accuracy": 0.6525,
+      "roc_auc": 0.5287,
+      "precision_at_k": 0.0,
+      "total_test_samples": 118
+    },
+    "filepath": "models\\saved_models\\model_5d.joblib"
+  },
+  "10": {
+    "model_id": "lgbm_10d_20261010",
+    "horizon": 10,
+    "trained_at": "2026-10-10 21:12:45",
+    "features": [
+      "sma_20_slope",
+      "sma_50_slope",
+      "ret_5d",
+      "ret_10d",
+      "ret_20d",
+      "ret_60d",
+      "adx_14",
+      "rsi_14",
+      "macd_hist",
+      "roc_12",
+      "atr_14",
+      "bb_bandwidth",
+      "volatility_20d",
+      "volume_ratio"
+    ],
+    "metrics": {
+      "brier_score": 0.2229,
+      "log_loss": 0.6387,
+      "accuracy": 0.7611,
+      "roc_auc": 0.441,
+      "precision_at_k": 0.0,
+      "total_test_samples": 720
+    },
+    "filepath": "models\\saved_models\\model_10d.joblib"
+  },
+  "20": {
+    "model_id": "lgbm_20d_20261010",
+    "horizon": 20,
+    "trained_at": "2026-10-10 21:12:46",
+    "features": [
+      "sma_20_slope",
+      "sma_50_slope",
+      "ret_5d",
+      "ret_10d",
+      "ret_20d",
+      "ret_60d",
+      "adx_14",
+      "rsi_14",
+      "macd_hist",
+      "roc_12",
+      "atr_14",
+      "bb_bandwidth",
+      "volatility_20d",
+      "volume_ratio"
+    ],
+    "metrics": {
+      "brier_score": 0.2101,
+      "log_loss": 0.613,
+      "accuracy": 0.8931,
+      "roc_auc": 0.6138,
+      "precision_at_k": 0.0,
+      "total_test_samples": 720
+    },
+    "filepath": "models\\saved_models\\model_20d.joblib"
+  }
+}

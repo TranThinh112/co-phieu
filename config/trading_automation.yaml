@@ -1,0 +1,39 @@
+trading_automation:
+  enabled: true
+  execution_mode: "paper_only"
+  schedule:
+    timezone: "Asia/Ho_Chi_Minh"
+    weekdays: [MON, TUE, WED, THU, FRI]
+    scan_time: "15:30"
+    review_time: "15:45"
+  account:
+    paper_capital_vnd: 100000000
+    cash_reserve_pct: 0.10
+  risk:
+    risk_per_trade_pct: 0.005
+    max_position_pct: 0.15
+    max_open_positions: 5
+    max_total_risk_pct: 0.03
+    minimum_order_value_vnd: 1000000
+    board_lot_size: 100
+  trade_plan:
+    holding_period_sessions: 10
+    min_rule_score: 70
+    min_market_regime: "Sideways"
+    atr_stop_multiple: 2.0
+    structural_stop_buffer_pct: 0.02
+    target_one_r_multiple: 2.0
+    target_two_r_multiple: 3.0
+    scale_out_at_target_one_pct: 0.50
+    trailing_stop_atr_multiple: 2.0
+    reject_rsi_above: 75
+    reject_high_risk: true
+  model_governance:
+    automatic_retraining: false
+    review_frequency_days: 7
+    require_real_data: true
+    require_walk_forward_validation: true
+    max_brier_score: 0.25
+    min_precision_at_k: 0.50
+    min_roc_auc: 0.55
+    promote_only_if_better_than_active: true

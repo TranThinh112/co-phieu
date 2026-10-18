@@ -1,0 +1,42 @@
+database:
+  db_path: "database/scanner.db"
+
+data_provider:
+  default_provider: "vnstock"
+  cache_dir: "data/cache"
+  cache_ttl_hours: 12
+  request_timeout_seconds: 15
+
+filters:
+  liquidity:
+    min_avg_volume_20d: 50000
+    min_avg_value_20d: 1000000000 # 1 Billion VND
+  technical:
+    sma_periods: [20, 50, 200]
+    ema_periods: [20, 50]
+    rsi_period: 14
+    macd_fast: 12
+    macd_slow: 26
+    macd_signal: 9
+
+scoring_weights:
+  trend: 0.25
+  momentum: 0.25
+  relative_strength: 0.20
+  volume_breakout: 0.15
+  liquidity: 0.15
+
+ml_model:
+  horizons: [5, 10, 20]
+  model_dir: "models/saved_models"
+  min_samples: 100
+  walk_forward_folds: 3
+
+backtest:
+  initial_capital: 100000000 # 100M VND
+  commission_buy: 0.001     # 0.1%
+  commission_sell: 0.002    # 0.1% fee + 0.1% tax
+  slippage: 0.001           # 0.1%
+  max_positions: 5
+  position_weight: 0.20
+
