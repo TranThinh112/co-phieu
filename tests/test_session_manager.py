@@ -2,12 +2,16 @@ import datetime
 from automation.session_manager import MarketSessionManager, is_market_open_now, get_market_session_status
 
 
-def test_market_session_weekend():
+def test_market_session_weekend_self_learning():
     sat = datetime.datetime(2026, 10, 24, 10, 0)
     info = MarketSessionManager.get_session_info(sat)
     assert info["is_trading_hour"] is False
     assert info["should_poll_api"] is False
-    assert info["session_code"] == "WEEKEND"
+    assert info["session_code"] == "WEEKEND_SELF_LEARNING"
+    assert info["is_learning_active"] is True
+    assert "🧠 CUỐI TUẦN" in info["badge_label"]
+    assert info["learning_details"] is not None
+    assert info["learning_details"]["active"] is True
 
 
 def test_market_session_morning():

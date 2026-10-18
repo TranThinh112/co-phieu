@@ -2,7 +2,7 @@
   "5": {
     "model_id": "lgbm_5d_20261019",
     "horizon": 5,
-    "trained_at": "2026-10-19 02:38:52",
+    "trained_at": "2026-10-19 02:44:52",
     "features": [
       "sma_20_slope",
       "sma_50_slope",
@@ -20,11 +20,11 @@
       "volume_ratio"
     ],
     "metrics": {
-      "brier_score": 0.2525,
-      "log_loss": 0.6981,
-      "accuracy": 0.4153,
-      "roc_auc": 0.4505,
-      "precision_at_k": 0.2,
+      "brier_score": 0.2352,
+      "log_loss": 0.6638,
+      "accuracy": 0.6525,
+      "roc_auc": 0.4077,
+      "precision_at_k": 0.0,
       "total_test_samples": 118
     },
     "filepath": "models\\saved_models\\model_5d.joblib"
