@@ -2,7 +2,7 @@
   "5": {
     "model_id": "lgbm_5d_20261019",
     "horizon": 5,
-    "trained_at": "2026-10-19 02:54:35",
+    "trained_at": "2026-10-19 03:41:49",
     "features": [
       "sma_20_slope",
       "sma_50_slope",
@@ -20,10 +20,10 @@
       "volume_ratio"
     ],
     "metrics": {
-      "brier_score": 0.2691,
-      "log_loss": 0.7315,
-      "accuracy": 0.2966,
-      "roc_auc": 0.3401,
+      "brier_score": 0.2695,
+      "log_loss": 0.7364,
+      "accuracy": 0.5678,
+      "roc_auc": 0.281,
       "precision_at_k": 0.0,
       "total_test_samples": 118
     },

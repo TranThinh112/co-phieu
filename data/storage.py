@@ -385,6 +385,14 @@ class StorageEngine:
             cursor.execute("DELETE FROM user_positions WHERE symbol = ?", (sym_clean,))
             conn.commit()
 
+    def clear_all_user_positions(self):
+        import sqlite3
+        with sqlite3.connect(self.db_path) as conn:
+            self._ensure_user_positions_table(conn)
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM user_positions")
+            conn.commit()
+
     def seed_initial_market_data_if_empty(self):
         """Tu dong nap du lieu phan tich thi truong ban dau neu database moi khoi tao tren Cloud (Railway)."""
         import json

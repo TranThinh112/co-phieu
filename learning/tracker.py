@@ -307,3 +307,17 @@ class RecommendationTracker:
                     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """, case)
             conn.commit()
+
+    def remove_active_recommendation(self, symbol: str):
+        """Xóa một mã đang theo dõi khỏi danh sách 14 ngày."""
+        with sqlite3.connect(self.db_path) as conn:
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM tracked_recommendations WHERE symbol = ? AND status = 'DANG_THEO_DOI'", (symbol.upper(),))
+            conn.commit()
+
+    def clear_all_active_recommendations(self):
+        """Xóa toàn bộ các mã đang theo dõi 14 ngày."""
+        with sqlite3.connect(self.db_path) as conn:
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM tracked_recommendations WHERE status = 'DANG_THEO_DOI'")
+            conn.commit()
