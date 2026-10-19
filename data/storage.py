@@ -385,6 +385,57 @@ class StorageEngine:
             cursor.execute("DELETE FROM user_positions WHERE symbol = ?", (sym_clean,))
             conn.commit()
 
+    
+    def export_full_snapshot(self) -> dict:
+        """XUat toan bo du lieu danh muc, theo doi 14 ngay va dot quet gan nhat."""
+        with sqlite3.connect(self.db_path) as conn:
+            conn.row_factory = sqlite3.Row
+            cur = conn.cursor()
+            def fetch_tbl(name, limit=None):
+                try:
+                    q = f"SELECT * FROM {name}"
+                    if limit:
+                        q += f" LIMIT {limit}"
+                    cur.execute(q)
+                    return [dict(r) for r in cur.fetchall()]
+                except Exception:
+                    return []
+            return {
+                "user_positions": fetch_tbl("user_positions"),
+                "tracked_recommendations": fetch_tbl("tracked_recommendations"),
+                "scan_runs": fetch_tbl("scan_runs", 20),
+                "scan_results": fetch_tbl("scan_results", 50),
+                "trade_plans": fetch_tbl("trade_plans", 50)
+            }
+
+    def import_full_snapshot(self, snapshot_data: dict) -> bool:
+        """Nap du lieu snapshot (nhaping tul local len Cloud hoac nguoc lai)."""
+        try:
+            with sqlite3.connect(self.db_path) as conn:
+                cur = conn.cursor()
+                if "scan_runs" in snapshot_data:
+                    for r in snapshot_data["scan_runs"]:
+                        cur.execute("INSERT OR IGNORE INTO scan_runs (run_id, timestamp, symbols_count, provider_type, is_synthetic) VALUES(?, ?, ?, ?, ?)", (r.get("run_id"), r.get("timestamp"), r.get("symbols_count"), r.get("provider_type"), r.get("is_synthetic", 0)))
+                if "user_positions" in snapshot_data:
+                    sql_u = "INSERT OR REPLACE INTO user_positions (symbol, quantity, avg_buy_price, note, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)"
+                    for p in snapshot_data["user_positions"]:
+                        cur.execute(sql_u, (p.get("symbol"), p.get("quantity", 100), p.get("avg_buy_price", 0.0), p.get("note", ""), p.get("created_at", ""), p.get("updated_at", "")))
+                if "tracked_recommendations" in snapshot_data:
+                    t_cols = [
+                        "symbol", "recommendation_date", "entry_price", "stop_loss", "take_profit_1", "take_profit_2",
+                        "rule_score", "positive_factors", "risk_factors", "catalysts", "status", "days_tracked",
+                        "current_price", "highest_price", "lowest_price", "return_pct", "outcome", "post_mortem_reason",
+                        "lesson_learned", "closed_date", "features_snapshot"
+                    ]
+                    sql_t = "INSERT OR IGNORE INTO tracked_recommendations (" + ", ".join(t_cols) + ") VALUES (" + ", ".join(["?"] * len(t_cols)) + ")"
+                    for tr in snapshot_data["tracked_recommendations"]:
+                        cur.execute(sql_t, tuple(tr.get(c) for c in t_cols))
+                conn.commit()
+            return True
+        except Exception as e:
+            print(f"Import snapshot error: {e}")
+            return False
+
     def clear_all_user_positions(self):
         import sqlite3
         with sqlite3.connect(self.db_path) as conn:
@@ -452,6 +503,29 @@ class StorageEngine:
                         p.get("execution_mode"), p.get("reason"), p.get("invalidates_if"), p.get("scan_run_id")
                     ))
 
+                # Nap user_positions tu seed_data neu chua co
+                cursor.execute("SELECT COUNT(*) FROM user_positions")
+                if cursor.fetchone()[0] == 0:
+                    for pos in seed_data.get("user_positions", []):
+                        cursor.execute(
+                            "INSERT OR REPLACE INTO user_positions (symbol, quantity, avg_buy_price, note, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)",
+                            (pos.get("symbol"), pos.get("quantity", 100), pos.get("avg_buy_price", 0.0), pos.get("note", ""), pos.get("created_at", ""), pos.get("updated_at", ""))
+                        )
+
+                # Nap tracked_recommendations tu seed_data neu chua co
+                cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='tracked_recommendations'")
+                if cursor.fetchone():
+                    cursor.execute("SELECT COUNT(*) FROM tracked_recommendations")
+                    if cursor.fetchone()[0] == 0:
+                        t_cols = [
+                            "symbol", "recommendation_date", "entry_price", "stop_loss", "take_profit_1", "take_profit_2",
+                            "rule_score", "positive_factors", "risk_factors", "catalysts", "status", "days_tracked",
+                            "current_price", "highest_price", "lowest_price", "return_pct", "outcome", "post_mortem_reason",
+                            "lesson_learned", "closed_date", "features_snapshot"
+                        ]
+                        sql_t = "INSERT OR IGNORE INTO tracked_recommendations (" + ", ".join(t_cols) + ") VALUES (" + ", ".join(["?"] * len(t_cols)) + ")"
+                        for tr in seed_data.get("tracked_recommendations", []):
+                            cursor.execute(sql_t, tuple(tr.get(c) for c in t_cols))
                 conn.commit()
             except Exception as e:
                 pass
