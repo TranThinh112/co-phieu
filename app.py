@@ -60,6 +60,7 @@ from learning.feedback_loop import SelfLearningEngine
 from strategies.exit_strategy import ExitAdvisor
 from features.limit_price import LimitPricePredictor
 from automation.session_manager import MarketSessionManager, is_market_open_now, get_market_session_status
+from automation.scheduler import MarketAutopilotScheduler, start_background_scheduler
 
 def translate_trend(val: str) -> str:
     s = str(val or "")
