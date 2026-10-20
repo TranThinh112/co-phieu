@@ -335,6 +335,21 @@ class StorageEngine:
                 updated_at TEXT
             )
         """)
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS user_trade_history (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                symbol TEXT NOT NULL,
+                side TEXT NOT NULL,
+                quantity INTEGER NOT NULL,
+                price REAL NOT NULL,
+                old_avg_price REAL,
+                new_avg_price REAL,
+                realized_pnl REAL DEFAULT 0.0,
+                pnl_pct REAL DEFAULT 0.0,
+                trade_time TEXT NOT NULL,
+                note TEXT
+            )
+        """)
         conn.commit()
 
     def get_user_positions(self) -> list:
@@ -357,23 +372,145 @@ class StorageEngine:
                 for r in rows
             ]
 
-    def save_user_position(self, symbol: str, quantity: int, avg_buy_price: float, note: str = ""):
-        import sqlite3
-        import datetime
+    def execute_user_buy(self, symbol: str, buy_qty: int, buy_price: float = None, fee_rate: float = 0.0015, note: str = "") -> dict:
+        """Mua them vao: Tang so luong va tinh lai gia mua trung binh (DCA) chuan 100% gom ca phi giao dich/thue hoac thi gia tu dong."""
+        import sqlite3, datetime
+        now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        sym_clean = str(symbol).strip().upper()
+
+        # Neu khong truyen gia mua cu the hoac truyen 0, tu dong lay thi gia khop lenh moi nhat
+        effective_buy_price = float(buy_price) if (buy_price is not None and float(buy_price) > 0) else 0.0
+        if effective_buy_price <= 0:
+            try:
+                from data.providers.vnstock_provider import VnstockProvider
+                df_hist = VnstockProvider().get_historical_prices(sym_clean)
+                if df_hist is not None and not df_hist.empty and "close" in df_hist.columns:
+                    effective_buy_price = float(df_hist["close"].iloc[-1])
+            except Exception:
+                pass
+
+        with sqlite3.connect(self.db_path) as conn:
+            self._ensure_user_positions_table(conn)
+            cur = conn.cursor()
+            cur.execute("SELECT quantity, avg_buy_price FROM user_positions WHERE symbol = ?", (sym_clean,))
+            row = cur.fetchone()
+
+            buy_cost_with_fee = int(buy_qty) * effective_buy_price * (1.0 + float(fee_rate))
+
+            if row:
+                old_qty, old_price = int(row[0]), float(row[1])
+                new_qty = old_qty + int(buy_qty)
+                old_total_cost = old_qty * old_price
+                new_avg_price = round((old_total_cost + buy_cost_with_fee) / new_qty, 1) if new_qty > 0 else effective_buy_price
+                cur.execute("""
+                    UPDATE user_positions SET quantity = ?, avg_buy_price = ?, note = ?, updated_at = ? WHERE symbol = ?
+                """, (new_qty, new_avg_price, note, now_str, sym_clean))
+            else:
+                old_qty, old_price = 0, 0.0
+                new_qty = int(buy_qty)
+                new_avg_price = round(buy_cost_with_fee / new_qty, 1) if new_qty > 0 else effective_buy_price
+                cur.execute("""
+                    INSERT INTO user_positions (symbol, quantity, avg_buy_price, note, created_at, updated_at)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                """, (sym_clean, new_qty, new_avg_price, note, now_str, now_str))
+
+            cur.execute("""
+                INSERT INTO user_trade_history (symbol, side, quantity, price, old_avg_price, new_avg_price, realized_pnl, pnl_pct, trade_time, note)
+                VALUES (?, 'BUY', ?, ?, ?, ?, 0.0, 0.0, ?, ?)
+            """, (sym_clean, int(buy_qty), effective_buy_price, old_price, new_avg_price, now_str, note))
+            conn.commit()
+            return {
+                "symbol": sym_clean,
+                "old_qty": old_qty,
+                "old_avg_price": old_price,
+                "added_qty": int(buy_qty),
+                "buy_price": effective_buy_price,
+                "fee_rate": float(fee_rate),
+                "new_qty": new_qty,
+                "new_avg_price": new_avg_price
+            }
+
+    def execute_user_sell(self, symbol: str, sell_qty: int, sell_price: float, note: str = "") -> dict:
+        """Ban ra mot phan hoac toan bo: Giu nguyen gia TB cua so CP con lai va chot loi/lo thuc te."""
+        import sqlite3, datetime
         now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         sym_clean = str(symbol).strip().upper()
         with sqlite3.connect(self.db_path) as conn:
             self._ensure_user_positions_table(conn)
-            cursor = conn.cursor()
-            cursor.execute("""
-                INSERT INTO user_positions (symbol, quantity, avg_buy_price, note, created_at, updated_at)
-                VALUES (?, ?, ?, ?, ?, ?)
-                ON CONFLICT(symbol) DO UPDATE SET
-                    quantity = excluded.quantity,
-                    avg_buy_price = excluded.avg_buy_price,
-                    note = excluded.note,
-                    updated_at = excluded.updated_at
-            """, (sym_clean, quantity, avg_buy_price, note, now_str, now_str))
+            cur = conn.cursor()
+            cur.execute("SELECT quantity, avg_buy_price FROM user_positions WHERE symbol = ?", (sym_clean,))
+            row = cur.fetchone()
+            if not row:
+                return {"success": False, "error": f"Khong tim thay ma {sym_clean} trong danh muc"}
+
+
+            curr_qty, curr_price = int(row[0]), float(row[1])
+            qty_to_sell = min(int(sell_qty), curr_qty)
+            rem_qty = curr_qty - qty_to_sell
+
+            realized_pnl = (float(sell_price) - curr_price) * qty_to_sell
+            pnl_pct = ((float(sell_price) - curr_price) / curr_price * 100.0) if curr_price > 0 else 0.0
+
+            if rem_qty <= 0:
+                cur.execute("DELETE FROM user_positions WHERE symbol = ?", (sym_clean,))
+            else:
+                cur.execute("UPDATE user_positions SET quantity = ?, updated_at = ? WHERE symbol = ?", (rem_qty, now_str, sym_clean))
+
+            cur.execute("""
+                INSERT INTO user_trade_history (symbol, side, quantity, price, old_avg_price, new_avg_price, realized_pnl, pnl_pct, trade_time, note)
+                VALUES (?, 'SELL', ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (sym_clean, qty_to_sell, float(sell_price), curr_price, curr_price if rem_qty > 0 else 0.0, realized_pnl, pnl_pct, now_str, note))
+            conn.commit()
+
+            return {
+                "success": True,
+                "symbol": sym_clean,
+                "sold_qty": qty_to_sell,
+                "sell_price": float(sell_price),
+                "cost_price": curr_price,
+                "remaining_qty": rem_qty,
+                "realized_pnl": realized_pnl,
+                "pnl_pct": pnl_pct
+            }
+
+    def get_user_trade_history(self, limit: int = 30) -> list:
+        """Lay lich su cac lenh mua them va chot loi / cat lo da thuc hien."""
+        import sqlite3
+        with sqlite3.connect(self.db_path) as conn:
+            self._ensure_user_positions_table(conn)
+            cur = conn.cursor()
+            cur.execute("""
+                SELECT id, symbol, side, quantity, price, old_avg_price, new_avg_price, realized_pnl, pnl_pct, trade_time, note
+                FROM user_trade_history
+                ORDER BY trade_time DESC, id DESC
+                LIMIT ?
+            """, (limit,))
+            cols = ["id", "symbol", "side", "quantity", "price", "old_avg_price", "new_avg_price", "realized_pnl", "pnl_pct", "trade_time", "note"]
+            return [dict(zip(cols, r)) for r in cur.fetchall()]
+
+    def save_user_position(self, symbol: str, quantity: int, avg_buy_price: float, note: str = ""):
+        """Luu vi the: Neu da co ma nay trong danh muc thi TU DONG tinh DCA cong don, khong bi de mat data cu."""
+        return self.execute_user_buy(symbol, quantity, avg_buy_price, fee_rate=0.0, note=note or "Them vao danh muc")
+
+    def update_user_position_direct(self, symbol: str, quantity: int, avg_buy_price: float, note: str = ""):
+        """Cap nhat truc tiep gia von va so luong khop 100% theo app chung khoan cua nguoi dung."""
+        import sqlite3, datetime
+        now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        sym_clean = str(symbol).strip().upper()
+        with sqlite3.connect(self.db_path) as conn:
+            self._ensure_user_positions_table(conn)
+            cur = conn.cursor()
+            cur.execute("""
+                UPDATE user_positions
+                SET quantity = ?, avg_buy_price = ?, note = ?, updated_at = ?
+                WHERE symbol = ?
+            """, (int(quantity), float(avg_buy_price), note, now_str, sym_clean))
+            
+            # Ghi log dieu chinh
+            cur.execute("""
+                INSERT INTO user_trade_history (symbol, side, quantity, price, old_avg_price, new_avg_price, realized_pnl, pnl_pct, trade_time, note)
+                VALUES (?, "ADJUST", ?, ?, ?, ?, 0.0, 0.0, ?, ?)
+            """, (sym_clean, int(quantity), float(avg_buy_price), float(avg_buy_price), float(avg_buy_price), now_str, note or "Dieu chinh khop app"))
             conn.commit()
 
     def delete_user_position(self, symbol: str):
@@ -384,8 +521,6 @@ class StorageEngine:
             cursor = conn.cursor()
             cursor.execute("DELETE FROM user_positions WHERE symbol = ?", (sym_clean,))
             conn.commit()
-
-    
     def export_full_snapshot(self) -> dict:
         """XUat toan bo du lieu danh muc, theo doi 14 ngay va dot quet gan nhat."""
         with sqlite3.connect(self.db_path) as conn:

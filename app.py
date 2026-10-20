@@ -197,6 +197,19 @@ def style_table_colors(df: pd.DataFrame, target_columns=None):
             return df.style.map(color_cell, subset=valid_cols)
     return df.style.map(color_cell)
 
+@st.cache_data(ttl=180, show_spinner=False)
+def get_cached_stock_price(symbol: str) -> float:
+    try:
+        from data.providers.vnstock_provider import VnstockProvider
+        p = VnstockProvider()
+        df, _ = p.get_historical_data(symbol, start_date=None, end_date=None)
+        if df is not None and not df.empty and "close" in df.columns:
+            val = float(df["close"].iloc[-1])
+            if val > 0:
+                return val
+    except Exception:
+        pass
+    return None
 def get_current_stock_price(symbol: str, df_results: pd.DataFrame, scanner_obj=None) -> float:
     """Lấy thị giá mới nhất cho mã cổ phiếu từ scan_results hoặc downloader API trực tiếp."""
     sym = str(symbol).strip().upper()
@@ -213,7 +226,12 @@ def get_current_stock_price(symbol: str, df_results: pd.DataFrame, scanner_obj=N
             except Exception:
                 pass
 
-    # 2. Tra cứu trực tiếp từ downloader (có cache tự động)
+    # 2. Tra cứu qua cache nhanh (TTL 180s)
+    cached_p = get_cached_stock_price(sym)
+    if cached_p is not None and cached_p > 0:
+        return cached_p
+
+    # 3. Tra cứu trực tiếp từ downloader
     if scanner_obj and hasattr(scanner_obj, "downloader"):
         try:
             df_sym, _ = scanner_obj.downloader.fetch_symbol_data(sym)
@@ -511,29 +529,161 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
 
     # ---------------- TAB 1: DANH MỤC CÁ NHÂN (USER-ENTERED) ----------------
     with tab_user_pos:
-        # Form nhập mã cổ phiếu đang nắm giữ
-        with st.expander("➕ Thêm Hoặc Cập Nhật Mã Nắm Giữ", expanded=(len(saved_user_positions) == 0)):
-            c_in1, c_in2, c_in3, c_in4 = st.columns([1.5, 1.2, 1.2, 1.0])
-            input_holding_sym = c_in1.text_input("Mã CP hoặc Tên Cty:", key="user_holding_sym", placeholder="VD: TPB, HPG, FPT...").strip().upper()
-            
-            # Auto-match ticker
-            resolved_user_sym = safe_find_symbol(st.session_state.universe, input_holding_sym) if input_holding_sym else ""
-            if resolved_user_sym:
-                c_in1.caption(f"🔵 Khớp: **{resolved_user_sym}** — {st.session_state.universe.get_symbol_display_label(resolved_user_sym).split('—')[-1].strip()}")
+        user_symbols_list = [up["symbol"] for up in saved_user_positions]
+        with st.expander("⚙️ Thao Tác Giao Dịch Vị Thế (Mua Thêm DCA • Bán Ra Chốt Lời/Cắt Lỗ • Thêm Mã Mới)", expanded=True):
+            sub_tab_buy, sub_tab_sell, sub_tab_adjust, sub_tab_new = st.tabs([
+                "🟢 Mua Thêm (DCA)",
+                "🔴 Bán Ra (Chốt Lời / Cắt Lỗ)",
+                "✏️ Điều Chỉnh Giá Vốn TB Khớp App (100%)",
+                "➕ Thêm Mã Mới Nắm Giữ"
+            ])
+            # 1. SUB-TAB: MUA THEM (DCA)
+            with sub_tab_buy:
+                if user_symbols_list:
+                    cb1, cb2, cb3, cb4 = st.columns([1.4, 1.2, 1.1, 1.3])
+                    buy_sym = cb1.selectbox("Chọn mã mua thêm:", user_symbols_list, key="sel_dca_sym")
+                    cur_pos = next((p for p in saved_user_positions if p["symbol"] == buy_sym), None)
+                    c_old_qty = int(cur_pos["quantity"]) if cur_pos else 0
+                    c_old_price = float(cur_pos["avg_buy_price"]) if cur_pos else 0.0
 
-            input_holding_price = c_in2.number_input("Giá Mua TB (VNĐ):", value=20000.0, step=100.0, key="user_holding_price")
-            input_holding_qty = c_in3.number_input("Số Lượng CP:", value=1000, step=10, min_value=1, key="user_holding_qty")
+                    # Tu dong lay thi gia khop lenh truc tiep tu san lam mac dinh
+                    auto_market_p = get_current_stock_price(buy_sym, df_results, scanner) or c_old_price
 
-            c_in4.write("<div style='height:28px;'></div>", unsafe_allow_html=True)
-            if c_in4.button("💾 Lưu Vị Thế", type="primary", use_container_width=True, key="btn_save_user_holding"):
-                target_sym = resolved_user_sym if resolved_user_sym else input_holding_sym
-                if target_sym:
-                    storage.save_user_position(target_sym, int(input_holding_qty), float(input_holding_price))
-                    st.session_state.pop("cached_styled_exit", None)
-                    st.success(f"Đã lưu thành công vị thế {target_sym} ({int(input_holding_qty):,} CP tại {input_holding_price:,.0f} đ)!")
-                    st.rerun()
+                    buy_price = cb2.number_input("Giá Mua Khớp Lệnh (VNĐ):", value=float(auto_market_p), step=100.0, key="num_dca_price")
+                    buy_qty = cb3.number_input("Số Lượng Mua:", value=100, step=10, min_value=1, key="num_dca_qty")
+
+                    # Cho phep tick chon co tinh phi giao dich/thue (0.15% chuan san) hay khong
+                    col_opt1, col_opt2 = st.columns([2, 2])
+                    inc_fee = col_opt1.checkbox("⚡ Tự động tính phí giao dịch & thuế CTCK (0.15%)", value=True, key="chk_dca_fee")
+                    fee_pct = 0.0015 if inc_fee else 0.0
+
+                    # Tinh toan mo phong gia von moi chuan xac 100%
+                    sim_new_qty = c_old_qty + int(buy_qty)
+                    sim_added_cost = int(buy_qty) * float(buy_price) * (1.0 + fee_pct)
+                    sim_new_avg = round(((c_old_qty * c_old_price) + sim_added_cost) / sim_new_qty, 1) if sim_new_qty > 0 else float(buy_price)
+                    delta_price = sim_new_avg - c_old_price
+                    delta_color = "#10b981" if delta_price < 0 else "#ef4444"
+
+                    cb4.write("<div style='height:28px;'></div>", unsafe_allow_html=True)
+                    if cb4.button("🟢 Xác Nhận Mua Thêm", type="primary", use_container_width=True, key="btn_exec_buy_dca"):
+                        res_buy = storage.execute_user_buy(buy_sym, int(buy_qty), float(buy_price), fee_rate=fee_pct, note="Mua them DCA")
+                        st.session_state.pop("cached_styled_exit", None)
+                        st.session_state.pop("_last_user_tag", None)
+                        st.success(f"✅ Đã mua thêm {int(buy_qty):,} CP {buy_sym} tại {buy_price:,.0f} đ (Phí: {fee_pct*100:.2f}%)! Giá vốn TB mới: {res_buy['new_avg_price']:,.0f} đ (Tổng: {res_buy['new_qty']:,} CP)")
+                        st.rerun()
+
+                    st.markdown(f"""
+                    <div style="background:#131c2b; border:1px solid #1e3a8a; border-left:4px solid {delta_color}; border-radius:6px; padding:10px 14px; margin-top:8px; font-size:0.9rem; color:#e2e8f0;">
+                        💡 <strong>Hiện tại:</strong> {c_old_qty:,} CP @ {c_old_price:,.0f} đ &nbsp;➡️&nbsp; <strong>Sau mua thêm:</strong> {sim_new_qty:,} CP @ <strong>{sim_new_avg:,.0f} đ</strong> (Giá vốn thay đổi: <span style="color:{delta_color}; font-weight:bold;">{delta_price:+,.0f} đ</span> | Đã gồm phí CTCK: {fee_pct*100:.2f}%)
+                    </div>
+                    """, unsafe_allow_html=True)
                 else:
-                    st.error("Vui lòng nhập mã cổ phiếu hợp lệ.")
+                    st.info("💡 Chưa có mã nào trong danh mục. Hãy chuyển sang tab '➕ Thêm Mã Mới Nắm Giữ' để nhập mã đầu tiên.")
+
+            # 2. SUB-TAB: BAN RA (CHOT LOI / CAT LO)
+            with sub_tab_sell:
+                if user_symbols_list:
+                    cs1, cs2, cs3, cs4 = st.columns([1.5, 1.2, 1.2, 1.2])
+                    sell_sym = cs1.selectbox("Chọn mã bán ra:", user_symbols_list, key="sel_sell_sym")
+                    cur_pos_s = next((p for p in saved_user_positions if p["symbol"] == sell_sym), None)
+                    s_curr_qty = int(cur_pos_s["quantity"]) if cur_pos_s else 0
+                    s_cost_price = float(cur_pos_s["avg_buy_price"]) if cur_pos_s else 0.0
+
+                    suggested_sell_p = get_current_stock_price(sell_sym, df_results, scanner) or s_cost_price
+
+                    sell_price = cs2.number_input("Giá Bán Thực Tế (VNĐ):", value=float(suggested_sell_p), step=100.0, key="num_sell_price")
+                    sell_qty = cs3.number_input("Số Lượng Muốn Bán:", value=min(100, s_curr_qty), step=10, min_value=1, max_value=max(1, s_curr_qty), key="num_sell_qty")
+
+                    est_pnl_vnd = (float(sell_price) - s_cost_price) * int(sell_qty)
+                    est_pnl_pct = ((float(sell_price) - s_cost_price) / s_cost_price * 100.0) if s_cost_price > 0 else 0.0
+                    est_color = "#10b981" if est_pnl_vnd >= 0 else "#ef4444"
+                    is_full_exit = (int(sell_qty) >= s_curr_qty)
+
+                    cs4.write("<div style='height:28px;'></div>", unsafe_allow_html=True)
+                    btn_sell_label = "🔴 Bán Hết Toàn Bộ" if is_full_exit else "🔴 Xác Nhận Bán Ra"
+                    if cs4.button(btn_sell_label, type="primary", use_container_width=True, key="btn_exec_sell_pos"):
+                        res_sell = storage.execute_user_sell(sell_sym, int(sell_qty), float(sell_price), note="Ban chot loi/cat lo")
+                        st.session_state.pop("cached_styled_exit", None)
+                        st.session_state.pop("_last_user_tag", None)
+                        pnl_str = f"{res_sell['realized_pnl']:+,.0f} đ ({res_sell['pnl_pct']:+.2f}%)"
+                        if res_sell['remaining_qty'] <= 0:
+                            st.success(f"✅ Đã chốt bán TOÀN BỘ {sell_sym}! Lãi/Lỗ thực hiện: {pnl_str}. Đã xóa vị thế khỏi danh mục!")
+                        else:
+                            st.success(f"✅ Đã bán {res_sell['sold_qty']:,} CP {sell_sym}! Lãi/Lỗ thực hiện: {pnl_str}. Số CP còn lại: {res_sell['remaining_qty']:,} CP.")
+                        st.rerun()
+
+                    rem_label = ' • *(Sẽ đóng toàn bộ vị thế)*' if is_full_exit else f' • *(Còn lại: {s_curr_qty - int(sell_qty):,} CP)*'
+                    st.markdown(f"""
+                    <div style="background:#131c2b; border:1px solid #1e3a8a; border-left:4px solid {est_color}; border-radius:6px; padding:10px 14px; margin-top:8px; font-size:0.9rem; color:#e2e8f0;">
+                        💰 <strong>Giá vốn:</strong> {s_cost_price:,.0f} đ &nbsp;|&nbsp; <strong>Giá bán:</strong> {sell_price:,.0f} đ &nbsp;➡️&nbsp; <strong>Ước tính Lãi/Lỗ:</strong> <span style="color:{est_color}; font-weight:bold;">{est_pnl_vnd:+,.0f} đ ({est_pnl_pct:+.2f}%)</span>{rem_label}
+                    </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    st.info("💡 Chưa có cổ phiếu nào trong danh mục để bán.")
+
+            # 3. SUB-TAB: DIEU CHINH GIA VON TB / SO LUONG KHOP APP
+            with sub_tab_adjust:
+                if user_symbols_list:
+                    cad1, cad2, cad3, cad4 = st.columns([1.5, 1.2, 1.2, 1.2])
+                    adj_sym = cad1.selectbox("Chọn mã cần khớp dữ liệu app:", user_symbols_list, key="sel_adjust_sym")
+                    pos_adj = next((p for p in saved_user_positions if p["symbol"] == adj_sym), None)
+                    p_qty = int(pos_adj["quantity"]) if pos_adj else 0
+                    p_price = float(pos_adj["avg_buy_price"]) if pos_adj else 0.0
+
+                    adj_new_price = cad2.number_input("Giá Mua TB Trên App (VNĐ):", value=float(p_price), step=10.0, key="num_adj_price")
+                    adj_new_qty = cad3.number_input("Số Lượng CP Trên App:", value=int(p_qty), step=1, min_value=1, key="num_adj_qty")
+
+                    cad4.write("<div style='height:28px;'></div>", unsafe_allow_html=True)
+                    if cad4.button("✏️ Đồng Bộ Khớp App", type="primary", use_container_width=True, key="btn_exec_adjust_app"):
+                        storage.update_user_position_direct(adj_sym, int(adj_new_qty), float(adj_new_price), note="Dong bo khop 100% app chung khoan")
+                        st.session_state.pop("cached_styled_exit", None)
+                        st.session_state.pop("_last_user_tag", None)
+                        st.success(f"✅ Đã đồng bộ khớp 100% mã {adj_sym}: {int(adj_new_qty):,} CP tại giá TB {adj_new_price:,.0f} đ!")
+                        st.rerun()
+
+                    st.info(f"💡 Dùng mục này để điều chỉnh giá vốn khớp chuẩn 100% theo tài khoản app chứng khoán thực tế của bạn (có tính phí giao dịch, thuế hoặc khớp lệnh nhiều mức giá khác nhau).")
+                else:
+                    st.info("💡 Chưa có mã nào trong danh mục để điều chỉnh.")
+
+            # 4. SUB-TAB: THEM MA MOI
+            with sub_tab_new:
+                c_in1, c_in2, c_in3, c_in4 = st.columns([1.5, 1.2, 1.2, 1.0])
+                input_holding_sym = c_in1.text_input("Mã CP hoặc Tên Cty:", key="user_holding_sym", placeholder="VD: TPB, HPG, FPT...").strip().upper()
+                
+                # Auto-match ticker
+                resolved_user_sym = safe_find_symbol(st.session_state.universe, input_holding_sym) if input_holding_sym else ""
+                effective_sym = resolved_user_sym if resolved_user_sym else input_holding_sym
+                if resolved_user_sym:
+                    c_in1.caption(f"🔵 Khớp: **{resolved_user_sym}** — {st.session_state.universe.get_symbol_display_label(resolved_user_sym).split('—')[-1].strip()}")
+
+                existing_entry = next((p for p in saved_user_positions if p["symbol"] == effective_sym), None) if effective_sym else None
+
+                default_p = float(existing_entry["avg_buy_price"]) if existing_entry else 20000.0
+                input_holding_price = c_in2.number_input("Giá Mua TB (VNĐ):", value=default_p, step=100.0, key="user_holding_price")
+                input_holding_qty = c_in3.number_input("Số Lượng CP:", value=100, step=10, min_value=1, key="user_holding_qty")
+
+                # Canh bao truc quan neu ma da co trong danh muc
+                if existing_entry:
+                    e_qty = int(existing_entry["quantity"])
+                    e_p = float(existing_entry["avg_buy_price"])
+                    m_qty = e_qty + int(input_holding_qty)
+                    m_avg = round(((e_qty * e_p) + (int(input_holding_qty) * float(input_holding_price))) / m_qty, 1)
+                    st.info(f"💡 Mã **{effective_sym}** hiện đã có trong danh mục ({e_qty:,} CP @ {e_p:,.0f} đ). Khi bấm lưu, hệ thống sẽ **TỰ ĐỘNG CỘNG DỒN** thành **{m_qty:,} CP** với giá TB mới là **{m_avg:,.0f} đ** (KHÔNG BỊ MẤT DATA CŨ)!")
+
+                c_in4.write("<div style='height:28px;'></div>", unsafe_allow_html=True)
+                btn_save_txt = "💾 Cộng Dồn Vị Thế" if existing_entry else "💾 Lưu Vị Thế Mới"
+                if c_in4.button(btn_save_txt, type="primary", use_container_width=True, key="btn_save_user_holding"):
+                    if effective_sym:
+                        res_s = storage.save_user_position(effective_sym, int(input_holding_qty), float(input_holding_price))
+                        st.session_state.pop("cached_styled_exit", None)
+                        st.session_state.pop("_last_user_tag", None)
+                        if existing_entry:
+                            st.success(f"✅ Đã CỘNG DỒN thành công mã {effective_sym}! Tổng số lượng mới: {res_s['new_qty']:,} CP (Cũ: {res_s['old_qty']:,} + Thêm: {res_s['added_qty']:,}) • Giá vốn TB mới: {res_s['new_avg_price']:,.0f} đ!")
+                        else:
+                            st.success(f"✅ Đã lưu mới thành công mã {effective_sym} ({int(input_holding_qty):,} CP tại {input_holding_price:,.0f} đ)!")
+                        st.rerun()
+                    else:
+                        st.error("Vui lòng nhập mã cổ phiếu hợp lệ.")
 
         if saved_user_positions:
             user_rows = []
@@ -546,7 +696,7 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
                 qty = int(up["quantity"])
                 buy_p = float(up["avg_buy_price"])
                 
-                # Tra cứu thị giá thực tế: Quét hôm nay -> Downloader API trực tiếp
+                # Tra cuu thi gia thuc te
                 live_price = get_current_stock_price(s_sym, df_results, scanner)
                 has_live_price = (live_price is not None and live_price > 0)
                 
@@ -608,20 +758,52 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
             total_pnl_vnd = total_current_val - total_invested
             total_pnl_pct = (total_pnl_vnd / total_invested * 100.0) if total_invested > 0 else 0.0
 
-            # Tổng hợp tài sản danh mục
+            # Tong hop tai san danh muc
             m1, m2, m3 = st.columns(3)
             m1.metric("💼 Tổng Vốn Đầu Tư", f"{total_invested:,.0f} đ")
             m2.metric("📈 Thị Giá Hiện Tại", f"{total_current_val:,.0f} đ")
             m3.metric("💰 Tổng Lãi / Lỗ", f"{total_pnl_vnd:+,.0f} đ", f"{total_pnl_pct:+.2f}%")
 
             df_user_exit = pd.DataFrame(user_rows)
+            tag = str(len(df_user_exit)) + '_' + str(int(total_current_val)) + '_' + str(int(total_invested))
+            if st.session_state.get('_last_user_tag') != tag or 'cached_styled_exit' not in st.session_state:
+                tgt_cols = [c for c in ['Lãi/Lỗ (%)', 'Lãi/Lỗ (VNĐ)', 'Hành Động Khuyên Dùng'] if c in df_user_exit.columns]
+                st.session_state.cached_styled_exit = style_table_colors(df_user_exit, target_columns=tgt_cols)
+                st.session_state._last_user_tag = tag
+
             st.dataframe(
-                style_table_colors(df_user_exit, target_columns=["Lãi/Lỗ (%)", "Lãi/Lỗ (VNĐ)", "Hành Động Khuyên Dùng"]),
+                st.session_state.cached_styled_exit,
                 use_container_width=True,
                 height=min(320, 50 + len(df_user_exit) * 40)
             )
 
-            # THANH XÓA MÃ TRỰC DIỆN RÕ RÀNG NGAY DƯỚI BẢNG
+            # BANG NHAT KY GIAO DICH
+            trade_history = storage.get_user_trade_history(limit=30)
+            if trade_history:
+                st.markdown("##### 📜 Lịch Sử Giao Dịch Đã Chốt (Mua Thêm • Bán Ra)")
+                th_rows = []
+                for th in trade_history:
+                    side_label = "🟢 MUA THÊM" if th["side"] == "BUY" else "🔴 BÁN RA"
+                    pnl_s = f"{th['realized_pnl']:+,.0f} đ ({th['pnl_pct']:+.2f}%)" if th["side"] == "SELL" else "---"
+                    th_rows.append({
+                        "Thời Gian": th["trade_time"],
+                        "Mã CP": th["symbol"],
+                        "Loại Lệnh": side_label,
+                        "Số Lượng": f"{th['quantity']:,} CP",
+                        "Giá Khớp": f"{th['price']:,.0f} đ",
+                        "Giá Vốn Cũ": f"{th['old_avg_price']:,.0f} đ" if th["old_avg_price"] else "---",
+                        "Giá Vốn Mới": f"{th['new_avg_price']:,.0f} đ" if th["new_avg_price"] else "---",
+                        "Lãi/Lỗ Thực Hiện": pnl_s,
+                        "Ghi Chú": th.get("note", "")
+                    })
+                df_th = pd.DataFrame(th_rows)
+                st.dataframe(
+                    style_table_colors(df_th, target_columns=["Lãi/Lỗ Thực Hiện", "Loại Lệnh"]),
+                    use_container_width=True,
+                    height=min(250, 50 + len(df_th) * 35)
+                )
+
+            # THANH XOA MA TRUC DIEN
             st.markdown("##### 🗑️ Quản Lý Xóa Vị Thế:")
             col_del_s, col_del_b, col_del_all = st.columns([2.5, 1.5, 1.5])
             user_syms = [up["symbol"] for up in saved_user_positions]
@@ -630,16 +812,19 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
             if col_del_b.button(f"❌ Xóa Mã {del_sym}", type="primary", use_container_width=True, key="btn_confirm_del_user"):
                 storage.delete_user_position(del_sym)
                 st.session_state.pop("cached_styled_exit", None)
+                st.session_state.pop("_last_user_tag", None)
                 st.success(f"Đã xóa thành công mã {del_sym} khỏi danh mục cá nhân!")
                 st.rerun()
 
             if col_del_all.button("🗑️ Xóa Toàn Bộ Danh Mục", use_container_width=True, key="btn_confirm_clear_all_user"):
                 storage.clear_all_user_positions()
                 st.session_state.pop("cached_styled_exit", None)
+                st.session_state.pop("_last_user_tag", None)
                 st.success("Đã xóa sạch toàn bộ mã trong danh mục cá nhân!")
                 st.rerun()
         else:
-            st.info("💡 Danh mục cá nhân hiện đang trống. Hãy nhập mã cổ phiếu bạn đang nắm giữ vào form bên trên và bấm '💾 Lưu Vị Thế'.")
+            st.info("💡 Danh mục cá nhân hiện đang trống. Hãy nhập mã cổ phiếu bạn đang nắm giữ vào form bên trên và bấm '💾 Lưu Vị Thế Mới'.")
+
 
     # ---------------- TAB 2: VỊ THẾ BOT THEO DÕI 14 NGÀY ----------------
     with tab_tracked_pos:
