@@ -334,7 +334,7 @@ st.sidebar.markdown(f"""
     <span style="color:#cbd5e1; font-size:0.8rem; font-weight:500;">⏰ Khung giờ hoạt động:</span><br>
     <span style="color:#94a3b8; font-size:0.77rem;">• Phiên sáng: 09:00 - 11:30<br>• Phiên chiều & ATC: 13:00 - 15:00<br>• Tổng kết sau phiên & Tin tức: 15:00 - 16:30<br>• Cuối tuần: Bot Tự Học & Tinh Chỉnh AI</span><br>
     {learn_snippet}
-    <span style="color:#64748b; font-size:0.75rem; font-style:italic;">Ngắt toàn bộ API giá nến cuối tuần để tiết kiệm hạn mức.</span>
+    <p style="color:#64748b; font-size:0.75rem; font-style:italic; margin:4px 0 0 0;">Ngắt toàn bộ API giá nến cuối tuần để tiết kiệm hạn mức.</p>
 </div>
 """, unsafe_allow_html=True)
 
