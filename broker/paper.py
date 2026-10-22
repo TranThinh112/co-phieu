@@ -122,12 +122,15 @@ class PaperBroker(BaseBrokerAdapter):
                 if pos:
                     old_qty, old_avg = pos
                     new_qty = old_qty + quantity
-                    new_avg = ((old_qty * old_avg) + (quantity * price)) / new_qty
+                    raw_avg = ((old_qty * old_avg) + (quantity * price)) / new_qty
+                    new_avg = float(round(raw_avg / 10.0) * 10)
+                    norm_p = float(round(price / 10.0) * 10)
                     cursor.execute("UPDATE paper_positions SET quantity = ?, avg_buy_price = ?, current_price = ?, updated_at = ? WHERE symbol = ?",
-                                   (new_qty, new_avg, price, now_str, symbol))
+                                   (new_qty, new_avg, norm_p, now_str, symbol))
                 else:
+                    norm_p = float(round(price / 10.0) * 10)
                     cursor.execute("INSERT INTO paper_positions (symbol, quantity, avg_buy_price, current_price, updated_at) VALUES (?, ?, ?, ?, ?)",
-                                   (symbol, quantity, price, price, now_str))
+                                   (symbol, quantity, norm_p, norm_p, now_str))
             elif side == "SELL":
                 if pos:
                     old_qty, old_avg = pos

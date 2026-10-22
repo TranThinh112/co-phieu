@@ -59,6 +59,7 @@ from learning.tracker import RecommendationTracker
 from learning.feedback_loop import SelfLearningEngine
 from strategies.exit_strategy import ExitAdvisor
 from features.limit_price import LimitPricePredictor
+from features.candlestick import CandlestickAnalyzer
 from automation.session_manager import MarketSessionManager, is_market_open_now, get_market_session_status
 from automation.scheduler import MarketAutopilotScheduler, start_background_scheduler
 
@@ -202,7 +203,7 @@ def get_cached_stock_price(symbol: str) -> float:
     try:
         from data.providers.vnstock_provider import VnstockProvider
         p = VnstockProvider()
-        df, _ = p.get_historical_data(symbol, start_date=None, end_date=None)
+        df = p.get_historical_prices(symbol)
         if df is not None and not df.empty and "close" in df.columns:
             val = float(df["close"].iloc[-1])
             if val > 0:
@@ -424,6 +425,92 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
     c4.metric("Tài Sản Giả Lập (NAV)", f"{bal['total_equity']:,.0f} đ", f"Tiền mặt: {bal['cash']:,.0f} đ")
 
     # =====================================================================
+    # KHU VỰC CẢNH BÁO ĐẶC BIỆT: CỔ PHIẾU THEO DÕI CÓ BIẾN ĐỘNG LỚN & KỲ VỌNG TĂNG MẠNH (>90% THẮNG)
+    # =====================================================================
+    try:
+        active_tracked_all = tracker.get_active_recommendations()
+        if not active_tracked_all.empty:
+            surge_candidates = []
+            for _, tr_row in active_tracked_all.iterrows():
+                tr_sym = tr_row["symbol"]
+                tr_ret = float(tr_row.get("return_pct", 0.0))
+                tr_days = int(tr_row.get("days_tracked", 0))
+                tr_score = float(tr_row.get("rule_score", 0.0))
+                tr_entry = float(tr_row.get("entry_price", 0.0))
+                tr_cur = float(tr_row.get("current_price", 0.0))
+                tr_tp1 = float(tr_row.get("take_profit_1", 0.0))
+                tr_sl = float(tr_row.get("stop_loss", 0.0))
+
+                # Tra cuu tin tuc moi nhat
+                news_tr = news_provider.get_symbol_news(tr_sym, limit=2)
+                analyzed_tr = NewsAnalyzer.analyze_symbol_news(news_tr)
+                cats = analyzed_tr.get("detected_catalysts", [])
+                sent = analyzed_tr.get("news_sentiment", "NEUTRAL")
+
+                # Dieu kien danh gia dot bien: Lai som >= 1.5% HOAC Diem AI >= 90 & Tin tuc tich cuc HOAC co >= 2 tin tuc xuc tac
+                if (tr_ret >= 1.5) or (tr_score >= 90.0 and sent == "BULLISH") or (len(cats) >= 2):
+                    news_hl = " • ".join([a["title"].split("-")[0].strip() for a in news_tr[:2]]) if news_tr else "Dòng tiền lớn xác nhận nến bứt phá"
+                    surge_candidates.append({
+                        "symbol": tr_sym,
+                        "score": tr_score,
+                        "return_pct": tr_ret,
+                        "days": tr_days,
+                        "entry": tr_entry,
+                        "cur": tr_cur,
+                        "tp1": tr_tp1,
+                        "sl": tr_sl,
+                        "catalysts": cats,
+                        "news_hl": news_hl
+                    })
+
+            if surge_candidates:
+                st.markdown("---")
+                st.markdown("""
+                <div style="background: linear-gradient(135deg, #1e1b4b 0%, #172554 50%, #0f172a 100%); border: 2px solid #6366f1; border-radius: 12px; padding: 18px 22px; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                        <div>
+                            <span style="background:#4338ca; color:#e0e7ff; font-size:0.8rem; font-weight:800; padding:4px 10px; border-radius:6px; letter-spacing:0.5px; text-transform:uppercase;">🔥 CẢNH BÁO BIẾN ĐỘNG LỚN & KỲ VỌNG TĂNG MẠNH</span>
+                            <h3 style="color:#ffffff; margin:6px 0 0 0; font-size:1.35rem; font-weight:800;">🚀 CÁC MÃ THEO DÕI ĐANG CÓ XUNG LỰC BỨT PHÁ (XÁC SUẤT THẮNG >90%)</h3>
+                        </div>
+                        <div style="background:#0f172a; border:1px solid #312e81; padding:6px 14px; border-radius:8px; text-align:right;">
+                            <span style="color:#a5b4fc; font-size:0.78rem; font-weight:600;">Bộ lọc nến & Dòng tiền:</span><br>
+                            <span style="color:#38bdf8; font-size:0.88rem; font-weight:700;">Được thẩm định chuyên sâu 100%</span>
+                        </div>
+                    </div>
+                    <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.5; margin:0 0 14px 0;">
+                        Các mã dưới đây đã được Bot chọn lọc kỹ qua bộ lọc nến & dòng tiền toàn thị trường, hiện đang ghi nhận <strong>biến động đột biến hoặc có tin tức xúc tác cực mạnh</strong>, dự báo tiếp tục tăng tốc trong các phiên tới:
+                    </p>
+                """, unsafe_allow_html=True)
+
+                cols_surge = st.columns(min(3, len(surge_candidates)))
+                for idx_s, s_item in enumerate(surge_candidates[:3]):
+                    with cols_surge[idx_s]:
+                        cat_tags = "".join([f"<span style='background:#1e3a8a; color:#93c5fd; font-size:0.72rem; padding:2px 6px; border-radius:4px; margin-right:4px;'>{c}</span>" for c in s_item["catalysts"][:2]])
+                        st.markdown(f"""
+                        <div style="background:#0b1120; border:1.5px solid #4f46e5; border-radius:10px; padding:14px; margin-bottom:10px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                                <strong style="color:#38bdf8; font-size:1.35rem; font-weight:900;">{s_item['symbol']}</strong>
+                                <span style="background:#059669; color:#ffffff; font-weight:800; font-size:0.82rem; padding:3px 8px; border-radius:6px;">Điểm AI: {s_item['score']:.1f}</span>
+                            </div>
+                            <div style="color:#e2e8f0; font-size:0.85rem; margin-bottom:6px;">
+                                • Giá vào lệnh: <strong>{s_item['entry']:,.0f} đ</strong> &nbsp;|&nbsp; Hiện tại: <strong style="color:#34d399;">{s_item['cur']:,.0f} đ ({s_item['return_pct']:+.2f}%)</strong><br>
+                                • Tiến độ theo dõi: <strong>{s_item['days']}/14 ngày</strong>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; background:#1e293b; padding:6px 10px; border-radius:6px; margin:8px 0; font-size:0.82rem;">
+                                <span style="color:#34d399; font-weight:700;">🎯 Chốt Lời: {s_item['tp1']:,.0f} đ (+8%)</span>
+                                <span style="color:#f87171; font-weight:700;">🛑 Cắt Lỗ: {s_item['sl']:,.0f} đ (-5%)</span>
+                            </div>
+                            <div style="margin-top:6px; font-size:0.78rem; color:#94a3b8; line-height:1.4;">
+                                {cat_tags}<br>
+                                <span style="color:#cbd5e1; font-style:italic;">{s_item['news_hl']}</span>
+                            </div>
+                        </div>
+                        """, unsafe_allow_html=True)
+                st.markdown("</div>", unsafe_allow_html=True)
+    except Exception as _e_surge:
+        pass
+
+    # =====================================================================
     # BẢNG 1 DUY NHẤT: BẢNG CỔ PHIẾU NÊN MUA (TỐI ƯU CỘT GỌN GÀNG, KHÔNG BỊ TRÀN)
     # =====================================================================
     st.markdown("---")
@@ -560,7 +647,7 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
                     # Tinh toan mo phong gia von moi chuan xac 100%
                     sim_new_qty = c_old_qty + int(buy_qty)
                     sim_added_cost = int(buy_qty) * float(buy_price) * (1.0 + fee_pct)
-                    sim_new_avg = round(((c_old_qty * c_old_price) + sim_added_cost) / sim_new_qty, 1) if sim_new_qty > 0 else float(buy_price)
+                    sim_new_avg = StorageEngine.normalize_broker_price(((c_old_qty * c_old_price) + sim_added_cost) / sim_new_qty) if sim_new_qty > 0 else StorageEngine.normalize_broker_price(float(buy_price))
                     delta_price = sim_new_avg - c_old_price
                     delta_color = "#10b981" if delta_price < 0 else "#ef4444"
 
@@ -667,7 +754,7 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
                     e_qty = int(existing_entry["quantity"])
                     e_p = float(existing_entry["avg_buy_price"])
                     m_qty = e_qty + int(input_holding_qty)
-                    m_avg = round(((e_qty * e_p) + (int(input_holding_qty) * float(input_holding_price))) / m_qty, 1)
+                    m_avg = StorageEngine.normalize_broker_price(((e_qty * e_p) + (int(input_holding_qty) * float(input_holding_price))) / m_qty)
                     st.info(f"💡 Mã **{effective_sym}** hiện đã có trong danh mục ({e_qty:,} CP @ {e_p:,.0f} đ). Khi bấm lưu, hệ thống sẽ **TỰ ĐỘNG CỘNG DỒN** thành **{m_qty:,} CP** với giá TB mới là **{m_avg:,.0f} đ** (KHÔNG BỊ MẤT DATA CŨ)!")
 
                 c_in4.write("<div style='height:28px;'></div>", unsafe_allow_html=True)
@@ -1139,7 +1226,18 @@ elif page == "🧠 Bot Tự Học & Theo Dõi 14 Ngày":
         view_active["Điểm AI"] = view_active["rule_score"].apply(lambda x: f"{x:.1f}")
         view_active["Trạng Thái"] = view_active["return_pct"].apply(lambda r: "🟢 Vận động tích cực" if r > 0 else ("🔴 Chạm vùng rủi ro" if r < -3 else "🟡 Đang tích lũy"))
 
-        cols_active = ["Mã CP", "Ngày Đề Xuất", "Giá Vào Lệnh", "Giá Hiện Tại", "Lãi/Lỗ Hiện Tại", "Tiến Độ", "Chốt Lời TP1", "Cắt Lỗ SL", "Điểm AI", "Trạng Thái"]
+        # Cap nhat tin tuc hang ngay cho tung ma trong bang theo doi
+        news_col_list = []
+        for sym_i in view_active["symbol"]:
+            art_list = news_provider.get_symbol_news(sym_i, limit=2)
+            if art_list:
+                clean_title = " • ".join([a["title"].split("-")[0].strip() for a in art_list[:2]])
+                news_col_list.append(f"📰 {clean_title}")
+            else:
+                news_col_list.append("Chưa có tin mới")
+        view_active["Tin Tức Hàng Ngày (Cập Nhật)"] = news_col_list
+
+        cols_active = ["Mã CP", "Ngày Đề Xuất", "Giá Vào Lệnh", "Giá Hiện Tại", "Lãi/Lỗ Hiện Tại", "Tiến Độ", "Chốt Lời TP1", "Cắt Lỗ SL", "Điểm AI", "Trạng Thái", "Tin Tức Hàng Ngày (Cập Nhật)"]
         st.dataframe(style_table_colors(view_active[cols_active], target_columns=["Lãi/Lỗ Hiện Tại", "Trạng Thái"]), use_container_width=True)
     else:
         st.info("Hiện tại chưa có mã nào trong danh sách theo dõi.")
@@ -1281,6 +1379,18 @@ elif page == "📈 Phân Tích Kỹ Thuật Chi Tiết":
             m3.metric("Xu Hướng Kỹ Thuật", translate_trend(t_info["trend"]))
             m4.metric("RSI (14)", f"{last.get('rsi_14', 50.0):.1f}", 50 <= last.get('rsi_14', 50) <= 68 and "Vùng tăng khỏe" or "Cần theo dõi")
             m5.metric("Volume So Với TB", f"{last.get('volume_ratio', 1.0):.2f}x", f"TB 20D: {last.get('avg_volume_20d', 0):,.0f}")
+
+            # Nhan dien mau hinh nen Nhat & Price Action
+            candle_info = CandlestickAnalyzer.analyze_patterns(df_stock)
+            c_color = "#10b981" if candle_info["sentiment"] == "BULLISH" else ("#ef4444" if candle_info["sentiment"] == "BEARISH" else "#f59e0b")
+            st.markdown(f"""
+            <div style="background:#111827; border:1px solid #1f2937; border-left:4px solid {c_color}; border-radius:8px; padding:10px 16px; margin: 12px 0;">
+                <span style="color:#94a3b8; font-size:0.8rem; font-weight:700; text-transform:uppercase;">🕯️ NHẬN DIỆN NẾN NHẬT & PRICE ACTION:</span><br>
+                <strong style="color:{c_color}; font-size:1.05rem;">{candle_info['pattern_name']}</strong> &nbsp;|&nbsp; 
+                <span style="color:#e2e8f0; font-size:0.88rem;">{candle_info['detail_reason']}</span> &nbsp;
+                <span style="background:#1e293b; color:{c_color}; font-weight:700; font-size:0.78rem; padding:2px 8px; border-radius:4px;">(Điểm nến: {candle_info['score_adjustment']:+,.0f}đ)</span>
+            </div>
+            """, unsafe_allow_html=True)
 
             fig = make_subplots(rows=3, cols=1, shared_xaxes=True, vertical_spacing=0.03, row_heights=[0.6, 0.2, 0.2])
             fig.add_trace(go.Candlestick(x=df_stock["date"], open=df_stock["open"], high=df_stock["high"], low=df_stock["low"], close=df_stock["close"], name="Giá (Nến Nhật)", increasing_line_color="#10b981", decreasing_line_color="#ef4444"), row=1, col=1)

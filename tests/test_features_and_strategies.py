@@ -44,3 +44,30 @@ def test_strategies():
 
     rs_info = RelativeStrengthStrategy.calculate_relative_strength(df, idx_df)
     assert "rs_rating" in rs_info
+
+def test_candlestick_patterns():
+    from features.candlestick import CandlestickAnalyzer
+
+    # Test Marubozu
+    df_maru = pd.DataFrame({
+        "open": [10.0, 10.2, 10.0],
+        "high": [10.3, 10.5, 11.0],
+        "low": [9.9, 10.0, 9.98],
+        "close": [10.2, 10.4, 10.98]
+    })
+    res_maru = CandlestickAnalyzer.analyze_patterns(df_maru)
+    assert res_maru["sentiment"] == "BULLISH"
+    assert "Marubozu" in res_maru["pattern_name"]
+    assert res_maru["score_adjustment"] > 0
+
+    # Test Shooting Star
+    df_star = pd.DataFrame({
+        "open": [10.0, 10.2, 10.5],
+        "high": [10.3, 10.5, 11.5],
+        "low": [9.9, 10.0, 10.45],
+        "close": [10.2, 10.5, 10.52]
+    })
+    res_star = CandlestickAnalyzer.analyze_patterns(df_star)
+    assert res_star["sentiment"] == "BEARISH"
+    assert "Bắn Sao" in res_star["pattern_name"] or "Shooting Star" in res_star["pattern_name"]
+    assert res_star["score_adjustment"] < 0

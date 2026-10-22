@@ -350,6 +350,12 @@ class StorageEngine:
                 note TEXT
             )
         """)
+        # Tu dong chuan hoa 100% toan bo cac ma trong danh muc theo buoc lam tron CTCK Viet Nam (10d)
+        cursor.execute("SELECT id, avg_buy_price FROM user_positions")
+        for pos_id, p_val in cursor.fetchall():
+            norm_p = StorageEngine.normalize_broker_price(float(p_val))
+            if norm_p != float(p_val):
+                cursor.execute("UPDATE user_positions SET avg_buy_price = ? WHERE id = ?", (norm_p, pos_id))
         conn.commit()
 
     def get_user_positions(self) -> list:
@@ -364,13 +370,24 @@ class StorageEngine:
                     "id": r[0],
                     "symbol": r[1],
                     "quantity": r[2],
-                    "avg_buy_price": r[3],
+                    "avg_buy_price": StorageEngine.normalize_broker_price(r[3]),
                     "note": r[4] or "",
                     "created_at": r[5],
                     "updated_at": r[6]
                 }
                 for r in rows
             ]
+
+    @staticmethod
+    def normalize_broker_price(price: float) -> float:
+        """
+        Quy tac chuan hoa gia von theo he thong CTCK Viet Nam (VPS, TCBS, SSI, VNDirect):
+        - Lam tron theo buoc hien thi cua app (boi so 10 dong gan nhat).
+        - Vi du: 15,208.1d -> 15,210d; 3,240.2d -> 3,240d; 15,207.3d -> 15,210d.
+        """
+        if price <= 0:
+            return 0.0
+        return float(round(price / 10.0) * 10)
 
     def execute_user_buy(self, symbol: str, buy_qty: int, buy_price: float = None, fee_rate: float = 0.0015, note: str = "") -> dict:
         """Mua them vao: Tang so luong va tinh lai gia mua trung binh (DCA) chuan 100% gom ca phi giao dich/thue hoac thi gia tu dong."""
@@ -388,6 +405,7 @@ class StorageEngine:
                     effective_buy_price = float(df_hist["close"].iloc[-1])
             except Exception:
                 pass
+        effective_buy_price = StorageEngine.normalize_broker_price(effective_buy_price)
 
         with sqlite3.connect(self.db_path) as conn:
             self._ensure_user_positions_table(conn)
@@ -401,14 +419,16 @@ class StorageEngine:
                 old_qty, old_price = int(row[0]), float(row[1])
                 new_qty = old_qty + int(buy_qty)
                 old_total_cost = old_qty * old_price
-                new_avg_price = round((old_total_cost + buy_cost_with_fee) / new_qty, 1) if new_qty > 0 else effective_buy_price
+                raw_avg = (old_total_cost + buy_cost_with_fee) / new_qty if new_qty > 0 else effective_buy_price
+                new_avg_price = StorageEngine.normalize_broker_price(raw_avg)
                 cur.execute("""
                     UPDATE user_positions SET quantity = ?, avg_buy_price = ?, note = ?, updated_at = ? WHERE symbol = ?
                 """, (new_qty, new_avg_price, note, now_str, sym_clean))
             else:
                 old_qty, old_price = 0, 0.0
                 new_qty = int(buy_qty)
-                new_avg_price = round(buy_cost_with_fee / new_qty, 1) if new_qty > 0 else effective_buy_price
+                raw_avg = buy_cost_with_fee / new_qty if new_qty > 0 else effective_buy_price
+                new_avg_price = StorageEngine.normalize_broker_price(raw_avg)
                 cur.execute("""
                     INSERT INTO user_positions (symbol, quantity, avg_buy_price, note, created_at, updated_at)
                     VALUES (?, ?, ?, ?, ?, ?)

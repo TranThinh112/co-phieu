@@ -16,6 +16,7 @@ from features.volatility import VolatilityFeatures
 from features.liquidity import LiquidityFeatures
 from features.market_regime import MarketRegime
 from features.news_sentiment import NewsAnalyzer
+from features.candlestick import CandlestickAnalyzer
 from strategies.trend_following import TrendFollowingStrategy
 from strategies.breakout import BreakoutStrategy
 from strategies.relative_strength import RelativeStrengthStrategy
@@ -97,8 +98,20 @@ class MarketScanner:
             except Exception as e:
                 news_report = NewsAnalyzer.analyze_symbol_news([])
 
-            # Apply news adjustment to rule score (bounded between 0 and 100)
-            adjusted_score = round(max(0.0, min(100.0, base_rule_score + news_report["news_score_adjustment"])), 1)
+            # --- JAPANESE CANDLESTICK PATTERN & PRICE ACTION ANALYSIS ---
+            try:
+                candle_report = CandlestickAnalyzer.analyze_patterns(df)
+            except Exception:
+                candle_report = {
+                    "pattern_name": "Nến Tiêu Chuẩn",
+                    "sentiment": "NEUTRAL",
+                    "score_adjustment": 0.0,
+                    "detail_reason": "Vận động nến dao động bình thường trong biên độ"
+                }
+
+            # Apply news & candlestick adjustments to rule score (bounded between 0 and 100)
+            total_score_adj = news_report["news_score_adjustment"] + candle_report["score_adjustment"]
+            adjusted_score = round(max(0.0, min(100.0, base_rule_score + total_score_adj)), 1)
 
             positives, risks, risk_level = SignalExplanations.generate_explanations(
                 df, trend_info, breakout_info, rs_info, scores, passed_liq, liquidity_reason
@@ -109,6 +122,12 @@ class MarketScanner:
                 positives.append(f"Sự kiện doanh nghiệp hỗ trợ: {cat}")
             for warn in news_report["negative_warnings"]:
                 risks.append(f"RỦI RO THÔNG TIN: {warn}")
+
+            # Enrich factors with Japanese Candlestick Patterns
+            if candle_report["sentiment"] == "BULLISH" and candle_report["score_adjustment"] > 0:
+                positives.append(f"Mẫu hình nến: {candle_report['pattern_name']} ({candle_report['detail_reason']})")
+            elif candle_report["sentiment"] == "BEARISH" and candle_report["score_adjustment"] < 0:
+                risks.append(f"CẢNH BÁO NẾN: {candle_report['pattern_name']} ({candle_report['detail_reason']})")
 
             if news_report["has_fatal_news"]:
                 risk_level = "High"
@@ -181,15 +200,22 @@ class MarketScanner:
         try:
             price_map = {r["symbol"]: float(r["close_price"]) for r in results}
             self.tracker.update_daily_tracking(price_map)
-            for r in results[:8]:
-                if float(r.get("rule_score", 0)) >= 65:
-                    self.tracker.enroll_candidate(
-                        symbol=r["symbol"],
-                        entry_price=float(r["close_price"]),
-                        rule_score=float(r["rule_score"]),
-                        positive_factors=r.get("positive_factors", []),
-                        risk_factors=r.get("risk_factors", []),
-                        catalysts=r.get("detected_catalysts", []),
-                    )
+            # Chi chon dung TOP 3 ma dat diem cao nhat toan thi truong de theo doi
+            # va loai tru cac ma thanh khoan kem (< 50k CP)
+            valid_top = [
+                r for r in results 
+                if float(r.get("rule_score", 0)) >= 65 
+                and "Thanh khoản kém" not in str(r.get("category", ""))
+                and float(r.get("avg_volume_20d", 0)) >= 50000
+            ]
+            for r in valid_top[:3]:
+                self.tracker.enroll_candidate(
+                    symbol=r["symbol"],
+                    entry_price=float(r["close_price"]),
+                    rule_score=float(r["rule_score"]),
+                    positive_factors=r.get("positive_factors", []),
+                    risk_factors=r.get("risk_factors", []),
+                    catalysts=r.get("detected_catalysts", []),
+                )
         except Exception as e:
             print(f"[MarketScanner] Warning during 14d tracking update: {e}")
