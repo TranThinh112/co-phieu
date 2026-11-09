@@ -91,13 +91,6 @@ class MarketScanner:
             scores = self.scoring_engine.compute_scores(df, rs_info, trend_info, breakout_info)
             base_rule_score = scores["total_score"]
 
-            # --- EVENT-DRIVEN NEWS ANALYSIS ---
-            try:
-                news_items = self.news_provider.get_symbol_news(sym, limit=5)
-                news_report = NewsAnalyzer.analyze_symbol_news(news_items)
-            except Exception as e:
-                news_report = NewsAnalyzer.analyze_symbol_news([])
-
             # --- JAPANESE CANDLESTICK PATTERN & PRICE ACTION ANALYSIS ---
             try:
                 candle_report = CandlestickAnalyzer.analyze_patterns(df)
@@ -109,28 +102,18 @@ class MarketScanner:
                     "detail_reason": "Vận động nến dao động bình thường trong biên độ"
                 }
 
-            # Apply news & candlestick adjustments to rule score (bounded between 0 and 100)
-            total_score_adj = news_report["news_score_adjustment"] + candle_report["score_adjustment"]
-            adjusted_score = round(max(0.0, min(100.0, base_rule_score + total_score_adj)), 1)
+            # Tạm tính điểm kỹ thuật cơ bản + mẫu hình nến (cực nhanh, không nghẽn mạng)
+            candle_adj = candle_report.get("score_adjustment", 0.0)
+            preliminary_score = round(max(0.0, min(100.0, base_rule_score + candle_adj)), 1)
 
             positives, risks, risk_level = SignalExplanations.generate_explanations(
                 df, trend_info, breakout_info, rs_info, scores, passed_liq, liquidity_reason
             )
 
-            # Enrich factors with corporate news catalysts
-            for cat in news_report["detected_catalysts"]:
-                positives.append(f"Sự kiện doanh nghiệp hỗ trợ: {cat}")
-            for warn in news_report["negative_warnings"]:
-                risks.append(f"RỦI RO THÔNG TIN: {warn}")
-
-            # Enrich factors with Japanese Candlestick Patterns
             if candle_report["sentiment"] == "BULLISH" and candle_report["score_adjustment"] > 0:
                 positives.append(f"Mẫu hình nến: {candle_report['pattern_name']} ({candle_report['detail_reason']})")
             elif candle_report["sentiment"] == "BEARISH" and candle_report["score_adjustment"] < 0:
                 risks.append(f"CẢNH BÁO NẾN: {candle_report['pattern_name']} ({candle_report['detail_reason']})")
-
-            if news_report["has_fatal_news"]:
-                risk_level = "High"
 
             results_list.append({
                 "symbol": sym,
@@ -145,21 +128,56 @@ class MarketScanner:
                 "rsi": round(float(last_row.get("rsi_14", 50.0)), 1),
                 "volume_ratio": round(float(last_row.get("volume_ratio", 1.0)), 2),
                 "breakout_status": breakout_info.get("breakout_status", "No Breakout"),
-                "rule_score": adjusted_score,
+                "rule_score": preliminary_score,
                 "base_rule_score": base_rule_score,
-                "category": StockRanker.categorize_stock(adjusted_score, passed_liq),
+                "category": StockRanker.categorize_stock(preliminary_score, passed_liq),
                 **self._validated_ai_probabilities(df),
                 "risk_level": risk_level,
                 "positive_factors": positives,
                 "risk_factors": risks,
-                "news_sentiment": news_report["news_sentiment"],
-                "detected_catalysts": news_report["detected_catalysts"],
-                "negative_warnings": news_report["negative_warnings"],
-                "news_score_adj": news_report["news_score_adjustment"],
-                "has_fatal_news": news_report["has_fatal_news"],
-                "news_summary": news_report["summary_reason"],
+                "news_sentiment": "NEUTRAL",
+                "detected_catalysts": [],
+                "negative_warnings": [],
+                "news_score_adj": 0.0,
+                "has_fatal_news": False,
+                "news_summary": "Đang theo dõi tin tức tổng quan",
                 "data_timestamp": data_timestamp,
             })
+
+        # --- GIAI ĐOẠN 2: LỌC TOP CỔ PHIẾU TIỀM NĂNG NHẤT ĐỂ ĐỌC TIN TỨC CHUYÊN SÂU ---
+        # Chỉ cào tin tức RSS cho Top 30 mã tiềm năng nhất đạt điểm cao & có thanh khoản
+        # Tránh nghẽn mạng và timeout khi quét toàn bộ 1.396 mã!
+        results_list.sort(key=lambda x: x["rule_score"], reverse=True)
+        top_candidates_to_enrich = [
+            r for r in results_list 
+            if r["avg_volume_20d"] >= 50000 and r["rule_score"] >= 65
+        ][:30]
+
+        for item in top_candidates_to_enrich:
+            try:
+                sym_e = item["symbol"]
+                news_items = self.news_provider.get_symbol_news(sym_e, limit=5)
+                news_report = NewsAnalyzer.analyze_symbol_news(news_items)
+
+                news_adj = news_report.get("news_score_adjustment", 0.0)
+                final_score = round(max(0.0, min(100.0, item["rule_score"] + news_adj)), 1)
+                item["rule_score"] = final_score
+                item["news_sentiment"] = news_report.get("news_sentiment", "NEUTRAL")
+                item["detected_catalysts"] = news_report.get("detected_catalysts", [])
+                item["negative_warnings"] = news_report.get("negative_warnings", [])
+                item["news_score_adj"] = news_adj
+                item["has_fatal_news"] = news_report.get("has_fatal_news", False)
+                item["news_summary"] = news_report.get("summary_reason", "")
+
+                for cat in news_report.get("detected_catalysts", []):
+                    item["positive_factors"].append(f"Sự kiện doanh nghiệp hỗ trợ: {cat}")
+                for warn in news_report.get("negative_warnings", []):
+                    item["risk_factors"].append(f"RỦI RO THÔNG TIN: {warn}")
+
+                if news_report.get("has_fatal_news", False):
+                    item["risk_level"] = "High"
+            except Exception:
+                pass
 
         ranked_results = StockRanker.rank_stocks(results_list, sort_by=sort_by)
         results_df = pd.DataFrame(ranked_results)

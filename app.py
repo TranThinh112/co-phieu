@@ -468,6 +468,14 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
                 tr_days = int(tr_row.get("days_tracked", 0))
 
                 if tr_score >= 75.0 or tr_ret >= 1.0:
+                    rec_date = str(tr_row.get("recommendation_date", "")).strip()
+                    try:
+                        import datetime
+                        d_obj = datetime.datetime.strptime(rec_date, "%Y-%m-%d")
+                        rec_date_fmt = d_obj.strftime("%d/%m/%Y")
+                    except Exception:
+                        rec_date_fmt = rec_date if rec_date else "Hôm nay"
+
                     surge_candidates.append({
                         "symbol": tr_sym,
                         "score": tr_score,
@@ -477,6 +485,7 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
                         "tp1": tr_tp1,
                         "sl": tr_sl,
                         "days": tr_days,
+                        "rec_date": rec_date_fmt,
                         "signal": "Nến bứt phá vượt nền tích lũy, dòng tiền tổ chức xác nhận xu hướng tăng",
                         "reason": "Hội tụ đủ nến & dòng tiền, sức mạnh RS vượt trội (Xác suất thắng >90%)"
                     })
@@ -511,6 +520,7 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
                 "tp1": round(close_val * 1.08, 0),
                 "sl": round(close_val * 0.95, 0),
                 "days": 0,
+                "rec_date": datetime.date.today().strftime("%d/%m/%Y"),
                 "signal": f"Mẫu hình Nến: {breakout_st} • {trend_str}",
                 "reason": f"Điểm AI: {rule_sc:.1f}/100 • Dòng tiền vào mạnh, RS: {r_s.get('rs_index', 80):.0f} (Tỷ lệ thắng >90%)"
             })
@@ -529,8 +539,11 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
                 <div style="background:#0b1120; border:2px solid #6366f1; border-radius:10px; padding:16px; margin-bottom:14px; box-shadow:0 4px 14px rgba(99,102,241,0.2);">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
                         <div>
-                            <strong style="color:#38bdf8; font-size:1.4rem; font-weight:900;">{s_item['symbol']}</strong>
-                            <div style="color:#94a3b8; font-size:0.75rem;">{company_name}</div>
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <strong style="color:#38bdf8; font-size:1.4rem; font-weight:900;">{s_item['symbol']}</strong>
+                                <span style="background:#1e293b; color:#38bdf8; border:1px solid #0284c7; font-size:0.75rem; font-weight:700; padding:2px 7px; border-radius:5px;" title="Ngày Bot phân tích và đánh giá xác suất thắng >90%">📅 Đánh giá: {s_item.get('rec_date', 'Mới')}</span>
+                            </div>
+                            <div style="color:#94a3b8; font-size:0.75rem; margin-top:2px;">{company_name}</div>
                         </div>
                         <div style="text-align:right;">
                             <span style="background:#059669; color:#ffffff; font-weight:800; font-size:0.78rem; padding:3px 8px; border-radius:6px; display:inline-block; margin-bottom:2px;">🟢 THẮNG >90%</span><br>

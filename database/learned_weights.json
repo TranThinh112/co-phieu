@@ -1,0 +1,19 @@
+{
+  "catalyst_multipliers": {
+    "TRUNG_THAU": 1.15,
+    "KQKD_DOT_PHA": 1.1,
+    "CO_TUC": 1.05,
+    "MUA_VAO_NOI_BO": 1.2,
+    "MO_RONG": 1.05
+  },
+  "technical_weights": {
+    "relative_strength": 0.25,
+    "trend": 0.25,
+    "momentum": 0.2,
+    "volume_breakout": 0.2,
+    "liquidity": 0.1
+  },
+  "last_tuned": "2026-10-24 15:35:25",
+  "closed_trades_analyzed": 5,
+  "win_rate_pct": 60.0
+}

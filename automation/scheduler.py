@@ -34,7 +34,13 @@ class MarketAutopilotScheduler:
     def log(self, message: str):
         now_str = MarketSessionManager.get_vietnam_now().strftime('%H:%M:%S %d/%m')
         entry = f'[{now_str}] {message}'
-        print(f'[Autopilot] {entry}')
+        try:
+            print(f'[Autopilot] {entry}')
+        except Exception:
+            try:
+                print(f'[Autopilot] {entry.encode("ascii", "ignore").decode()}')
+            except Exception:
+                pass
         self.logs.append(entry)
         if len(self.logs) > 20:
             self.logs = self.logs[-20:]
@@ -171,8 +177,23 @@ class MarketAutopilotScheduler:
             except Exception as e:
                 self.log(f'Lỗi trong vòng lặp autopilot: {e}')
 
-            # Kiem tra lai sau moi 30 giay
-            time.sleep(30)
+            # Toi uu tai nguyen: Thu hoi RAM dinh ky & ngu sau theo phien de giam chi phi server
+            try:
+                import gc
+                gc.collect()
+            except Exception:
+                pass
+
+            now_chk = MarketSessionManager.get_vietnam_now()
+            if now_chk.weekday() >= 5:
+                # Cuoi tuan: Thi truong dong cua, ngu 300 giay (5 phut) tiet kiem toi da RAM/CPU
+                time.sleep(300)
+            elif now_chk.hour < 9 or now_chk.hour >= 17:
+                # Dem hoac ngoai gio: ngu 120 giay (2 phut)
+                time.sleep(120)
+            else:
+                # Trong phien giao dich: kiem tra deu dan 30 giay
+                time.sleep(30)
 
 
 def start_background_scheduler():
