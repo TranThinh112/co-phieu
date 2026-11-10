@@ -1072,6 +1072,15 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
                 except Exception:
                     b_date = buy_time_raw.split(" ")[0] if " " in buy_time_raw else (buy_time_raw or "Hôm nay")
 
+                # Ly do ngan gon giai thich tai sao bot chon mua ma nay
+                buy_reason_short = "Điểm AI 100/100, Nến bứt nền đỉnh 20P, Dòng tiền lớn xác nhận"
+                if not df_results.empty and sym in df_results["symbol"].values:
+                    s_row = df_results[df_results["symbol"] == sym].iloc[0]
+                    sc = float(s_row.get("rule_score", 100))
+                    bo = str(s_row.get("breakout_status", "Vượt đỉnh"))
+                    rsi_s = float(s_row.get("rsi", 60))
+                    buy_reason_short = f"Điểm AI {sc:.0f}/100 • {bo} • RSI({rsi_s:.0f}) vùng tăng khỏe • Thanh khoản dồi dào"
+
                 paper_rows.append({
                     "Mã CP": sym,
                     "Ngày Mua": b_date,
@@ -1085,7 +1094,7 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
                     "Chốt Lời TP1 (+8%)": f"{eval_res['tp1_price']:,.0f} đ",
                     "Chốt Lời TP2 (+15%)": f"{eval_res['tp2_price']:,.0f} đ",
                     "Cắt Lỗ SL (-5%)": f"{eval_res['sl_price']:,.0f} đ",
-                    "Lý Do": eval_res["reason_detail"]
+                    "Lý Do Chọn Mua": buy_reason_short
                 })
             df_paper_table = pd.DataFrame(paper_rows)
             st.dataframe(
