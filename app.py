@@ -343,18 +343,43 @@ if latest_summary:
     st.sidebar.caption(f"🕒 Cập nhật: {latest_summary.get('timestamp')}")
 
 st.sidebar.markdown("---")
+PAGE_ROUTES = {
+    "dashboard": "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế",
+    "learning": "🧠 Bot Tự Học & Theo Dõi 14 Ngày",
+    "screener": "🔍 Bộ Lọc Định Lượng Chuyên Sâu",
+    "technical": "📈 Phân Tích Kỹ Thuật Chi Tiết",
+    "paper": "💼 Danh Mục Paper Trading",
+    "backtest": "🎯 Kiểm Định AI & Backtest",
+    "watchlist": "⭐ Danh Mục Theo Dõi (Watchlist)"
+}
+REVERSE_ROUTES = {v: k for k, v in PAGE_ROUTES.items()}
+NAV_PAGES = list(PAGE_ROUTES.values())
+
+# Đọc query param từ URL để định tuyến (Router)
+query_page = st.query_params.get("page", None)
+default_idx = 0
+if query_page and query_page in PAGE_ROUTES:
+    default_page_name = PAGE_ROUTES[query_page]
+    if default_page_name in NAV_PAGES:
+        default_idx = NAV_PAGES.index(default_page_name)
+
+def _on_page_change():
+    selected_page = st.session_state.get("sidebar_page_selector")
+    if selected_page in REVERSE_ROUTES:
+        st.query_params["page"] = REVERSE_ROUTES[selected_page]
+
 page = st.sidebar.radio(
     "Danh Mục Quản Lý:",
-    [
-        "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế",
-        "🧠 Bot Tự Học & Theo Dõi 14 Ngày",
-        "🔍 Bộ Lọc Định Lượng Chuyên Sâu",
-        "📈 Phân Tích Kỹ Thuật Chi Tiết",
-        "💼 Danh Mục Paper Trading",
-        "🎯 Kiểm Định AI & Backtest",
-        "⭐ Danh Mục Theo Dõi (Watchlist)"
-    ]
+    NAV_PAGES,
+    index=default_idx,
+    key="sidebar_page_selector",
+    on_change=_on_page_change
 )
+
+# Luôn đồng bộ URL theo trang đang chọn
+curr_slug = REVERSE_ROUTES.get(page, "dashboard")
+if st.query_params.get("page") != curr_slug:
+    st.query_params["page"] = curr_slug
 
 if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
     st.title("🎯 Cổ Phiếu Nên Mua & Quản Trị Vị Thế")
@@ -1039,8 +1064,17 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
                 )
                 val_total = p_qty * p_cur
                 pnl_vnd = (p_cur - p_buy) * p_qty
+                # Lay ngay mua tu updated_at hoac bang paper_orders
+                buy_time_raw = p.get("updated_at", "")
+                try:
+                    import datetime
+                    b_date = datetime.datetime.strptime(buy_time_raw, "%Y-%m-%d %H:%M:%S").strftime("%d/%m/%Y")
+                except Exception:
+                    b_date = buy_time_raw.split(" ")[0] if " " in buy_time_raw else (buy_time_raw or "Hôm nay")
+
                 paper_rows.append({
                     "Mã CP": sym,
+                    "Ngày Mua": b_date,
                     "Số Lượng": f"{p_qty:,} CP",
                     "Giá Mua": f"{p_buy:,.0f} đ",
                     "Thị Giá": f"{p_cur:,.0f} đ",
@@ -1528,9 +1562,17 @@ elif page == "💼 Danh Mục Paper Trading":
             pos_df["Giá Trị"] = pos_df["market_value"].apply(lambda x: f"{x:,.0f} đ")
             pos_df["Lãi/Lỗ (PnL)"] = pos_df["unrealized_pnl"].apply(lambda x: f"{x:+,.0f} đ")
             pos_df["Tỷ Suất (%)"] = pos_df["unrealized_pnl_pct"].apply(lambda x: f"{x:+.2f}%")
+            def _fmt_buy_date(val):
+                try:
+                    import datetime
+                    return datetime.datetime.strptime(str(val), "%Y-%m-%d %H:%M:%S").strftime("%d/%m/%Y")
+                except Exception:
+                    return str(val).split(" ")[0] if " " in str(val) else str(val)
+
+            pos_df["Ngày Mua"] = pos_df["updated_at"].apply(_fmt_buy_date)
             pos_df["Thời Điểm"] = pos_df["updated_at"]
             
-            show_cols = ["Mã CP", "Khối Lượng", "Giá Mua TB", "Giá Hiện Tại", "Giá Trị", "Lãi/Lỗ (PnL)", "Tỷ Suất (%)", "Thời Điểm"]
+            show_cols = ["Mã CP", "Ngày Mua", "Khối Lượng", "Giá Mua TB", "Giá Hiện Tại", "Giá Trị", "Lãi/Lỗ (PnL)", "Tỷ Suất (%)", "Thời Điểm"]
             st.dataframe(style_table_colors(pos_df[show_cols], target_columns=["Lãi/Lỗ (PnL)", "Tỷ Suất (%)"]), use_container_width=True)
         else:
             st.info("Hiện tại chưa có vị thế cổ phiếu nào trong tài khoản Paper Trading.")
