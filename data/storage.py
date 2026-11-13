@@ -681,6 +681,16 @@ class StorageEngine:
                         sql_t = "INSERT OR IGNORE INTO tracked_recommendations (" + ", ".join(t_cols) + ") VALUES (" + ", ".join(["?"] * len(t_cols)) + ")"
                         for tr in seed_data.get("tracked_recommendations", []):
                             cursor.execute(sql_t, tuple(tr.get(c) for c in t_cols))
+
+                # Nap paper_positions tu seed_data neu chua co
+                cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='paper_positions'")
+                if cursor.fetchone():
+                    cursor.execute("SELECT COUNT(*) FROM paper_positions")
+                    if cursor.fetchone()[0] == 0:
+                        p_cols = ["symbol", "quantity", "avg_buy_price", "current_price", "updated_at"]
+                        sql_p = "INSERT OR IGNORE INTO paper_positions (" + ", ".join(p_cols) + ") VALUES (" + ", ".join(["?"] * len(p_cols)) + ")"
+                        for pos in seed_data.get("paper_positions", []):
+                            cursor.execute(sql_p, tuple(pos.get(c) for c in p_cols))
                 conn.commit()
             except Exception as e:
                 pass
