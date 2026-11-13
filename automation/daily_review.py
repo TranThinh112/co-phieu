@@ -165,8 +165,9 @@ def run_daily_post_market_evaluation(force: bool = False) -> dict:
     print("[PostMarketReview] Dang doi chieu gia dong cua de danh gia cac khuyen nghi 14 ngay...")
     active_tracked = tracker.get_active_recommendations()
     if not active_tracked.empty and not df_results.empty:
+        today_date_str = now_vn.strftime("%Y-%m-%d")
         close_price_map = dict(zip(df_results["symbol"], df_results["close_price"]))
-        tracker.update_daily_tracking(close_price_map)
+        tracker.update_daily_tracking(close_price_map, current_date=today_date_str)
 
     # 4. BOT TU DONG DANH GIA & GIAO DICH TIEN AO (AUTOPILOT PAPER TRADING)
     paper_res = run_autopilot_paper_trading(df_results, tracker.get_active_recommendations(), tracker, learning_engine)

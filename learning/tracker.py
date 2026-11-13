@@ -107,21 +107,43 @@ class RecommendationTracker:
         today = current_date or datetime.datetime.now().strftime("%Y-%m-%d")
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
+
+
+            # Dam bao cot last_tracked_date co trong bang
+            try:
+                cursor.execute("ALTER TABLE tracked_recommendations ADD COLUMN last_tracked_date TEXT")
+            except Exception:
+                pass
+
             cursor.execute("""
                 SELECT id, symbol, entry_price, stop_loss, take_profit_1, take_profit_2,
-                       days_tracked, highest_price, lowest_price, positive_factors, catalysts
+                       days_tracked, highest_price, lowest_price, positive_factors, catalysts,
+                       recommendation_date, last_tracked_date
                 FROM tracked_recommendations
                 WHERE status = 'DANG_THEO_DOI'
             """)
             rows = cursor.fetchall()
 
             for row in rows:
-                rec_id, sym, entry, sl, tp1, tp2, days, high_p, low_p, pos_json, cat_json = row
+                rec_id, sym, entry, sl, tp1, tp2, days, high_p, low_p, pos_json, cat_json, rec_date, last_t_date = row
                 if sym not in price_map:
                     continue
 
                 curr_p = float(price_map[sym])
-                new_days = days + 1
+                
+                # Chi tang so ngay neu hom nay la ngay lam viec moi chua duoc chot
+                import datetime
+                try:
+                    r_d = datetime.datetime.strptime(str(rec_date), "%Y-%m-%d").date()
+                    cur_d = datetime.datetime.strptime(str(today), "%Y-%m-%d").date()
+                    if cur_d > r_d:
+                        trading_days = len([d for d in (r_d + datetime.timedelta(n) for n in range(1, (cur_d - r_d).days + 1)) if d.weekday() < 5])
+                    else:
+                        trading_days = 0
+                except Exception:
+                    trading_days = days + (1 if last_t_date != today else 0)
+                
+                new_days = max(1, trading_days) if str(today) > str(rec_date) else 1
                 new_high = max(high_p, curr_p)
                 new_low = min(low_p, curr_p)
                 ret_pct = round(((curr_p - entry) / entry) * 100.0, 2)
@@ -143,8 +165,8 @@ class RecommendationTracker:
                             days_tracked = ?, current_price = ?, highest_price = ?, lowest_price = ?,
                             return_pct = ?, status = ?, outcome = ?, post_mortem_reason = ?,
                             lesson_learned = ?, closed_date = ?
-                        WHERE id = ?
-                    """, (new_days, curr_p, new_high, new_low, ret_pct, status, outcome, reason, lesson, today, rec_id))
+                        , last_tracked_date = ? WHERE id = ?
+                    """, (new_days, curr_p, new_high, new_low, ret_pct, status, outcome, reason, lesson, today, today, rec_id))
                     continue
 
                 # 2. Kiểm tra Cắt Lỗ SL (-5%)
@@ -158,8 +180,8 @@ class RecommendationTracker:
                             days_tracked = ?, current_price = ?, highest_price = ?, lowest_price = ?,
                             return_pct = ?, status = ?, outcome = ?, post_mortem_reason = ?,
                             lesson_learned = ?, closed_date = ?
-                        WHERE id = ?
-                    """, (new_days, curr_p, new_high, new_low, ret_pct, status, outcome, reason, lesson, today, rec_id))
+                        , last_tracked_date = ? WHERE id = ?
+                    """, (new_days, curr_p, new_high, new_low, ret_pct, status, outcome, reason, lesson, today, today, rec_id))
                     continue
 
                 # 3. Kiểm tra Hết Chu Kỳ 14 Ngày
@@ -179,17 +201,17 @@ class RecommendationTracker:
                             days_tracked = ?, current_price = ?, highest_price = ?, lowest_price = ?,
                             return_pct = ?, status = ?, outcome = ?, post_mortem_reason = ?,
                             lesson_learned = ?, closed_date = ?
-                        WHERE id = ?
-                    """, (new_days, curr_p, new_high, new_low, ret_pct, status, outcome, reason, lesson, today, rec_id))
+                        , last_tracked_date = ? WHERE id = ?
+                    """, (new_days, curr_p, new_high, new_low, ret_pct, status, outcome, reason, lesson, today, today, rec_id))
                     continue
 
                 # 4. Tiếp tục theo dõi
                 cursor.execute("""
                     UPDATE tracked_recommendations SET
                         days_tracked = ?, current_price = ?, highest_price = ?, lowest_price = ?,
-                        return_pct = ?
+                        return_pct = ?, last_tracked_date = ?
                     WHERE id = ?
-                """, (new_days, curr_p, new_high, new_low, ret_pct, rec_id))
+                """, (new_days, curr_p, new_high, new_low, ret_pct, today, rec_id))
 
             conn.commit()
 
