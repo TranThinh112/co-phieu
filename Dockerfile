@@ -6,12 +6,13 @@ ENV PYTHONUNBUFFERED=1 \
     STREAMLIT_SERVER_ADDRESS=0.0.0.0 \
     STREAMLIT_SERVER_HEADLESS=true \
     STREAMLIT_BROWSER_GATHER_USAGE_STATS=false \
+    STREAMLIT_SERVER_FILE_WATCHER_TYPE=none \
     MALLOC_ARENA_MAX=2 \
     PYTHONHASHSEED=random
 
 WORKDIR /app
 
-# Cai dat thu vien OpenMP (libgomp1) can thiet cho LightGBM va cac tien ich he thong
+# Cai dat thu vien OpenMP (libgomp1) can thiet cho LightGBM va curl cho healthcheck
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     libgomp1 \
@@ -26,4 +27,4 @@ COPY . .
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "python run_worker.py & streamlit run app.py --server.port ${PORT:-8080} --server.address 0.0.0.0"]
+CMD ["streamlit", "run", "app.py", "--server.port", "8080", "--server.address", "0.0.0.0"]

@@ -102,6 +102,11 @@ class MarketAutopilotScheduler:
             self.last_action = f'Quét thành công {len(df_res)} mã ({scan_type})'
             self.last_run_time = now_vn.strftime('%H:%M:%S %d/%m/%Y')
             self.log(self.last_action)
+            try:
+                import gc
+                gc.collect()
+            except Exception:
+                pass
             return {'status': 'SUCCESS', 'symbols': len(df_res), 'regime': regime.get('regime')}
         except Exception as e:
             self.last_action = f'Lỗi quét: {str(e)}'
@@ -119,6 +124,11 @@ class MarketAutopilotScheduler:
             self.last_action = f'Tổng kết phiên thành công ({scanned} mã)'
             self.last_run_time = now_vn.strftime('%H:%M:%S %d/%m/%Y')
             self.log(self.last_action)
+            try:
+                import gc
+                gc.collect()
+            except Exception:
+                pass
             return res
         except Exception as e:
             self.last_action = f'Lỗi tổng kết phiên: {str(e)}'
