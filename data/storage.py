@@ -668,20 +668,45 @@ class StorageEngine:
                             (pos.get("symbol"), pos.get("quantity", 100), pos.get("avg_buy_price", 0.0), pos.get("note", ""), pos.get("created_at", ""), pos.get("updated_at", ""))
                         )
 
-                # 3. Nap tracked_recommendations neu chua co
-                cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='tracked_recommendations'")
-                if cursor.fetchone():
-                    cursor.execute("SELECT COUNT(*) FROM tracked_recommendations")
-                    if cursor.fetchone()[0] == 0:
-                        t_cols = [
-                            "symbol", "recommendation_date", "entry_price", "stop_loss", "take_profit_1", "take_profit_2",
-                            "rule_score", "positive_factors", "risk_factors", "catalysts", "status", "days_tracked",
-                            "current_price", "highest_price", "lowest_price", "return_pct", "outcome", "post_mortem_reason",
-                            "lesson_learned", "closed_date", "features_snapshot"
-                        ]
-                        sql_t = "INSERT OR IGNORE INTO tracked_recommendations (" + ", ".join(t_cols) + ") VALUES (" + ", ".join(["?"] * len(t_cols)) + ")"
-                        for tr in seed_data.get("tracked_recommendations", []):
-                            cursor.execute(sql_t, tuple(tr.get(c) for c in t_cols))
+                # 3. Nap tracked_recommendations (luon tao bang neu chua co va nap seed)
+                cursor.execute("""
+                    CREATE TABLE IF NOT EXISTS tracked_recommendations (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        symbol TEXT NOT NULL,
+                        recommendation_date TEXT NOT NULL,
+                        entry_price REAL NOT NULL,
+                        stop_loss REAL NOT NULL,
+                        take_profit_1 REAL NOT NULL,
+                        take_profit_2 REAL NOT NULL,
+                        rule_score REAL NOT NULL,
+                        positive_factors TEXT,
+                        risk_factors TEXT,
+                        catalysts TEXT,
+                        status TEXT NOT NULL,
+                        days_tracked INTEGER NOT NULL DEFAULT 0,
+                        current_price REAL NOT NULL,
+                        highest_price REAL NOT NULL,
+                        lowest_price REAL NOT NULL,
+                        return_pct REAL NOT NULL DEFAULT 0.0,
+                        outcome TEXT NOT NULL DEFAULT 'DANG_THEO_DOI',
+                        post_mortem_reason TEXT,
+                        lesson_learned TEXT,
+                        closed_date TEXT,
+                        features_snapshot TEXT,
+                        last_tracked_date TEXT
+                    )
+                """)
+                cursor.execute("SELECT COUNT(*) FROM tracked_recommendations")
+                if cursor.fetchone()[0] == 0:
+                    t_cols = [
+                        "symbol", "recommendation_date", "entry_price", "stop_loss", "take_profit_1", "take_profit_2",
+                        "rule_score", "positive_factors", "risk_factors", "catalysts", "status", "days_tracked",
+                        "current_price", "highest_price", "lowest_price", "return_pct", "outcome", "post_mortem_reason",
+                        "lesson_learned", "closed_date", "features_snapshot"
+                    ]
+                    sql_t = "INSERT OR IGNORE INTO tracked_recommendations (" + ", ".join(t_cols) + ") VALUES (" + ", ".join(["?"] * len(t_cols)) + ")"
+                    for tr in seed_data.get("tracked_recommendations", []):
+                        cursor.execute(sql_t, tuple(tr.get(c) for c in t_cols))
 
                 # 4. Nap paper_positions neu chua co
                 cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='paper_positions'")
