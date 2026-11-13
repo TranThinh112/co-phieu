@@ -329,15 +329,14 @@ session_st = get_market_session_status()
 learn_info = session_st.get("learning_details")
 learn_snippet = f"<span style='color:#c084fc; font-size:0.77rem; font-weight:600;'>🧠 Tự học: Đang chạy ({learn_info.get('closed_trades', 0)} lệnh, Win rate {learn_info.get('win_rate_pct', 0.0)}%)</span><br>" if learn_info else ""
 
-st.sidebar.markdown(f"""
-<div style="background:#141a24; border:1px solid #283347; border-left:4px solid {session_st['badge_color']}; border-radius:6px; padding:10px; margin-bottom:12px;">
-    <span style="color:{session_st['badge_color']}; font-weight:700; font-size:0.88rem;">{session_st['badge_label']}</span><br>
-    <span style="color:#cbd5e1; font-size:0.8rem; font-weight:500;">⏰ Khung giờ hoạt động:</span><br>
-    <span style="color:#94a3b8; font-size:0.77rem;">• Phiên sáng: 09:00 - 11:30<br>• Phiên chiều & ATC: 13:00 - 15:00<br>• Tổng kết sau phiên & Tin tức: 15:00 - 16:30<br>• Cuối tuần: Bot Tự Học & Tinh Chỉnh AI</span><br>
-    {learn_snippet}
-    <p style="color:#64748b; font-size:0.75rem; font-style:italic; margin:4px 0 0 0;">Ngắt toàn bộ API giá nến cuối tuần để tiết kiệm hạn mức.</p>
-</div>
-""", unsafe_allow_html=True)
+st.sidebar.markdown((
+    f"<div style='background:#141a24; border:1px solid #283347; border-left:4px solid {session_st['badge_color']}; border-radius:6px; padding:10px; margin-bottom:12px;'>"
+    f"<span style='color:{session_st['badge_color']}; font-weight:700; font-size:0.88rem;'>{session_st['badge_label']}</span><br>"
+    f"<span style='color:#cbd5e1; font-size:0.8rem; font-weight:500;'>⏰ Khung giờ hoạt động:</span><br>"
+    f"<span style='color:#94a3b8; font-size:0.77rem;'>• Phiên sáng: 09:00 - 11:30<br>• Phiên chiều & ATC: 13:00 - 15:00<br>• Tổng kết sau phiên & Tin tức: 15:00 - 16:30<br>• Cuối tuần: Bot Tự Học & Tinh Chỉnh AI</span><br>"
+    f"{learn_snippet}"
+    f"<div style='color:#64748b; font-size:0.75rem; font-style:italic; margin-top:4px;'>Ngắt toàn bộ API giá nến cuối tuần để tiết kiệm hạn mức.</div></div>"
+), unsafe_allow_html=True)
 
 if latest_summary:
     st.sidebar.caption(f"🕒 Cập nhật: {latest_summary.get('timestamp')}")
