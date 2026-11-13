@@ -600,16 +600,11 @@ class StorageEngine:
             conn.commit()
 
     def seed_initial_market_data_if_empty(self):
-        """Tu dong nap du lieu phan tich thi truong ban dau neu database moi khoi tao tren Cloud (Railway)."""
+        """Tu dong nap va dong bo du lieu ban dau (user_positions, tracked, paper, scan) neu con trong tren Cloud."""
         import json
         import sqlite3
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT COUNT(*) FROM scan_results")
-            count = cursor.fetchone()[0]
-            if count > 0:
-                return
-
             seed_path = Path(__file__).resolve().parent.parent / "database" / "initial_market_seed.json"
             if not seed_path.exists():
                 return
@@ -617,48 +612,54 @@ class StorageEngine:
             try:
                 with open(seed_path, "r", encoding="utf-8") as sf:
                     seed_data = json.load(sf)
+            except Exception:
+                return
 
-                run_item = seed_data.get("scan_run", {})
-                if run_item:
-                    cursor.execute("""
-                        INSERT OR IGNORE INTO scan_runs (run_id, timestamp, symbols_count, provider_type, is_synthetic)
-                        VALUES (?, ?, ?, ?, ?)
-                    """, (run_item.get("run_id"), run_item.get("timestamp"), run_item.get("symbols_count"), run_item.get("provider_type"), run_item.get("is_synthetic", 0)))
+            try:
+                # 1. Kiem tra va nap scan_results neu chua co
+                cursor.execute("SELECT COUNT(*) FROM scan_results")
+                if cursor.fetchone()[0] == 0:
+                    run_item = seed_data.get("scan_run", {})
+                    if run_item:
+                        cursor.execute("""
+                            INSERT OR IGNORE INTO scan_runs (run_id, timestamp, symbols_count, provider_type, is_synthetic)
+                            VALUES (?, ?, ?, ?, ?)
+                        """, (run_item.get("run_id"), run_item.get("timestamp"), run_item.get("symbols_count"), run_item.get("provider_type"), run_item.get("is_synthetic", 0)))
 
-                results = seed_data.get("scan_results", [])
-                for r in results:
-                    cursor.execute("""
-                        INSERT OR IGNORE INTO scan_results (
-                            run_id, symbol, exchange, close_price, price_change, avg_volume_20d, avg_value_20d,
-                            trend, rs_index, rsi, volume_ratio, breakout_status, rule_score, category,
-                            ai_prob_5d, ai_prob_10d, ai_prob_20d, risk_level, positive_factors, risk_factors,
-                            news_sentiment, news_catalysts, news_score_adj, data_timestamp
-                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                    """, (
-                        r.get("run_id"), r.get("symbol"), r.get("exchange"), r.get("close_price"), r.get("price_change"),
-                        r.get("avg_volume_20d"), r.get("avg_value_20d"), r.get("trend"), r.get("rs_index"), r.get("rsi"),
-                        r.get("volume_ratio"), r.get("breakout_status"), r.get("rule_score"), r.get("category"),
-                        r.get("ai_prob_5d"), r.get("ai_prob_10d"), r.get("ai_prob_20d"), r.get("risk_level"),
-                        r.get("positive_factors"), r.get("risk_factors"), r.get("news_sentiment"), r.get("news_catalysts"),
-                        r.get("news_score_adj"), r.get("data_timestamp")
-                    ))
+                    results = seed_data.get("scan_results", [])
+                    for r in results:
+                        cursor.execute("""
+                            INSERT OR IGNORE INTO scan_results (
+                                run_id, symbol, exchange, close_price, price_change, avg_volume_20d, avg_value_20d,
+                                trend, rs_index, rsi, volume_ratio, breakout_status, rule_score, category,
+                                ai_prob_5d, ai_prob_10d, ai_prob_20d, risk_level, positive_factors, risk_factors,
+                                news_sentiment, news_catalysts, news_score_adj, data_timestamp
+                            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        """, (
+                            r.get("run_id"), r.get("symbol"), r.get("exchange"), r.get("close_price"), r.get("price_change"),
+                            r.get("avg_volume_20d"), r.get("avg_value_20d"), r.get("trend"), r.get("rs_index"), r.get("rsi"),
+                            r.get("volume_ratio"), r.get("breakout_status"), r.get("rule_score"), r.get("category"),
+                            r.get("ai_prob_5d"), r.get("ai_prob_10d"), r.get("ai_prob_20d"), r.get("risk_level"),
+                            r.get("positive_factors"), r.get("risk_factors"), r.get("news_sentiment"), r.get("news_catalysts"),
+                            r.get("news_score_adj"), r.get("data_timestamp")
+                        ))
 
-                plans = seed_data.get("trade_plans", [])
-                for p in plans:
-                    cursor.execute("""
-                        INSERT OR IGNORE INTO trade_plans (
-                            plan_id, created_at, symbol, decision, entry_price, stop_loss, take_profit_1, take_profit_2,
-                            quantity, position_value, risk_amount, holding_period_sessions, execution_mode, reason,
-                            invalidates_if, scan_run_id
-                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                    """, (
-                        p.get("plan_id"), p.get("created_at"), p.get("symbol"), p.get("decision"), p.get("entry_price"),
-                        p.get("stop_loss"), p.get("take_profit_1"), p.get("take_profit_2"), p.get("quantity"),
-                        p.get("position_value"), p.get("risk_amount"), p.get("holding_period_sessions"),
-                        p.get("execution_mode"), p.get("reason"), p.get("invalidates_if"), p.get("scan_run_id")
-                    ))
+                    plans = seed_data.get("trade_plans", [])
+                    for p in plans:
+                        cursor.execute("""
+                            INSERT OR IGNORE INTO trade_plans (
+                                plan_id, created_at, symbol, decision, entry_price, stop_loss, take_profit_1, take_profit_2,
+                                quantity, position_value, risk_amount, holding_period_sessions, execution_mode, reason,
+                                invalidates_if, scan_run_id
+                            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        """, (
+                            p.get("plan_id"), p.get("created_at"), p.get("symbol"), p.get("decision"), p.get("entry_price"),
+                            p.get("stop_loss"), p.get("take_profit_1"), p.get("take_profit_2"), p.get("quantity"),
+                            p.get("position_value"), p.get("risk_amount"), p.get("holding_period_sessions"),
+                            p.get("execution_mode"), p.get("reason"), p.get("invalidates_if"), p.get("scan_run_id")
+                        ))
 
-                # Nap user_positions tu seed_data neu chua co
+                # 2. Nap user_positions neu tren DB chua co
                 cursor.execute("SELECT COUNT(*) FROM user_positions")
                 if cursor.fetchone()[0] == 0:
                     for pos in seed_data.get("user_positions", []):
@@ -667,7 +668,7 @@ class StorageEngine:
                             (pos.get("symbol"), pos.get("quantity", 100), pos.get("avg_buy_price", 0.0), pos.get("note", ""), pos.get("created_at", ""), pos.get("updated_at", ""))
                         )
 
-                # Nap tracked_recommendations tu seed_data neu chua co
+                # 3. Nap tracked_recommendations neu chua co
                 cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='tracked_recommendations'")
                 if cursor.fetchone():
                     cursor.execute("SELECT COUNT(*) FROM tracked_recommendations")
@@ -682,7 +683,7 @@ class StorageEngine:
                         for tr in seed_data.get("tracked_recommendations", []):
                             cursor.execute(sql_t, tuple(tr.get(c) for c in t_cols))
 
-                # Nap paper_positions tu seed_data neu chua co
+                # 4. Nap paper_positions neu chua co
                 cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='paper_positions'")
                 if cursor.fetchone():
                     cursor.execute("SELECT COUNT(*) FROM paper_positions")
