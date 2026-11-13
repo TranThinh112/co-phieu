@@ -1001,10 +1001,26 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
         st.caption("Các mã được AI Stock Scanner khuyến nghị và đang theo dõi liên tục 14 ngày để đánh giá tỷ lệ thắng:")
         if not active_tracked.empty:
             tracked_rows = []
+            import datetime
             for _, r in active_tracked.iterrows():
                 sym = r["symbol"]
                 entry_p = float(r["entry_price"])
-                cur_p = float(r["current_price"])
+                
+                # Uu tien thi gia realtime
+                live_p = get_current_stock_price(sym, df_results, scanner)
+                cur_p = float(live_p) if (live_p is not None and live_p > 0) else float(r.get("current_price", entry_p))
+                
+                # Tinh so ngay giao dich thuc te da troi qua tu ngay de xuat
+                try:
+                    rec_date = datetime.datetime.strptime(str(r["recommendation_date"]), "%Y-%m-%d").date()
+                    now_date = datetime.datetime.now().date()
+                    if now_date > rec_date:
+                        calc_days = len([d for d in (rec_date + datetime.timedelta(n) for n in range(1, (now_date - rec_date).days + 1)) if d.weekday() < 5])
+                    else:
+                        calc_days = 0
+                except Exception:
+                    calc_days = int(r.get("days_tracked", 0))
+                display_days = max(calc_days, int(r.get("days_tracked", 0)))
                 eval_res = ExitAdvisor.evaluate_exit(
                     symbol=sym,
                     buy_price=entry_p,
@@ -1017,7 +1033,7 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
                     "Giá Mua Đề Xuất": f"{entry_p:,.0f} đ",
                     "Thị Giá": f"{cur_p:,.0f} đ",
                     "Lãi/Lỗ (%)": f"{pnl_pct:+.2f}%",
-                    "Thời Gian Theo Dõi": f"{r['days_tracked']}/14 ngày",
+                    "Thời Gian Theo Dõi": f"{display_days}/14 ngày",
                     "Hành Động": eval_res["action_label"],
                     "Chốt Lời TP1 (+8%)": f"{eval_res['tp1_price']:,.0f} đ",
                     "Chốt Lời TP2 (+15%)": f"{eval_res['tp2_price']:,.0f} đ",
@@ -1056,7 +1072,10 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
                 sym = p["symbol"]
                 p_qty = int(p["quantity"])
                 p_buy = float(p["avg_buy_price"])
-                p_cur = float(p["current_price"])
+                
+                # Uu tien thi gia realtime
+                live_p = get_current_stock_price(sym, df_results, scanner)
+                p_cur = float(live_p) if (live_p is not None and live_p > 0) else float(p.get("current_price", p_buy))
                 eval_res = ExitAdvisor.evaluate_exit(
                     symbol=sym,
                     buy_price=p_buy,
