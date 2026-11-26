@@ -1,6 +1,7 @@
 import time
 import threading
 import datetime
+import os
 from pathlib import Path
 from typing import Dict, Any, Optional
 
@@ -22,6 +23,8 @@ class MarketAutopilotScheduler:
         self.last_afternoon_date: Optional[str] = None
         self.last_post_market_date: Optional[str] = None
         self.last_weekend_date: Optional[str] = None
+        self.last_scan_at: Optional[datetime.datetime] = None
+        self.scan_interval_seconds = max(60, int(os.getenv('SCAN_INTERVAL_SECONDS', '300')))
         self.logs: list = []
 
     @classmethod
@@ -98,6 +101,7 @@ class MarketAutopilotScheduler:
             scanner = MarketScanner(provider=VnstockProvider(universe=universe))
             df_res, regime = scanner.run_market_scan()
             now_vn = MarketSessionManager.get_vietnam_now()
+            self.last_scan_at = now_vn
             
             self.last_action = f'Quét thành công {len(df_res)} mã ({scan_type})'
             self.last_run_time = now_vn.strftime('%H:%M:%S %d/%m/%Y')
@@ -146,20 +150,19 @@ class MarketAutopilotScheduler:
 
                 # Chi tu dong trong cac ngay trong tuan (Thu 2 - Thu 6)
                 if weekday < 5:
-                    # 1. Quet phien sang (09:00 - 11:30), once per day.
+                    # 1. Quet lap lai trong phien sang (09:00 - 11:30).
                     if datetime.time(9, 0) <= curr_t <= datetime.time(11, 30):
-                        if self.last_morning_date != today_str:
-                            self.log(f'Phát hiện mở phiên sáng {today_str}. Bắt đầu tự động quét...')
+                        if self._scan_due(now_vn):
+                            self.log(f'Đang quét phiên sáng {today_str}...')
                             self.trigger_scan_now('AUTO_MORNING')
                             self.last_morning_date = today_str
 
-                    # 2. Quet phien chieu (13:00 - 15:00), once per day.
+                    # 2. Quet lap lai trong phien chieu (13:00 - 15:00).
                     elif datetime.time(13, 0) <= curr_t <= datetime.time(15, 0):
-                        if self.last_afternoon_date != today_str:
-                            self.log(f'Phát hiện mở phiên chiều {today_str}. Bắt đầu tự động quét...')
+                        if self._scan_due(now_vn):
+                            self.log(f'Đang quét phiên chiều {today_str}...')
                             self.trigger_scan_now('AUTO_AFTERNOON')
                             self.last_afternoon_date = today_str
-
                     # 3. Tong ket sau phien & doc tin (15:00 - 16:30), once per day.
                     elif datetime.time(15, 0) <= curr_t <= datetime.time(16, 30):
                         if self.last_post_market_date != today_str:
@@ -204,6 +207,12 @@ class MarketAutopilotScheduler:
             else:
                 # Trong phien giao dich: kiem tra deu dan 30 giay
                 time.sleep(30)
+
+    def _scan_due(self, now_vn: datetime.datetime) -> bool:
+        """Return true when the next in-session scan interval has elapsed."""
+        if self.last_scan_at is None:
+            return True
+        return (now_vn - self.last_scan_at).total_seconds() >= self.scan_interval_seconds
 
 
 def start_background_scheduler():

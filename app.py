@@ -282,9 +282,8 @@ if "learning_engine" not in st.session_state:
     st.session_state.learning_engine = SelfLearningEngine(db_path=storage.db_path)
 learning_engine = st.session_state.learning_engine
 
-# Scheduler runs in the dedicated Railway worker, not inside the web process.
-# Set RUN_SCHEDULER=true only for an intentional single-process local run.
-if os.getenv("RUN_SCHEDULER", "false").lower() == "true":
+# The web process owns the scheduler; it sleeps outside trading sessions.
+if os.getenv("RUN_SCHEDULER", "true").lower() == "true":
     autopilot = start_background_scheduler()
 else:
     autopilot = None
