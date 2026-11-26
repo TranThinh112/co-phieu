@@ -227,6 +227,26 @@ class RecommendationTracker:
                 ORDER BY recommendation_date DESC, return_pct DESC
             """, conn)
 
+    def update_live_prices(self, price_map: Dict[str, float]):
+        """Refresh displayed P/L without advancing the 14-session clock."""
+        if not price_map:
+            return
+        with connect(self.db_path) as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT id, symbol, entry_price, highest_price, lowest_price FROM tracked_recommendations WHERE status = 'DANG_THEO_DOI'")
+            for rec_id, symbol, entry, high_p, low_p in cursor.fetchall():
+                if symbol not in price_map or not entry:
+                    continue
+                current = float(price_map[symbol])
+                return_pct = round(((current - float(entry)) / float(entry)) * 100.0, 2)
+                cursor.execute("""
+                    UPDATE tracked_recommendations
+                    SET current_price = %s, return_pct = %s,
+                        highest_price = %s, lowest_price = %s
+                    WHERE id = %s
+                """, (current, return_pct, max(float(high_p or current), current), min(float(low_p or current), current), rec_id))
+            conn.commit()
+
     def get_completed_recommendations(self) -> pd.DataFrame:
         """Lấy lịch sử các khuyến nghị đã hoàn thành để đúc rút kinh nghiệm & tự học."""
         with connect(self.db_path) as conn:

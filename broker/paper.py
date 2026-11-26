@@ -70,6 +70,17 @@ class PaperBroker(BaseBrokerAdapter):
                 })
             return positions
 
+    def update_market_prices(self, price_map: Dict[str, float]):
+        """Refresh paper position prices without creating orders."""
+        if not price_map:
+            return
+        now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        with connect(self.db_path) as conn:
+            cursor = conn.cursor()
+            for symbol, price in price_map.items():
+                cursor.execute("UPDATE paper_positions SET current_price = %s, updated_at = %s WHERE symbol = %s AND quantity > 0", (float(price), now_str, symbol.upper()))
+            conn.commit()
+
     def get_open_orders(self) -> List[Dict[str, Any]]:
         with connect(self.db_path) as conn:
             cursor = conn.cursor()

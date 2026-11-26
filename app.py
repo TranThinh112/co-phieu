@@ -303,6 +303,23 @@ if "scanner" not in st.session_state or st.session_state.get("_last_provider") !
     st.session_state._last_provider = provider_choice
 scanner = st.session_state.scanner
 
+def refresh_live_portfolio_prices():
+    """Refresh tracked and paper P/L from the provider's latest price bars."""
+    symbols = set(tracker.get_active_recommendations().get("symbol", []))
+    symbols.update(p["symbol"] for p in paper_broker.get_positions())
+    price_map = {}
+    for symbol in symbols:
+        try:
+            df_symbol, _ = scanner.downloader.fetch_symbol_data(symbol)
+            if df_symbol is not None and not df_symbol.empty:
+                price_map[symbol] = float(df_symbol["close"].iloc[-1])
+        except Exception:
+            continue
+    tracker.update_live_prices(price_map)
+    paper_broker.update_market_prices(price_map)
+
+refresh_live_portfolio_prices()
+
 if "news_provider" not in st.session_state:
     st.session_state.news_provider = NewsProvider(storage=storage)
 news_provider = st.session_state.news_provider
