@@ -1,4 +1,5 @@
 import time
+import os
 from typing import Dict, List, Optional, Tuple
 import pandas as pd
 
@@ -18,7 +19,8 @@ class DataDownloader:
         self.universe = StockUniverse()
         self.provider = provider or VnstockProvider(self.universe)
         self.use_cache = use_cache
-        self.cache = DataCache() if use_cache else None
+        cache_ttl = float(os.getenv("DATA_CACHE_TTL_MINUTES", "5")) / 60.0
+        self.cache = DataCache(ttl_hours=cache_ttl) if use_cache else None
 
     def fetch_symbol_data(self, symbol: str, start_date: str = "", end_date: str = "", force_reload: bool = False) -> Tuple[pd.DataFrame, List[str]]:
         symbol = symbol.upper()

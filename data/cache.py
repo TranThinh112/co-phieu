@@ -9,7 +9,7 @@ from typing import Optional
 class DataCache:
     """Manages PostgreSQL cache for downloaded daily stock price bars."""
 
-    def __init__(self, db_path: str = "", ttl_hours: float = 12.0):
+    def __init__(self, db_path: str = "", ttl_hours: float = 5.0 / 60.0):
         self.db_path = db_path or os.getenv("DATABASE_URL", "")
         self.ttl_hours = ttl_hours
         self._init_db()
