@@ -1,4 +1,4 @@
-﻿import time
+import time
 import threading
 import datetime
 from pathlib import Path
@@ -211,3 +211,4 @@ def start_background_scheduler():
     scheduler = MarketAutopilotScheduler.get_instance()
     scheduler.start()
     return scheduler
+

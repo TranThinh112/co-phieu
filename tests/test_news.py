@@ -3,7 +3,7 @@ from data.storage import StorageEngine
 
 
 def test_news_cache_round_trip(tmp_path):
-    storage = StorageEngine(str(tmp_path / "scanner.db"))
+    storage = StorageEngine()
     article = {
         "article_id": "article-1", "symbol": "FPT", "title": "FPT test headline",
         "summary": "RSS metadata only", "source": "Test Source",
@@ -23,3 +23,6 @@ def test_news_provider_deduplicates_by_article_id():
         {"article_id": "one", "published_at": "2026-10-12", "title": "B"},
     ]
     assert provider._deduplicate(articles)[0]["title"] == "B"
+
+
+

@@ -17,8 +17,8 @@ ai-stock-scanner/
 │   ├── providers/              # Lớp Data Providers (Base, YFinance, CSV, Synthetic)
 │   ├── downloader.py           # Bộ tải dữ liệu tích hợp cache & validation
 │   ├── validator.py            # Kiểm tra chất lượng & làm sạch dữ liệu
-│   ├── cache.py                # Cache SQLite lưu dữ liệu lịch sử
-│   └── storage.py              # SQLite storage lưu kết quả scan, watchlist, paper trades
+│   ├── cache.py                # Cache PostgreSQL lưu dữ liệu lịch sử
+│   └── storage.py              # PostgreSQL storage lưu kết quả scan, watchlist, paper trades
 ├── universe/
 │   └── stock_universe.py       # Quản lý Universe cổ phiếu, ngành và sàn
 ├── features/
@@ -49,11 +49,11 @@ ai-stock-scanner/
 │   └── metrics.py              # Chỉ số hiệu năng (Return, CAGR, Max Drawdown, Sharpe, Win Rate)
 ├── broker/
 │   ├── base.py                 # Interface Adapter môi giới
-│   ├── paper.py                # Paper Broker hoạt động đầy đủ trên SQLite
+│   ├── paper.py                # Paper Broker hoạt động đầy đủ trên PostgreSQL
 │   └── vndirect.py             # Placeholder Adapter tích hợp VNDirect Open API tương lai
 ├── reports/
 │   └── export.py               # Xuất báo cáo CSV / JSON
-├── database/                   # SQLite databases (cache.db, scanner.db)
+├── database/                   # PostgreSQL schema/configuration
 ├── tests/                      # Bộ kiểm thử tự động pytest
 ├── requirements.txt            # Danh sách thư viện phụ thuộc
 ├── .env.example                # Cấu hình biến môi trường mẫu
@@ -148,3 +148,5 @@ Hệ thống đã chuẩn bị sẵn lớp `VNDirectAdapter` kế thừa `BaseBr
 - Không có cổ phiếu nào chắc chắn tăng giá 100%. Mọi quyết định đầu tư thực tế hoàn toàn thuộc trách nhiệm của người dùng.
 - Phiên bản hiện tại chỉ sử dụng tài khoản Paper Trading (không đặt lệnh tiền thật).
 "# co-phieu" 
+
+

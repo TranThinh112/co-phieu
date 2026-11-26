@@ -6,6 +6,9 @@ import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import streamlit as st
+from dotenv import load_dotenv
+
+load_dotenv()
 
 sys.stdout.reconfigure(encoding="utf-8")
 
@@ -278,8 +281,12 @@ if "learning_engine" not in st.session_state:
     st.session_state.learning_engine = SelfLearningEngine(db_path=storage.db_path)
 learning_engine = st.session_state.learning_engine
 
-# Khoi dong scheduler ngay khi Streamlit boot de chay ngam doc lap khong can mo tab
-autopilot = start_background_scheduler()
+# Scheduler runs in the dedicated Railway worker, not inside the web process.
+# Set RUN_SCHEDULER=true only for an intentional single-process local run.
+if os.getenv("RUN_SCHEDULER", "false").lower() == "true":
+    autopilot = start_background_scheduler()
+else:
+    autopilot = None
 st.session_state.autopilot_scheduler = autopilot
 
 if provider_choice == "Dữ liệu Mẫu (Unit Test)":
@@ -313,10 +320,12 @@ if not st.session_state.regime_info and latest_summary:
     st.session_state.regime_info = latest_summary
 
 st.sidebar.markdown("---")
-auto_st = autopilot.get_status()
+auto_st = autopilot.get_status() if autopilot else {"is_running": False, "last_action": "Web mode - scheduler chạy ở worker", "last_run_time": "", "next_action": "Worker Railway", "next_time_str": "", "logs": []}
+auto_label = "ĐANG CHẠY" if autopilot else "CHẠY Ở WORKER RAILWAY"
+auto_color = "#10b981" if autopilot else "#f59e0b"
 st.sidebar.markdown(f"""
-<div style="background:#0f172a; border:1px solid #1e293b; border-left:4px solid #10b981; border-radius:6px; padding:10px; margin-bottom:12px;">
-    <span style="color:#10b981; font-weight:700; font-size:0.88rem;">🟢 BOT TỰ ĐỘNG (AUTOPILOT): ĐANG BẬT</span><br>
+<div style="background:#0f172a; border:1px solid #1e293b; border-left:4px solid {auto_color}; border-radius:6px; padding:10px; margin-bottom:12px;">
+    <span style="color:{auto_color}; font-weight:700; font-size:0.88rem;">🤖 BOT TỰ ĐỘNG (AUTOPILOT): {auto_label}</span><br>
     <span style="color:#e2e8f0; font-size:0.8rem; font-weight:600;">⏰ Lịch quét tiếp theo:</span><br>
     <span style="color:#38bdf8; font-size:0.78rem; font-weight:700;">• {auto_st['next_time_str']} ({auto_st['next_action']})</span><br>
     <span style="color:#94a3b8; font-size:0.75rem;">• Lần chạy gần nhất: {auto_st['last_run_time']}</span><br>
@@ -383,7 +392,7 @@ if st.query_params.get("page") != curr_slug:
 if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
     st.title("🎯 Cổ Phiếu Nên Mua & Quản Trị Vị Thế")
     c_auto_info, c_auto_btn = st.columns([3.8, 1.2])
-    auto_st_main = autopilot.get_status()
+    auto_st_main = autopilot.get_status() if autopilot else {"is_running": False, "last_action": "Web mode - scheduler chạy ở worker", "last_run_time": "", "next_action": "Worker Railway", "next_time_str": "", "logs": []}
     c_auto_info.markdown(f"""
     <div style="background:#111b2b; border:1px solid #1e3a8a; border-left:4px solid #3b82f6; border-radius:6px; padding:8px 14px; margin-bottom:10px; font-size:0.84rem; color:#bfdbfe;">
         🤖 <strong>Hệ Thống Tự Động:</strong> Bot tự chạy ngầm lúc <strong>09:05</strong> (mở phiên sáng), <strong>13:05</strong> (mở phiên chiều) và <strong>15:05</strong> (chốt phiên & tin tức). Tiếp theo: <span style="color:#60a5fa; font-weight:700;">{auto_st_main['next_time_str']}</span>
@@ -391,8 +400,11 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
     """, unsafe_allow_html=True)
     c_auto_btn.write("<div style='height:2px;'></div>", unsafe_allow_html=True)
     if c_auto_btn.button("⚡ Quét Cập Nhật Ngay", use_container_width=True, key="btn_instant_manual_scan"):
-        with st.spinner("Đang quét toàn thị trường..."):
-            res = autopilot.trigger_scan_now("MANUAL")
+        if autopilot is None:
+            st.warning("Web đang ở chế độ đọc. Hãy chạy worker để quét tự động hoặc bật RUN_SCHEDULER=true khi chạy local.")
+        else:
+            with st.spinner("Đang quét toàn thị trường..."):
+                res = autopilot.trigger_scan_now("MANUAL")
             st.session_state.scan_results = storage.get_latest_scan_results()
             st.session_state.latest_summary = storage.get_latest_run_summary()
             st.session_state.regime_info = st.session_state.latest_summary
@@ -1697,3 +1709,5 @@ elif page == "⭐ Danh Mục Theo Dõi (Watchlist)":
             st.rerun()
     else:
         st.info("Danh mục theo dõi đang trống. Hãy thêm mã cổ phiếu để tiện quan sát.")
+
+

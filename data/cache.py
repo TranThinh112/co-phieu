@@ -1,21 +1,21 @@
-import sqlite3
+from data.db import connect
 import datetime
 import json
+import os
 import pandas as pd
 from pathlib import Path
 from typing import Optional
 
 class DataCache:
-    """Manages SQLite cache for downloaded daily stock price bars."""
+    """Manages PostgreSQL cache for downloaded daily stock price bars."""
 
-    def __init__(self, db_path: str = "database/cache.db", ttl_hours: float = 12.0):
-        self.db_path = Path(db_path)
-        self.db_path.parent.mkdir(parents=True, exist_ok=True)
+    def __init__(self, db_path: str = "", ttl_hours: float = 12.0):
+        self.db_path = db_path or os.getenv("DATABASE_URL", "")
         self.ttl_hours = ttl_hours
         self._init_db()
 
     def _init_db(self):
-        with sqlite3.connect(self.db_path) as conn:
+        with connect(self.db_path) as conn:
             cursor = conn.cursor()
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS price_cache (
@@ -28,9 +28,9 @@ class DataCache:
 
     def get(self, symbol: str) -> Optional[pd.DataFrame]:
         symbol = symbol.upper()
-        with sqlite3.connect(self.db_path) as conn:
+        with connect(self.db_path) as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT updated_at, data_json FROM price_cache WHERE symbol = ?", (symbol,))
+            cursor.execute("SELECT updated_at, data_json FROM price_cache WHERE symbol = %s", (symbol,))
             row = cursor.fetchone()
             if not row:
                 return None
@@ -55,16 +55,18 @@ class DataCache:
         now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         data_json = df.to_json(orient="records")
 
-        with sqlite3.connect(self.db_path) as conn:
+        with connect(self.db_path) as conn:
             cursor = conn.cursor()
             cursor.execute("""
-                INSERT OR REPLACE INTO price_cache (symbol, updated_at, data_json)
-                VALUES (?, ?, ?)
+                INSERT INTO price_cache (symbol, updated_at, data_json)
+                VALUES (%s, %s, %s)
             """, (symbol, now_str, data_json))
             conn.commit()
 
     def clear(self):
-        with sqlite3.connect(self.db_path) as conn:
+        with connect(self.db_path) as conn:
             cursor = conn.cursor()
             cursor.execute("DELETE FROM price_cache")
             conn.commit()
+
+

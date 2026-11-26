@@ -1,5 +1,6 @@
 import json
-import sqlite3
+import os
+from data.db import connect
 from pathlib import Path
 from typing import Dict, Any, List, Optional
 import pandas as pd
@@ -13,7 +14,7 @@ class SelfLearningEngine:
     def __init__(self, db_path: Optional[str] = None):
         if db_path is None:
             project_root = Path(__file__).resolve().parent.parent
-            self.db_path = str(project_root / "database" / "scanner.db")
+            self.db_path = os.getenv("DATABASE_URL", "")
             self.weights_file = project_root / "learning" / "learned_weights.json"
         else:
             self.db_path = str(db_path)
@@ -21,7 +22,7 @@ class SelfLearningEngine:
 
     def compute_performance_metrics(self) -> Dict[str, Any]:
         """Tính toán các chỉ số hiệu suất tổng thể từ các khuyến nghị đã hoàn thành."""
-        with sqlite3.connect(self.db_path) as conn:
+        with connect(self.db_path) as conn:
             query = """
                 SELECT outcome, return_pct, days_tracked, rule_score
                 FROM tracked_recommendations
@@ -68,7 +69,7 @@ class SelfLearningEngine:
 
     def analyze_factors_effectiveness(self) -> List[Dict[str, Any]]:
         """Đo lường xác suất thắng thực tế của từng loại chất xúc tác tin tức & tín hiệu kỹ thuật."""
-        with sqlite3.connect(self.db_path) as conn:
+        with connect(self.db_path) as conn:
             cursor = conn.cursor()
             cursor.execute("""
                 SELECT outcome, return_pct, positive_factors, rule_score
@@ -224,3 +225,5 @@ class SelfLearningEngine:
             "⚡ **Tối ưu hóa thời gian nắm giữ:** Chu kỳ 10-14 ngày là thời gian vàng để dòng tiền thông minh hấp thụ hết tin tức và đẩy giá chạm mục tiêu 1R - 2R.",
             "📈 **Cải thiện thuật toán:** Hệ thống đã tự động nâng trọng số cho tín hiệu 'Sức mạnh tương đối (RS)' từ 0.20 lên 0.25 và giảm tỷ trọng lướt sóng ngắn hạn."
         ]
+
+

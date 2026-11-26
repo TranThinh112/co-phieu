@@ -1,17 +1,17 @@
 import uuid
-import sqlite3
+from data.db import connect
 import datetime
-from pathlib import Path
+import os
 from typing import Dict, Any, List, Optional
 from broker.base import BaseBrokerAdapter
 from data.storage import StorageEngine
 
 class PaperBroker(BaseBrokerAdapter):
-    """Fully functional Paper Trading Simulator backed by SQLite."""
+    """Fully functional Paper Trading Simulator backed by PostgreSQL."""
 
-    def __init__(self, db_path: str = "database/scanner.db", initial_cash: float = 100000000.0):
-        self.db_path = Path(db_path)
-        self.storage = StorageEngine(str(db_path))
+    def __init__(self, db_path: str | None = None, initial_cash: float = 100000000.0):
+        self.db_path = db_path or os.getenv("DATABASE_URL", "")
+        self.storage = StorageEngine(self.db_path)
         self.initial_cash = initial_cash
         self._init_account()
 
@@ -24,7 +24,7 @@ class PaperBroker(BaseBrokerAdapter):
         return True
 
     def get_account_balance(self) -> Dict[str, float]:
-        with sqlite3.connect(self.db_path) as conn:
+        with connect(self.db_path) as conn:
             cursor = conn.cursor()
             cursor.execute("SELECT symbol, quantity, avg_buy_price, current_price FROM paper_positions")
             rows = cursor.fetchall()
@@ -50,7 +50,7 @@ class PaperBroker(BaseBrokerAdapter):
             }
 
     def get_positions(self) -> List[Dict[str, Any]]:
-        with sqlite3.connect(self.db_path) as conn:
+        with connect(self.db_path) as conn:
             cursor = conn.cursor()
             cursor.execute("SELECT symbol, quantity, avg_buy_price, current_price, updated_at FROM paper_positions WHERE quantity > 0")
             rows = cursor.fetchall()
@@ -71,7 +71,7 @@ class PaperBroker(BaseBrokerAdapter):
             return positions
 
     def get_open_orders(self) -> List[Dict[str, Any]]:
-        with sqlite3.connect(self.db_path) as conn:
+        with connect(self.db_path) as conn:
             cursor = conn.cursor()
             cursor.execute("SELECT order_id, symbol, side, quantity, price, status, created_at FROM paper_orders WHERE status = 'PENDING'")
             rows = cursor.fetchall()
@@ -95,11 +95,11 @@ class PaperBroker(BaseBrokerAdapter):
         now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         # Anti-duplicate order check: check if identical order was placed in last 5 seconds
-        with sqlite3.connect(self.db_path) as conn:
+        with connect(self.db_path) as conn:
             cursor = conn.cursor()
             cursor.execute("""
                 SELECT order_id FROM paper_orders 
-                WHERE symbol = ? AND side = ? AND quantity = ? AND status IN ('PENDING', 'FILLED')
+                WHERE symbol = %s AND side = %s AND quantity = %s AND status IN ('PENDING', 'FILLED')
                 ORDER BY created_at DESC LIMIT 1
             """, (symbol, side, quantity))
             last_order = cursor.fetchone()
@@ -111,11 +111,11 @@ class PaperBroker(BaseBrokerAdapter):
             status = "FILLED"
             cursor.execute("""
                 INSERT INTO paper_orders (order_id, symbol, side, quantity, price, status, created_at, updated_at, is_paper)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, 1)
             """, (order_id, symbol, side, quantity, price, status, now_str, now_str))
 
             # Update paper positions
-            cursor.execute("SELECT quantity, avg_buy_price FROM paper_positions WHERE symbol = ?", (symbol,))
+            cursor.execute("SELECT quantity, avg_buy_price FROM paper_positions WHERE symbol = %s", (symbol,))
             pos = cursor.fetchone()
 
             if side == "BUY":
@@ -125,17 +125,17 @@ class PaperBroker(BaseBrokerAdapter):
                     raw_avg = ((old_qty * old_avg) + (quantity * price)) / new_qty
                     new_avg = float(round(raw_avg / 10.0) * 10)
                     norm_p = float(round(price / 10.0) * 10)
-                    cursor.execute("UPDATE paper_positions SET quantity = ?, avg_buy_price = ?, current_price = ?, updated_at = ? WHERE symbol = ?",
+                    cursor.execute("UPDATE paper_positions SET quantity = %s, avg_buy_price = %s, current_price = %s, updated_at = %s WHERE symbol = %s",
                                    (new_qty, new_avg, norm_p, now_str, symbol))
                 else:
                     norm_p = float(round(price / 10.0) * 10)
-                    cursor.execute("INSERT INTO paper_positions (symbol, quantity, avg_buy_price, current_price, updated_at) VALUES (?, ?, ?, ?, ?)",
+                    cursor.execute("INSERT INTO paper_positions (symbol, quantity, avg_buy_price, current_price, updated_at) VALUES (%s, %s, %s, %s, %s)",
                                    (symbol, quantity, norm_p, norm_p, now_str))
             elif side == "SELL":
                 if pos:
                     old_qty, old_avg = pos
                     new_qty = max(0, old_qty - quantity)
-                    cursor.execute("UPDATE paper_positions SET quantity = ?, current_price = ?, updated_at = ? WHERE symbol = ?",
+                    cursor.execute("UPDATE paper_positions SET quantity = %s, current_price = %s, updated_at = %s WHERE symbol = %s",
                                    (new_qty, price, now_str, symbol))
 
             conn.commit()
@@ -153,16 +153,16 @@ class PaperBroker(BaseBrokerAdapter):
 
     def cancel_order(self, order_id: str) -> Dict[str, Any]:
         now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        with sqlite3.connect(self.db_path) as conn:
+        with connect(self.db_path) as conn:
             cursor = conn.cursor()
-            cursor.execute("UPDATE paper_orders SET status = 'CANCELLED', updated_at = ? WHERE order_id = ?", (now_str, order_id))
+            cursor.execute("UPDATE paper_orders SET status = 'CANCELLED', updated_at = %s WHERE order_id = %s", (now_str, order_id))
             conn.commit()
             return {"order_id": order_id, "status": "CANCELLED", "message": "Paper order cancelled"}
 
     def get_order_status(self, order_id: str) -> Dict[str, Any]:
-        with sqlite3.connect(self.db_path) as conn:
+        with connect(self.db_path) as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT order_id, symbol, side, quantity, price, status, created_at FROM paper_orders WHERE order_id = ?", (order_id,))
+            cursor.execute("SELECT order_id, symbol, side, quantity, price, status, created_at FROM paper_orders WHERE order_id = %s", (order_id,))
             row = cursor.fetchone()
             if row:
                 return {
@@ -175,3 +175,5 @@ class PaperBroker(BaseBrokerAdapter):
                     "created_at": row[6]
                 }
             return {"order_id": order_id, "status": "NOT_FOUND"}
+
+

@@ -1,5 +1,6 @@
 database:
-  db_path: "database/scanner.db"
+  backend: "postgres"
+  url_env: "DATABASE_URL"
 
 data_provider:
   default_provider: "vnstock"

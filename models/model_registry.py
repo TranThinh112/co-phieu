@@ -1,19 +1,20 @@
 import json
 import datetime
-import sqlite3
+import os
 from pathlib import Path
+from data.db import connect
 from typing import Dict, Any, List, Optional
 from data.storage import StorageEngine
 
 class ModelRegistry:
     """Manages metadata, versioning and persistence for trained ML models."""
 
-    def __init__(self, registry_file: str = "models/saved_models/registry.json", db_path: str = "database/scanner.db"):
+    def __init__(self, registry_file: str = "models/saved_models/registry.json", db_path: str = ""):
         self.registry_file = Path(registry_file)
         self.registry_file.parent.mkdir(parents=True, exist_ok=True)
-        self.db_path = Path(db_path)
+        self.db_path = db_path or os.getenv("DATABASE_URL", "")
         # Ensure database tables are created
-        self.storage = StorageEngine(str(db_path))
+        self.storage = StorageEngine(self.db_path)
         self._init_file()
 
     def _init_file(self):
@@ -41,11 +42,11 @@ class ModelRegistry:
             json.dump(registry, f, indent=2, ensure_ascii=False)
 
         try:
-            with sqlite3.connect(self.db_path) as conn:
+            with connect(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute("""
-                    INSERT OR REPLACE INTO model_registry (model_id, horizon, trained_at, train_samples, features, metrics_json, filepath)
-                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                    INSERT INTO model_registry (model_id, horizon, trained_at, train_samples, features, metrics_json, filepath)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
                 """, (
                     model_id,
                     horizon,
@@ -65,3 +66,5 @@ class ModelRegistry:
         with open(self.registry_file, "r", encoding="utf-8") as f:
             registry = json.load(f)
         return registry.get(str(horizon))
+
+

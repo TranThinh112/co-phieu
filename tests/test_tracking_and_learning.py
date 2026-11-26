@@ -1,7 +1,5 @@
-import tempfile
+import os
 import pytest
-import gc
-from pathlib import Path
 from learning.tracker import RecommendationTracker
 from learning.feedback_loop import SelfLearningEngine
 from strategies.exit_strategy import ExitAdvisor
@@ -10,14 +8,10 @@ from features.limit_price import LimitPricePredictor
 
 @pytest.fixture
 def temp_db():
-    with tempfile.NamedTemporaryFile(suffix=".db", delete=False) as f:
-        db_path = f.name
-    yield db_path
-    gc.collect()
-    try:
-        Path(db_path).unlink(missing_ok=True)
-    except Exception:
-        pass
+    database_url = os.getenv("DATABASE_URL")
+    if not database_url:
+        pytest.skip("DATABASE_URL is required for PostgreSQL tests")
+    yield database_url
 
 
 def test_tracker_enroll_and_tp_win(temp_db):
@@ -136,3 +130,5 @@ def test_limit_price_calculations_and_prediction():
         "has_fatal_news": True, "negative_warnings": ["Khởi tố lãnh đạo"]
     })
     assert "sàn" in pred_down["next_session_prediction"].lower()
+
+

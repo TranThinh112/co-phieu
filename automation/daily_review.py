@@ -30,7 +30,7 @@ def run_autopilot_paper_trading(df_results, active_tracked, tracker, learning_en
     5. Đưa kết quả thắng/thua vào vòng lặp Self-Learning Feedback Loop để bot tự học và thông minh hơn.
     """
     from broker.paper import PaperBroker
-    import sqlite3
+    from data.db import connect
 
     print("[AutopilotPaper] Kích hoạt cơ chế tự động đánh giá & giao dịch tiền ảo...")
     broker = PaperBroker()
@@ -61,8 +61,8 @@ def run_autopilot_paper_trading(df_results, active_tracked, tracker, learning_en
                 broker.place_order(pos_sym, "SELL", pos_qty, curr_p)
                 learning_engine.run_offline_learning_cycle()
             else:
-                with sqlite3.connect(broker.db_path) as conn:
-                    conn.cursor().execute("UPDATE paper_positions SET current_price = ? WHERE symbol = ?", (curr_p, pos_sym))
+                with connect(broker.db_path) as conn:
+                    conn.cursor().execute("UPDATE paper_positions SET current_price = %s WHERE symbol = %s", (curr_p, pos_sym))
                     conn.commit()
 
     # 2. LỰA CHỌN 1 MÃ XUẤT SẮC NHẤT TRONG TOP 3 ĐỂ MUA ẢO
@@ -190,3 +190,5 @@ def run_daily_post_market_evaluation(force: bool = False) -> dict:
 
 if __name__ == "__main__":
     run_daily_post_market_evaluation(force=True)
+
+
