@@ -391,7 +391,7 @@ class StorageEngine:
 
     def execute_user_buy(self, symbol: str, buy_qty: int, buy_price: float = None, fee_rate: float = 0.0015, note: str = "") -> dict:
         """Mua them vao: Tang so luong va tinh lai gia mua trung binh (DCA) chuan 100% gom ca phi giao dich/thue hoac thi gia tu dong."""
-        from data.db import connect, datetime
+        from data.db import connect
         now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         sym_clean = str(symbol).strip().upper()
 
@@ -452,7 +452,7 @@ class StorageEngine:
 
     def execute_user_sell(self, symbol: str, sell_qty: int, sell_price: float, note: str = "") -> dict:
         """Ban ra mot phan hoac toan bo: Giu nguyen gia TB cua so CP con lai va chot loi/lo thuc te."""
-        from data.db import connect, datetime
+        from data.db import connect
         now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         sym_clean = str(symbol).strip().upper()
         with connect(self.db_path) as conn:
@@ -514,7 +514,7 @@ class StorageEngine:
 
     def update_user_position_direct(self, symbol: str, quantity: int, avg_buy_price: float, note: str = ""):
         """Cap nhat truc tiep gia von va so luong khop 100% theo app chung khoan cua nguoi dung."""
-        from data.db import connect, datetime
+        from data.db import connect
         now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         sym_clean = str(symbol).strip().upper()
         with connect(self.db_path) as conn:
@@ -529,7 +529,7 @@ class StorageEngine:
             # Ghi log dieu chinh
             cur.execute("""
                 INSERT INTO user_trade_history (symbol, side, quantity, price, old_avg_price, new_avg_price, realized_pnl, pnl_pct, trade_time, note)
-                VALUES (%s, "ADJUST", %s, %s, %s, %s, 0.0, 0.0, %s, %s)
+                VALUES (%s, 'ADJUST', %s, %s, %s, %s, 0.0, 0.0, %s, %s)
             """, (sym_clean, int(quantity), float(avg_buy_price), float(avg_buy_price), float(avg_buy_price), now_str, note or "Dieu chinh khop app"))
             conn.commit()
 
