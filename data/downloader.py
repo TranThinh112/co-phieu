@@ -39,7 +39,7 @@ class DataDownloader:
 
         return clean_df, warnings
 
-    def fetch_universe_data(self, symbols: Optional[List[str]] = None, start_date: str = "", end_date: str = "", max_workers: int = 8) -> Dict[str, pd.DataFrame]:
+    def fetch_universe_data(self, symbols: Optional[List[str]] = None, start_date: str = "", end_date: str = "", max_workers: int = 4) -> Dict[str, pd.DataFrame]:
         target_symbols = symbols or self.universe.get_all_symbols()
         data_dict = {}
 

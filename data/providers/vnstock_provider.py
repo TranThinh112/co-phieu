@@ -1,6 +1,7 @@
 import datetime
 import time
 import requests
+import random
 import pandas as pd
 from typing import List, Dict, Any, Optional
 from data.providers.base import BaseDataProvider
@@ -33,6 +34,20 @@ class VnstockProvider(BaseDataProvider):
     def _date_to_timestamp(self, date_str: str, default_ts: int) -> int:
         if not date_str:
             return default_ts
+
+    def _get_json(self, url: str) -> Dict[str, Any]:
+        """Read a chart response safely and retry transient/rate-limit failures."""
+        for attempt in range(3):
+            try:
+                response = requests.get(url, headers=self.HEADERS, timeout=15)
+                if response.status_code == 200:
+                    payload = response.json()
+                    if isinstance(payload, dict) and payload.get("t"):
+                        return payload
+            except (requests.RequestException, ValueError):
+                pass
+            time.sleep((0.5 * (2 ** attempt)) + random.random() * 0.25)
+        return {}
         try:
             dt = datetime.datetime.strptime(date_str, "%Y-%m-%d")
             return int(dt.timestamp())
@@ -41,10 +56,9 @@ class VnstockProvider(BaseDataProvider):
 
     def _fetch_vndirect(self, symbol: str, from_ts: int, to_ts: int) -> pd.DataFrame:
         url = f"{self.VNDIRECT_URL}?resolution=D&symbol={symbol}&from={from_ts}&to={to_ts}"
-        resp = requests.get(url, headers=self.HEADERS, timeout=10)
-        if resp.status_code != 200:
+        data = self._get_json(url)
+        if not data:
             return pd.DataFrame()
-        data = resp.json()
         timestamps = data.get("t", [])
         if not timestamps:
             return pd.DataFrame()
@@ -74,10 +88,9 @@ class VnstockProvider(BaseDataProvider):
 
     def _fetch_dnse(self, symbol: str, from_ts: int, to_ts: int) -> pd.DataFrame:
         url = f"{self.DNSE_URL}?from={from_ts}&to={to_ts}&symbol={symbol}&resolution=1D"
-        resp = requests.get(url, headers=self.HEADERS, timeout=10)
-        if resp.status_code != 200:
+        data = self._get_json(url)
+        if not data:
             return pd.DataFrame()
-        data = resp.json()
         timestamps = data.get("t", [])
         if not timestamps:
             return pd.DataFrame()
