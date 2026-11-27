@@ -282,8 +282,9 @@ if "learning_engine" not in st.session_state:
     st.session_state.learning_engine = SelfLearningEngine(db_path=storage.db_path)
 learning_engine = st.session_state.learning_engine
 
-# The web process owns the scheduler; it sleeps outside trading sessions.
-if os.getenv("RUN_SCHEDULER", "true").lower() == "true":
+# The dedicated Railway worker owns the scheduler. Keep the web process read-only
+# so opening or refreshing the dashboard cannot trigger background work or APIs.
+if os.getenv("RUN_SCHEDULER", "false").lower() == "true":
     autopilot = start_background_scheduler()
 else:
     autopilot = None
@@ -305,6 +306,9 @@ scanner = st.session_state.scanner
 
 def refresh_live_portfolio_prices():
     """Refresh tracked and paper P/L from the provider's latest price bars."""
+    # Outside a trading session, keep the dashboard fast and avoid market API calls.
+    if not is_market_open_now():
+        return
     symbols = set(tracker.get_active_recommendations().get("symbol", []))
     symbols.update(p["symbol"] for p in paper_broker.get_positions())
     price_map = {}
