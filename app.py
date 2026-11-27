@@ -267,7 +267,9 @@ provider_choice = st.sidebar.selectbox(
 if "storage" not in st.session_state:
     st.session_state.storage = StorageEngine()
 storage = st.session_state.storage
-storage.seed_initial_market_data_if_empty()
+if not st.session_state.get("_initial_market_data_seeded", False):
+    storage.seed_initial_market_data_if_empty()
+    st.session_state._initial_market_data_seeded = True
 
 if "paper_broker" not in st.session_state:
     st.session_state.paper_broker = PaperBroker()
@@ -742,32 +744,29 @@ if page == "⚡ Cổ Phiếu Nên Mua & Quản Trị Vị Thế":
             # 1. SUB-TAB: MUA THEM (DCA)
             with sub_tab_buy:
                 if user_symbols_list:
-                    cb1, cb2, cb3, cb4 = st.columns([1.4, 1.2, 1.1, 1.3])
-                    buy_sym = cb1.selectbox("Chọn mã mua thêm:", user_symbols_list, key="sel_dca_sym")
-                    cur_pos = next((p for p in saved_user_positions if p["symbol"] == buy_sym), None)
-                    c_old_qty = int(cur_pos["quantity"]) if cur_pos else 0
-                    c_old_price = float(cur_pos["avg_buy_price"]) if cur_pos else 0.0
+                    # Batch DCA inputs so typing a quantity does not rerun the full dashboard.
+                    with st.form("dca_buy_form", clear_on_submit=False, border=False):
+                        cb1, cb2, cb3, cb4 = st.columns([1.4, 1.2, 1.1, 1.3])
+                        buy_sym = cb1.selectbox("Chọn mã mua thêm:", user_symbols_list, key="sel_dca_sym")
+                        cur_pos = next((p for p in saved_user_positions if p["symbol"] == buy_sym), None)
+                        c_old_qty = int(cur_pos["quantity"]) if cur_pos else 0
+                        c_old_price = float(cur_pos["avg_buy_price"]) if cur_pos else 0.0
 
-                    # Tu dong lay thi gia khop lenh truc tiep tu san lam mac dinh
-                    auto_market_p = get_current_stock_price(buy_sym, df_results, scanner) or c_old_price
+                        # Use the cached scan value; do not fetch a new quote while editing the form.
+                        auto_market_p = get_current_stock_price(buy_sym, df_results, scanner) or c_old_price
+                        buy_price = cb2.number_input("Giá Mua Khớp Lệnh (VNĐ):", value=float(auto_market_p), step=100.0, key="num_dca_price")
+                        buy_qty = cb3.number_input("Số Lượng Mua:", value=100, step=10, min_value=1, key="num_dca_qty")
+                        inc_fee = cb1.checkbox("⚡ Tự động tính phí giao dịch & thuế CTCK (0.15%)", value=True, key="chk_dca_fee")
+                        submitted_buy = cb4.form_submit_button("🟢 Xác Nhận Mua Thêm", type="primary", use_container_width=True)
 
-                    buy_price = cb2.number_input("Giá Mua Khớp Lệnh (VNĐ):", value=float(auto_market_p), step=100.0, key="num_dca_price")
-                    buy_qty = cb3.number_input("Số Lượng Mua:", value=100, step=10, min_value=1, key="num_dca_qty")
-
-                    # Cho phep tick chon co tinh phi giao dich/thue (0.15% chuan san) hay khong
-                    col_opt1, col_opt2 = st.columns([2, 2])
-                    inc_fee = col_opt1.checkbox("⚡ Tự động tính phí giao dịch & thuế CTCK (0.15%)", value=True, key="chk_dca_fee")
                     fee_pct = 0.0015 if inc_fee else 0.0
-
-                    # Tinh toan mo phong gia von moi chuan xac 100%
                     sim_new_qty = c_old_qty + int(buy_qty)
                     sim_added_cost = int(buy_qty) * float(buy_price) * (1.0 + fee_pct)
                     sim_new_avg = StorageEngine.normalize_broker_price(((c_old_qty * c_old_price) + sim_added_cost) / sim_new_qty) if sim_new_qty > 0 else StorageEngine.normalize_broker_price(float(buy_price))
                     delta_price = sim_new_avg - c_old_price
                     delta_color = "#10b981" if delta_price < 0 else "#ef4444"
 
-                    cb4.write("<div style='height:28px;'></div>", unsafe_allow_html=True)
-                    if cb4.button("🟢 Xác Nhận Mua Thêm", type="primary", use_container_width=True, key="btn_exec_buy_dca"):
+                    if submitted_buy:
                         res_buy = storage.execute_user_buy(buy_sym, int(buy_qty), float(buy_price), fee_rate=fee_pct, note="Mua them DCA")
                         st.session_state.pop("cached_styled_exit", None)
                         st.session_state.pop("_last_user_tag", None)
