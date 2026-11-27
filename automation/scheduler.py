@@ -195,19 +195,29 @@ class MarketAutopilotScheduler:
                             self.last_post_market_date = today_str
 
                 else:
-                    # Cuoi tuan: Kich hoat tu hoc moi cuoi tuan 1 lan
-                    weekend_key = f'{today_str}_weekend'
+                    # Cuoi tuan: chi hoc tu cac lenh da dong, moi weekend mot lan.
+                    iso_year, iso_week, _ = now_vn.isocalendar()
+                    weekend_key = f'{iso_year}-W{iso_week}_weekend'
                     if self.last_weekend_date != weekend_key:
-                        self.log(f'Phát hiện cuối tuần {today_str}. Kích hoạt chế độ Bot Tự Học...')
+                        self.log(f'Phát hiện cuối tuần {today_str}. Bắt đầu tự học từ các lệnh đã đóng...')
                         try:
                             from learning.feedback_loop import SelfLearningEngine
                             from data.storage import StorageEngine
                             engine = SelfLearningEngine(db_path=StorageEngine().db_path)
-                            engine.run_offline_learning_cycle()
-                            self.last_action = 'Tự học cuối tuần hoàn tất'
+                            result = engine.run_offline_learning_cycle()
+                            metrics = result.get('metrics', {}) if isinstance(result, dict) else {}
+                            closed = metrics.get('total_closed_trades', 0)
+                            wins = metrics.get('wins', 0)
+                            losses = metrics.get('losses', 0)
+                            win_rate = metrics.get('win_rate_pct', 0.0)
+                            self.last_action = f'Tự học hoàn tất: {closed} lệnh đã đóng, thắng {wins}, thua {losses}'
                             self.last_run_time = now_vn.strftime('%H:%M:%S %d/%m/%Y')
                             self.last_weekend_date = weekend_key
-                            self.log('Đã hoàn tất tinh chỉnh mô hình AI cuối tuần.')
+                            self.log(
+                                f'Tự học hoàn tất — {closed} lệnh đóng | '
+                                f'Thắng: {wins} | Thua: {losses} | Win rate: {win_rate}% | '
+                                'Đã cập nhật trọng số AI.'
+                            )
                         except Exception as e:
                             self.log(f'Lỗi tự học cuối tuần: {e}')
 
