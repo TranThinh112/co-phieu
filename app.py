@@ -231,6 +231,18 @@ def get_current_stock_price(symbol: str, df_results: pd.DataFrame, scanner_obj=N
             except Exception:
                 pass
 
+    # Fall back to the latest persisted close from PostgreSQL. This keeps
+    # weekend/off-hours valuation and DCA pricing based on the last session.
+    saved_cache = st.session_state.setdefault("_saved_close_price_cache", {})
+    if sym not in saved_cache:
+        try:
+            saved_cache[sym] = st.session_state.storage.get_last_saved_close_price(sym)
+        except Exception:
+            saved_cache[sym] = None
+    saved_p = saved_cache.get(sym)
+    if saved_p is not None and saved_p > 0:
+        return float(saved_p)
+
     # Never make a network request while editing the dashboard outside a live
     # session. The last scan/position price is sufficient until the next session.
     if not is_market_open_now():

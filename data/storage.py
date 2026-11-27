@@ -215,6 +215,24 @@ class StorageEngine:
             df = pd.read_sql_query(query, conn)
             return df
 
+    def get_last_saved_close_price(self, symbol: str) -> Optional[float]:
+        """Return the latest persisted close without contacting a market API."""
+        with connect(self.db_path) as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                """
+                SELECT r.close_price
+                FROM scan_results r
+                JOIN scan_runs s ON s.run_id = r.run_id
+                WHERE r.symbol = %s AND r.close_price > 0
+                ORDER BY s.is_synthetic ASC, s.timestamp DESC
+                LIMIT 1
+                """,
+                (str(symbol).strip().upper(),),
+            )
+            row = cursor.fetchone()
+            return float(row[0]) if row and row[0] is not None else None
+
     def get_scan_history(self, symbol: Optional[str] = None) -> pd.DataFrame:
         with connect(self.db_path) as conn:
             if symbol:
