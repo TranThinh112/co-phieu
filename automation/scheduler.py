@@ -24,6 +24,7 @@ class MarketAutopilotScheduler:
         self.last_post_market_date: Optional[str] = None
         self.last_weekend_date: Optional[str] = None
         self.last_scan_at: Optional[datetime.datetime] = None
+        self._last_runtime_mode: Optional[str] = None
         self.scan_interval_seconds = max(60, int(os.getenv('SCAN_INTERVAL_SECONDS', '300')))
         self.logs: list = []
 
@@ -147,6 +148,29 @@ class MarketAutopilotScheduler:
                 today_str = now_vn.strftime('%Y-%m-%d')
                 weekday = now_vn.weekday()
                 curr_t = now_vn.time()
+
+                # Emit one clear lifecycle log when the worker changes mode.
+                if weekday >= 5:
+                    runtime_mode = 'WEEKEND_SLEEP'
+                elif curr_t < datetime.time(9, 0) or curr_t >= datetime.time(17, 0):
+                    runtime_mode = 'OVERNIGHT_SLEEP'
+                elif datetime.time(11, 30) < curr_t < datetime.time(13, 0):
+                    runtime_mode = 'LUNCH_SLEEP'
+                elif datetime.time(15, 0) < curr_t < datetime.time(16, 30):
+                    runtime_mode = 'POST_MARKET_REVIEW'
+                else:
+                    runtime_mode = 'TRADING_SCAN'
+
+                if runtime_mode != self._last_runtime_mode:
+                    mode_messages = {
+                        'TRADING_SCAN': 'RESUME SCAN — đang trong phiên giao dịch.',
+                        'LUNCH_SLEEP': 'SLEEP — nghỉ trưa, không gọi API giá.',
+                        'POST_MARKET_REVIEW': 'POST-MARKET — tổng kết phiên và cập nhật dữ liệu.',
+                        'OVERNIGHT_SLEEP': 'SLEEP — hết phiên, không gọi API thị trường.',
+                        'WEEKEND_SLEEP': 'SLEEP — cuối tuần, không scan thị trường.',
+                    }
+                    self.log(mode_messages[runtime_mode])
+                    self._last_runtime_mode = runtime_mode
 
                 # Chi tu dong trong cac ngay trong tuan (Thu 2 - Thu 6)
                 if weekday < 5:
