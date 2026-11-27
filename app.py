@@ -231,6 +231,11 @@ def get_current_stock_price(symbol: str, df_results: pd.DataFrame, scanner_obj=N
             except Exception:
                 pass
 
+    # Never make a network request while editing the dashboard outside a live
+    # session. The last scan/position price is sufficient until the next session.
+    if not is_market_open_now():
+        return None
+
     # 2. Tra cứu qua cache nhanh (TTL 180s)
     cached_p = get_cached_stock_price(sym)
     if cached_p is not None and cached_p > 0:
