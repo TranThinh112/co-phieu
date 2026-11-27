@@ -27,4 +27,6 @@ COPY . .
 
 EXPOSE 8080
 
-CMD ["streamlit", "run", "app.py", "--server.port", "8080", "--server.address", "0.0.0.0"]
+# Railway uses the same image for the web and worker services. Select the
+# long-running worker only when the service explicitly opts into worker mode.
+CMD ["/bin/sh", "-c", "if [ \"$WORKER_MODE\" = \"true\" ]; then exec python run_worker.py; else exec streamlit run app.py --server.port 8080 --server.address 0.0.0.0; fi"]
